@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ClotheDatabase" representedClassName="ClotheDatabase" syncable="YES" codeGenerationType="class">
+        <attribute name="color" attributeType="Transformable" syncable="YES"/>
+        <attribute name="piece" attributeType="String" syncable="YES"/>
+        <attribute name="style" attributeType="String" syncable="YES"/>
+        <relationship name="outfit" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OutfitDatabase" inverseName="clothes" inverseEntity="OutfitDatabase" syncable="YES"/>
+    </entity>
+    <entity name="OutfitDatabase" representedClassName="OutfitDatabase" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="clothes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClotheDatabase" inverseName="outfit" inverseEntity="ClotheDatabase" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ClotheDatabase" positionX="203.109375" positionY="19.76171875" width="128" height="103"/>
+        <element name="OutfitDatabase" positionX="-54" positionY="18" width="128" height="73"/>
+    </elements>
+</model>

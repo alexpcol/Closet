@@ -14,6 +14,9 @@
 		47A8A6AF2299A33B0005E34C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47A8A6AE2299A33B0005E34C /* Assets.xcassets */; };
 		47A8A6B22299A33B0005E34C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A8A6B02299A33B0005E34C /* LaunchScreen.storyboard */; };
 		47A8A6BD2299A33B0005E34C /* ClosetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6BC2299A33B0005E34C /* ClosetTests.swift */; };
+		47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6C82299A7450005E34C /* DressMaker.swift */; };
+		47A8A6CB2299A9AE0005E34C /* ClothesDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */; };
+		47A8A6D12299B5410005E34C /* Clothe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6D02299B5410005E34C /* Clothe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		47A8A6B82299A33B0005E34C /* ClosetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClosetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A8A6BC2299A33B0005E34C /* ClosetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetTests.swift; sourceTree = "<group>"; };
 		47A8A6BE2299A33B0005E34C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47A8A6C82299A7450005E34C /* DressMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DressMaker.swift; sourceTree = "<group>"; };
+		47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesDataTypes.swift; sourceTree = "<group>"; };
+		47A8A6D02299B5410005E34C /* Clothe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clothe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +85,14 @@
 		47A8A6A32299A33A0005E34C /* Closet */ = {
 			isa = PBXGroup;
 			children = (
+				47A8A6CC2299AC7B0005E34C /* Extensions */,
+				47A8A6C72299A6510005E34C /* Model */,
 				47A8A6A42299A33A0005E34C /* AppDelegate.swift */,
 				47A8A6A62299A33A0005E34C /* ViewController.swift */,
 				47A8A6A82299A33A0005E34C /* Main.storyboard */,
 				47A8A6AE2299A33B0005E34C /* Assets.xcassets */,
 				47A8A6B02299A33B0005E34C /* LaunchScreen.storyboard */,
 				47A8A6B32299A33B0005E34C /* Info.plist */,
-				47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */,
 			);
 			path = Closet;
 			sourceTree = "<group>";
@@ -97,6 +104,32 @@
 				47A8A6BE2299A33B0005E34C /* Info.plist */,
 			);
 			path = ClosetTests;
+			sourceTree = "<group>";
+		};
+		47A8A6C72299A6510005E34C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				47A8A6CF2299B42C0005E34C /* PublicModels */,
+				47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */,
+				47A8A6C82299A7450005E34C /* DressMaker.swift */,
+				47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		47A8A6CC2299AC7B0005E34C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		47A8A6CF2299B42C0005E34C /* PublicModels */ = {
+			isa = PBXGroup;
+			children = (
+				47A8A6D02299B5410005E34C /* Clothe.swift */,
+			);
+			path = PublicModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,9 +233,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A8A6CB2299A9AE0005E34C /* ClothesDataTypes.swift in Sources */,
+				47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */,
 				47A8A6A72299A33A0005E34C /* ViewController.swift in Sources */,
 				47A8A6A52299A33A0005E34C /* AppDelegate.swift in Sources */,
 				47A8A6AD2299A33A0005E34C /* Closet.xcdatamodeld in Sources */,
+				47A8A6D12299B5410005E34C /* Clothe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
