@@ -19,7 +19,23 @@ class DressMaker {
     init(container: NSPersistentContainer) {
         self.container = container
     }
-    // TODO: fetch for clothe or atribute: predicate, method for each type, clothe with specified atributes
+    func fetchAllClothes() -> [Clothe]? {
+        guard let result = fetchAllClothesDatabase() else { return nil }
+        let clothes = result.map { (item) -> Clothe in
+           
+            let color = item.color as! UIColor
+            let pieceDatabase = item.piece
+            let piece = PieceType(rawValue: pieceDatabase!)!
+            let styleDatabase = item.style
+            let style = ClotheStyle(rawValue: styleDatabase!)!
+            return Clothe(id: item.objectID.uriRepresentation(),
+                          color: color,
+                          piece: piece,
+                          style: style)
+        }
+        return clothes
+        
+    }
     func fetchClothe(withId id: URL) -> Clothe? {
         guard let clotheDatabase = fetchDatabaseClothe(withId: id),
             let color = clotheDatabase.color as? UIColor,
@@ -40,10 +56,18 @@ class DressMaker {
         clothe.style = style.rawValue
         clothe.color = color
         clothe.piece = piece.rawValue
+        clothe.outfit = nil // is this ok?
         save()
     }
     
     //TODO: Next class should this would be in a clothe extension?
+    func update(clothe: Clothe) {
+        guard let clotheDatabase = fetchDatabaseClothe(withId: clothe.id) else { return }
+        clotheDatabase.color = clothe.color
+        clotheDatabase.piece = clothe.piece.rawValue
+        clotheDatabase.style = clothe.style.rawValue
+        save()
+    }
     func updateClothe(withId id: URL, changingColor color: UIColor) {
         guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
         clotheDatabase.color = color
@@ -75,6 +99,15 @@ class DressMaker {
             } catch  {
                 print("Save Error:\(error)")
             }
+        }
+    }
+    
+    private func fetchAllClothesDatabase() -> [ClotheDatabase]? {
+        let request: NSFetchRequest<ClotheDatabase> = ClotheDatabase.fetchRequest()
+        do{
+            return try self.container.viewContext.fetch(request)
+        } catch {
+            return nil
         }
     }
     

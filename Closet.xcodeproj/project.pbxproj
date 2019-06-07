@@ -17,6 +17,8 @@
 		47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6C82299A7450005E34C /* DressMaker.swift */; };
 		47A8A6CB2299A9AE0005E34C /* ClothesDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */; };
 		47A8A6D12299B5410005E34C /* Clothe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6D02299B5410005E34C /* Clothe.swift */; };
+		47B6704522A4627700558DBA /* FashionMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6704422A4627700558DBA /* FashionMaker.swift */; };
+		47B6704722A46A0B00558DBA /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6704622A46A0B00558DBA /* Outfit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		47A8A6C82299A7450005E34C /* DressMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DressMaker.swift; sourceTree = "<group>"; };
 		47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesDataTypes.swift; sourceTree = "<group>"; };
 		47A8A6D02299B5410005E34C /* Clothe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clothe.swift; sourceTree = "<group>"; };
+		47B6704422A4627700558DBA /* FashionMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionMaker.swift; sourceTree = "<group>"; };
+		47B6704622A46A0B00558DBA /* Outfit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47926A6822A9EFE600DDDA2A /* DressMaker */ = {
+			isa = PBXGroup;
+			children = (
+				47A8A6C82299A7450005E34C /* DressMaker.swift */,
+			);
+			path = DressMaker;
+			sourceTree = "<group>";
+		};
 		47A8A6982299A33A0005E34C = {
 			isa = PBXGroup;
 			children = (
@@ -111,8 +123,9 @@
 			children = (
 				47A8A6CF2299B42C0005E34C /* PublicModels */,
 				47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */,
-				47A8A6C82299A7450005E34C /* DressMaker.swift */,
+				47926A6822A9EFE600DDDA2A /* DressMaker */,
 				47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */,
+				47B6704422A4627700558DBA /* FashionMaker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -128,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				47A8A6D02299B5410005E34C /* Clothe.swift */,
+				47B6704622A46A0B00558DBA /* Outfit.swift */,
 			);
 			path = PublicModels;
 			sourceTree = "<group>";
@@ -233,7 +247,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47B6704522A4627700558DBA /* FashionMaker.swift in Sources */,
 				47A8A6CB2299A9AE0005E34C /* ClothesDataTypes.swift in Sources */,
+				47B6704722A46A0B00558DBA /* Outfit.swift in Sources */,
 				47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */,
 				47A8A6A72299A33A0005E34C /* ViewController.swift in Sources */,
 				47A8A6A52299A33A0005E34C /* AppDelegate.swift in Sources */,

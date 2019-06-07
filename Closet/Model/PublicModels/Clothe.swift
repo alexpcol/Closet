@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Clothe {
+struct Clothe: Hashable {
     let id: URL
     let color: UIColor
     let piece: PieceType
