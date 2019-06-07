@@ -68,14 +68,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		47926A6822A9EFE600DDDA2A /* DressMaker */ = {
-			isa = PBXGroup;
-			children = (
-				47A8A6C82299A7450005E34C /* DressMaker.swift */,
-			);
-			path = DressMaker;
-			sourceTree = "<group>";
-		};
 		47A8A6982299A33A0005E34C = {
 			isa = PBXGroup;
 			children = (
@@ -121,10 +113,10 @@
 		47A8A6C72299A6510005E34C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				47B3F22722AB1CB700698729 /* CoreData */,
+				47B3F22822AB1CEF00698729 /* DataTypes */,
 				47A8A6CF2299B42C0005E34C /* PublicModels */,
-				47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */,
-				47926A6822A9EFE600DDDA2A /* DressMaker */,
-				47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */,
+				47A8A6C82299A7450005E34C /* DressMaker.swift */,
 				47B6704422A4627700558DBA /* FashionMaker.swift */,
 			);
 			path = Model;
@@ -144,6 +136,22 @@
 				47B6704622A46A0B00558DBA /* Outfit.swift */,
 			);
 			path = PublicModels;
+			sourceTree = "<group>";
+		};
+		47B3F22722AB1CB700698729 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		47B3F22822AB1CEF00698729 /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */,
+			);
+			path = DataTypes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
