@@ -19,15 +19,15 @@ class DressMaker {
     init(container: NSPersistentContainer) {
         self.container = container
     }
+    
     func fetchAllClothes() -> [Clothe]? {
         guard let result = fetchAllClothesDatabase() else { return nil }
         let clothes = result.map { (item) -> Clothe in
-           
+            
             let color = item.color as! UIColor
-            let pieceDatabase = item.piece
-            let piece = PieceType(rawValue: pieceDatabase!)!
-            let styleDatabase = item.style
-            let style = ClotheStyle(rawValue: styleDatabase!)!
+            let piece = PieceType.with(text: item.piece)
+            let style = ClotheStyle.with(text: item.style)
+            
             return Clothe(id: item.objectID.uriRepresentation(),
                           color: color,
                           piece: piece,
@@ -36,14 +36,12 @@ class DressMaker {
         return clothes
         
     }
+    
     func fetchClothe(withId id: URL) -> Clothe? {
-        guard let clotheDatabase = fetchDatabaseClothe(withId: id),
-            let color = clotheDatabase.color as? UIColor,
-            let pieceDatabase = clotheDatabase.piece,
-            let piece = PieceType(rawValue: pieceDatabase),
-            let styleDatabase = clotheDatabase.style,
-            let style = ClotheStyle(rawValue: styleDatabase)
-            else { return nil }
+        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return nil }
+        let color = clotheDatabase.color as! UIColor
+        let piece = PieceType.with(text: clotheDatabase.piece)
+        let style = ClotheStyle.with(text: clotheDatabase.style)
         
         return Clothe(id: clotheDatabase.objectID.uriRepresentation(),
                       color: color,
@@ -60,7 +58,6 @@ class DressMaker {
         save()
     }
     
-    //TODO: Next class should this would be in a clothe extension?
     func update(clothe: Clothe) {
         guard let clotheDatabase = fetchDatabaseClothe(withId: clothe.id) else { return }
         clotheDatabase.color = clothe.color
@@ -68,23 +65,24 @@ class DressMaker {
         clotheDatabase.style = clothe.style.rawValue
         save()
     }
-    func updateClothe(withId id: URL, changingColor color: UIColor) {
-        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
-        clotheDatabase.color = color
-        save()
-    }
-    
-    func updateClothe(withId id: URL, changingPiece piece: PieceType) {
-        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
-        clotheDatabase.piece = piece.rawValue
-        save()
-    }
-    
-    func updateClothe(withId id: URL, changingStyle style: ClotheStyle) {
-        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
-        clotheDatabase.style = style.rawValue
-        save()
-    }
+    //MARK:- I think it's not necessary 
+//    func updateClothe(withId id: URL, changingColor color: UIColor) {
+//        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
+//        clotheDatabase.color = color
+//        save()
+//    }
+//
+//    func updateClothe(withId id: URL, changingPiece piece: PieceType) {
+//        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
+//        clotheDatabase.piece = piece.rawValue
+//        save()
+//    }
+//
+//    func updateClothe(withId id: URL, changingStyle style: ClotheStyle) {
+//        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
+//        clotheDatabase.style = style.rawValue
+//        save()
+//    }
     
     func removeClothe(withId id: URL) {
         guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
