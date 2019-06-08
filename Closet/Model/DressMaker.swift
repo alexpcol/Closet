@@ -23,38 +23,29 @@ class DressMaker {
     func fetchAllClothes() -> [Clothe]? {
         guard let result = fetchAllClothesDatabase() else { return nil }
         let clothes = result.map { (item) -> Clothe in
-            
-            let color = item.color as! UIColor
-            let piece = PieceType.with(text: item.piece)
-            let style = ClotheStyle.with(text: item.style)
-            
             return Clothe(id: item.objectID.uriRepresentation(),
-                          color: color,
-                          piece: piece,
-                          style: style)
+                          color: item.color,
+                          piece: item.piece,
+                          style: item.style)
         }
         return clothes
-        
     }
     
     func fetchClothe(withId id: URL) -> Clothe? {
         guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return nil }
-        let color = clotheDatabase.color as! UIColor
-        let piece = PieceType.with(text: clotheDatabase.piece)
-        let style = ClotheStyle.with(text: clotheDatabase.style)
         
         return Clothe(id: clotheDatabase.objectID.uriRepresentation(),
-                      color: color,
-                      piece: piece,
-                      style: style)
+                      color: clotheDatabase.color,
+                      piece: clotheDatabase.piece,
+                      style: clotheDatabase.style)
     }
     
-    func addClothe(style: ClotheStyle, color: UIColor, piece: PieceType) {
-        let clothe = ClotheDatabase(entity: ClotheDatabase.entity(), insertInto: backgroundContext)
-        clothe.style = style.rawValue
-        clothe.color = color
-        clothe.piece = piece.rawValue
-        clothe.outfit = nil // is this ok?
+    func add(clothe: Clothe) {
+        let clotheDatabase = ClotheDatabase(entity: ClotheDatabase.entity(), insertInto: backgroundContext)
+        clotheDatabase.style = clothe.style.rawValue
+        clotheDatabase.color = clothe.color
+        clotheDatabase.piece = clothe.piece.rawValue
+        clotheDatabase.outfit = nil // is this ok?
         save()
     }
     
@@ -84,8 +75,8 @@ class DressMaker {
 //        save()
 //    }
     
-    func removeClothe(withId id: URL) {
-        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
+    func remove(clothe: Clothe) {
+        guard let clotheDatabase = fetchDatabaseClothe(withId: clothe.id) else { return }
         backgroundContext.delete(clotheDatabase)
         save()
     }

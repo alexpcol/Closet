@@ -15,4 +15,18 @@ struct Clothe: Hashable {
     let piece: PieceType
     let style: ClotheStyle
     
+    init(id: URL, color: NSObject?, piece: String?, style: String?) {
+        self.id = id
+        self.color = color as! UIColor
+        self.piece = PieceType.with(text: piece)
+        self.style = ClotheStyle.with(text: style)
+    }
+    
+    init(id: URL, color: UIColor, piece: PieceType, style: ClotheStyle) {
+        self.id = id
+        self.color = color
+        self.piece = piece
+        self.style = style
+    }
+    
 }

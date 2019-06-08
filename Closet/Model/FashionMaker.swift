@@ -20,32 +20,43 @@ class FashionMaker {
         self.container = container
     }
     
-    func fetchOutfit(withId id: URL) -> Outfit? {
-        guard let outfitDatabase = fetchDatabaseOutfit(withId: id) else { return nil }
-        guard let clothesDatabase = outfitDatabase.clothes else { return nil }
-        var clothes:[Clothe] = []
-        for case let item as ClotheDatabase in clothesDatabase {
-            
-            guard let color = item.color as? UIColor,
-                let pieceDatabase = item.piece,
-                let piece = PieceType(rawValue: pieceDatabase),
-                let styleDatabase = item.style,
-                let style = ClotheStyle(rawValue: styleDatabase)
-                else { continue }
-            
-            let clothe = Clothe(id: item.objectID.uriRepresentation(),
-                                color: color,
-                                piece: piece,
-                                style: style)
-            clothes.append(clothe)
+    func fetchAllOutfits() -> [Outfit]? {
+        guard let result = fetchAllDatabaseOutfit() else { return nil }
+        let outfits = result.map { (item) -> Outfit in
+           return Outfit(id: item.objectID.uriRepresentation(), name: item.name, clothes: item.clothes)
         }
-        return Outfit(id: outfitDatabase.objectID.uriRepresentation(), clothes: clothes)
+        return outfits
     }
     
-    func addOutfit(name: String, clothes: [Clothe]) { //should it be called 'add' also? or like the commmon action like createOutfit
-        let outfit = OutfitDatabase(entity: OutfitDatabase.entity(), insertInto: backgroundContext)
-        outfit.name = name
-        outfit.clothes = NSSet(object: clothes)
+    func fetchOutfit(withId id: URL) -> Outfit? {
+        guard let outfitDatabase = fetchDatabaseOutfit(withId: id),
+        let name = outfitDatabase.name,
+        let clothesDatabase = outfitDatabase.clothes else { return nil }
+        var clothes = [Clothe]()
+        for case let item as ClotheDatabase in clothesDatabase {
+            clothes.append(Clothe(id: item.objectID.uriRepresentation(), color: item.color, piece: item.piece, style: item.style))
+        }
+        
+        return Outfit(id: outfitDatabase.objectID.uriRepresentation(), name: name, clothes: clothes)
+    }
+    
+    func add(outfit: Outfit) {
+        let outfitDatabase = OutfitDatabase(entity: OutfitDatabase.entity(), insertInto: backgroundContext)
+        outfitDatabase.name = outfit.name
+        outfitDatabase.clothes = NSSet(array: outfit.clothes)
+        save()
+    }
+    
+    func update(outfit: Outfit) {
+        guard let outfitDatabase = fetchDatabaseOutfit(withId: outfit.id) else { return }
+        outfitDatabase.name = outfit.name
+        outfitDatabase.clothes = NSSet(array: outfit.clothes)
+        save()
+    }
+    
+    func remove(outfit: Outfit) {
+        guard let outfitDatabase = fetchDatabaseOutfit(withId: outfit.id) else { return }
+        backgroundContext.delete(outfitDatabase)
         save()
     }
     
@@ -56,6 +67,15 @@ class FashionMaker {
             } catch  {
                 print("Save Error:\(error)")
             }
+        }
+    }
+    
+    private func fetchAllDatabaseOutfit() -> [OutfitDatabase]? {
+        let request: NSFetchRequest<OutfitDatabase> = OutfitDatabase.fetchRequest()
+        do{
+            return try self.container.viewContext.fetch(request)
+        } catch {
+            return nil
         }
     }
     
