@@ -7,46 +7,97 @@
 //
 
 import XCTest
+import CoreData
 @testable import Closet
 
 class ClosetTests: XCTestCase {
 
-    var sut: URLSession!
+    var dressMaker: DressMaker!
+    lazy var managedObjectModel: NSManagedObjectModel = {
+        return NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))])!
+    }()
+    lazy var mockPersistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Closet", managedObjectModel: managedObjectModel)
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores(completionHandler: { (description, error) in
+            precondition(description.type == NSInMemoryStoreType)
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
     override func setUp() {
         super.setUp()
-        sut = URLSession(configuration: .default)
+        fullFillDressMaker()
     }
 
     override func tearDown() {
-        sut = nil
+        cleanDressMaker()
         super.tearDown()
     }
 
-    func testExample() {
-        let url = URL(string: "https://itunes.apple.com/search?media=music&entity=song&term=abba")
-        let promise = expectation(description: "Status code: 200")
-        let dataTask = sut.dataTask(with: url!) { (data, response, error) in
-            if let error = error {
-                XCTFail("Error \(error.localizedDescription)")
-                return
-            } else if let statusCode = (response as? HTTPURLResponse)?.statusCode {
-                if statusCode == 200 {
-                    promise.fulfill()
-                } else {
-                    XCTFail("Status code: \(statusCode)")
-                }
-            }
-        }
-        
-        dataTask.resume()
-        wait(for: [promise], timeout: 5)
+    func testFetchAllClothes() {
+        let total = dressMaker.fetchAllClothes()!
+        XCTAssertEqual(total.count, 3)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testFetchClotheById() {
+        let total = dressMaker.fetchAllClothes()!
+        let clothe = dressMaker.fetchClothe(withId: total[0].id)!
+        XCTAssertEqual(clothe.color, total[0].color)
+        XCTAssertEqual(clothe.piece, total[0].piece)
+        XCTAssertEqual(clothe.style, total[0].style)
+    }
+    
+    func testRemoveCloetheById() {
+        var total = dressMaker.fetchAllClothes()!
+        dressMaker.remove(clothe: total[0])
+        total = dressMaker.fetchAllClothes()!
+        XCTAssertEqual(total.count, 2)
+    }
+    
+    func fullFillDressMaker() {
+        dressMaker = DressMaker(container: mockPersistentContainer)
+        createClotheDabase(color: UIColor.red, piece: .top, style: .casual)
+        createClotheDabase(color: UIColor.blue, piece: .trouser, style: .casual)
+        createClotheDabase(color: UIColor.green, piece: .footwear, style: .casual)
+        
+//        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .red, piece: .top, style: .casual))
+//        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .blue, piece: .trouser, style: .casual))
+//        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .green, piece: .footwear, style: .casual))
+        try? mockPersistentContainer.viewContext.save()
+    }
+    
+    func createClotheDabase (color: UIColor, piece: PieceType, style: ClotheStyle) {
+        let clotheDatabase = NSEntityDescription.insertNewObject(forEntityName: "ClotheDatabase", into: mockPersistentContainer.viewContext)
+        clotheDatabase.setValue(color, forKey: "color")
+        clotheDatabase.setValue(piece.rawValue, forKey: "piece")
+        clotheDatabase.setValue(style.rawValue, forKey: "style")
+    }
+    
+    func cleanDressMaker() {
+        
+        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "ClotheDatabase")
+        do{
+             let result = try self.mockPersistentContainer.viewContext.fetch(request)
+            for case let item as NSManagedObject in result {
+                mockPersistentContainer.viewContext.delete(item)
+            }
+            try mockPersistentContainer.viewContext.save()
+        } catch {
+            print("error")
         }
+//        guard let clothes = dressMaker.fetchAllClothes() else { return }
+//        for clothe in clothes {
+//            dressMaker.remove(clothe: clothe)
+//        }
+//        try? mockPersistentContainer.viewContext.save()
+//        dressMaker = nil
     }
 
 }
