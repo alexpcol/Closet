@@ -18,12 +18,12 @@ struct Outfit {
         self.id = id
         self.name = name ?? ""
         if let result = clothes, result.count > 0 {
-            var clothes = [Clothe]()
-            for case let item as ClotheDatabase in result {
-                clothes.append(Clothe(id: item.objectID.uriRepresentation(),
-                                      color: item.color,
-                                      piece: item.piece,
-                                      style: item.style))
+            let clothes = result.map { (item) -> Clothe in
+                let clotheItem = item as! ClotheDatabase
+                return Clothe(id: clotheItem.objectID.uriRepresentation(),
+                              color: clotheItem.color,
+                              piece: clotheItem.piece,
+                              style: clotheItem.style)
             }
             self.clothes = clothes
         }

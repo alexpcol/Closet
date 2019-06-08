@@ -15,8 +15,8 @@ enum ClotheStyle: String, CaseIterable {
     case sport = "sportClotheStyle"
     
     static func with(text: String?) -> ClotheStyle {
-        guard let text = text else { return .casual }
-        return self.allCases.first { "\($0)" == text } ?? .casual
+        guard let styleKey = text else { return .casual }
+        return ClotheStyle(rawValue: styleKey) ?? .casual
     }
 }
 
@@ -26,7 +26,7 @@ enum PieceType: String, CaseIterable {
     case footwear = "footwearPieceType"
     
     static func with(text: String?) -> PieceType {
-        guard let text = text else { return .top }
-        return self.allCases.first { "\($0)" == text } ?? .top
+        guard let pieceKey = text else { return .top }
+        return PieceType(rawValue: pieceKey) ?? .top
     }
 }
