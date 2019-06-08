@@ -45,7 +45,7 @@ class DressMaker {
         clotheDatabase.style = clothe.style.rawValue
         clotheDatabase.color = clothe.color
         clotheDatabase.piece = clothe.piece.rawValue
-        clotheDatabase.outfit = nil // is this ok?
+        clotheDatabase.outfit = nil
         save()
     }
     
@@ -56,24 +56,6 @@ class DressMaker {
         clotheDatabase.style = clothe.style.rawValue
         save()
     }
-    //MARK:- I think it's not necessary 
-//    func updateClothe(withId id: URL, changingColor color: UIColor) {
-//        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
-//        clotheDatabase.color = color
-//        save()
-//    }
-//
-//    func updateClothe(withId id: URL, changingPiece piece: PieceType) {
-//        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
-//        clotheDatabase.piece = piece.rawValue
-//        save()
-//    }
-//
-//    func updateClothe(withId id: URL, changingStyle style: ClotheStyle) {
-//        guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return }
-//        clotheDatabase.style = style.rawValue
-//        save()
-//    }
     
     func remove(clothe: Clothe) {
         guard let clotheDatabase = fetchDatabaseClothe(withId: clothe.id) else { return }
