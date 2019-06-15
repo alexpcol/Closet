@@ -28,6 +28,7 @@ struct Clothe: Hashable {
         self.piece = piece
         self.style = style
     }
+    
     // Static class for the creation of a ClotheDatabase object
     static func clotheForDressMakerAdd(color: UIColor, piece: PieceType, style: ClotheStyle) -> Clothe {
        return  Clothe(id: URL(fileURLWithPath: ""), color: color, piece: piece, style: style)

@@ -12,12 +12,14 @@ import UIKit
 
 class FashionMaker {
     private let container: NSPersistentContainer
+    private let dressMaker: DressMaker
     lazy var backgroundContext: NSManagedObjectContext = {
-        return container.newBackgroundContext()
+        return container.viewContext
     }()
     
     init(container: NSPersistentContainer) {
         self.container = container
+        dressMaker = DressMaker(container: container)
     }
     
     func fetchAllOutfits() -> [Outfit]? {
@@ -30,8 +32,8 @@ class FashionMaker {
     
     func fetchOutfit(withId id: URL) -> Outfit? {
         guard let outfitDatabase = fetchDatabaseOutfit(withId: id),
-        let name = outfitDatabase.name,
-        let clothesDatabase = outfitDatabase.clothes else { return nil }
+        let name = outfitDatabase.name else { return nil }
+        let clothesDatabase = outfitDatabase.clothes
         var clothes = [Clothe]()
         for case let item as ClotheDatabase in clothesDatabase {
             clothes.append(Clothe(id: item.objectID.uriRepresentation(), color: item.color, piece: item.piece, style: item.style))
@@ -40,21 +42,24 @@ class FashionMaker {
         return Outfit(id: outfitDatabase.objectID.uriRepresentation(), name: name, clothes: clothes)
     }
     
-    func add(outfit: Outfit) {
+    func add(_ outfit: Outfit) {
         let outfitDatabase = OutfitDatabase(entity: OutfitDatabase.entity(), insertInto: backgroundContext)
         outfitDatabase.name = outfit.name
-        outfitDatabase.clothes = NSSet(array: outfit.clothes)
+        for clothe in outfit.clothes {
+            guard let clotheDatabase = dressMaker.fetchDatabaseClothe(withId: clothe.id) else { continue }
+            outfitDatabase.addToClothes(clotheDatabase)
+        }
         save()
     }
     
-    func update(outfit: Outfit) {
+    func update(_ outfit: Outfit) {
         guard let outfitDatabase = fetchDatabaseOutfit(withId: outfit.id) else { return }
         outfitDatabase.name = outfit.name
         outfitDatabase.clothes = NSSet(array: outfit.clothes)
         save()
     }
     
-    func remove(outfit: Outfit) {
+    func remove(_ outfit: Outfit) {
         guard let outfitDatabase = fetchDatabaseOutfit(withId: outfit.id) else { return }
         backgroundContext.delete(outfitDatabase)
         save()
@@ -64,6 +69,7 @@ class FashionMaker {
         if backgroundContext.hasChanges {
             do{
                 try backgroundContext.save()
+                print("Saved!!!")
             } catch  {
                 print("Save Error:\(error)")
             }

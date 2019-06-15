@@ -13,7 +13,7 @@ import UIKit
 class DressMaker {
     private let container: NSPersistentContainer
     lazy var backgroundContext: NSManagedObjectContext = {
-        return container.newBackgroundContext()
+        return container.viewContext
     }()
     
     init(container: NSPersistentContainer) {
@@ -33,14 +33,13 @@ class DressMaker {
     
     func fetchClothe(withId id: URL) -> Clothe? {
         guard let clotheDatabase = fetchDatabaseClothe(withId: id) else { return nil }
-        
         return Clothe(id: clotheDatabase.objectID.uriRepresentation(),
                       color: clotheDatabase.color,
                       piece: clotheDatabase.piece,
                       style: clotheDatabase.style)
     }
     
-    func add(clothe: Clothe) {
+    func add(_ clothe: Clothe) {
         let clotheDatabase = ClotheDatabase(entity: ClotheDatabase.entity(), insertInto: backgroundContext)
         clotheDatabase.style = clothe.style.rawValue
         clotheDatabase.color = clothe.color
@@ -49,7 +48,7 @@ class DressMaker {
         save()
     }
     
-    func update(clothe: Clothe) {
+    func update(_ clothe: Clothe) {
         guard let clotheDatabase = fetchDatabaseClothe(withId: clothe.id) else { return }
         clotheDatabase.color = clothe.color
         clotheDatabase.piece = clothe.piece.rawValue
@@ -57,7 +56,7 @@ class DressMaker {
         save()
     }
     
-    func remove(clothe: Clothe) {
+    func remove(_ clothe: Clothe) {
         guard let clotheDatabase = fetchDatabaseClothe(withId: clothe.id) else { return }
         backgroundContext.delete(clotheDatabase)
         save()
@@ -82,7 +81,7 @@ class DressMaker {
         }
     }
     
-    private func fetchDatabaseClothe(withId id: URL) -> ClotheDatabase? {
+    func fetchDatabaseClothe(withId id: URL) -> ClotheDatabase? {
         guard let managedID = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: id) else {
             return nil
         }

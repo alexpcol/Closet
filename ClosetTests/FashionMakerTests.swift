@@ -7,27 +7,58 @@
 //
 
 import XCTest
+import CoreData
+@testable import Closet
 
 class FashionMakerTests: XCTestCase {
-
+    var dressMaker: DressMaker!
+    var fashionMaker: FashionMaker!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        fullFillFashion()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        clearFashionMaker()
+        super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFetchAllOutfits() {
+        let totalOutfits = fashionMaker.fetchAllOutfits()
+        XCTAssertEqual(totalOutfits?.count, 1)
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testFetchOutfitById() {
+        let totalOutfits = fashionMaker.fetchAllOutfits()!
+        let outfit = fashionMaker.fetchOutfit(withId: totalOutfits[0].id)
+        XCTAssertEqual(outfit?.name, "Summer")
+    }
+    
+    func fullFillFashion() {
+        dressMaker = DressMaker(container: (UIApplication.shared.delegate as! AppDelegate).persistentContainer)
+        fashionMaker = FashionMaker(container: (UIApplication.shared.delegate as! AppDelegate).persistentContainer)
+        
+        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red, piece: .top, style: .casual))
+        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .green, piece: .trouser, style: .casual))
+        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .blue, piece: .footwear, style: .casual))
+        
+        let clothes = dressMaker.fetchAllClothes()
+        
+        fashionMaker.add(Outfit.outfitForFashionMakerAdd(name: "Summer", clothes: clothes!))
+    }
+    
+    func clearFashionMaker() {
+        guard let outfits = fashionMaker.fetchAllOutfits() else { return }
+        for outfit in outfits {
+            fashionMaker.remove(outfit)
         }
+        guard let clothes = dressMaker.fetchAllClothes() else { return }
+        for clothe in clothes {
+            dressMaker.remove(clothe)
+        }
+        dressMaker = nil
+        fashionMaker = nil
     }
 
 }
