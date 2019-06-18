@@ -17,9 +17,9 @@ class OutfitsCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = OutfitViewController.instantiate()
+        let vc = OutfitViewController.instantiate(fromStoryboard: "Outfits")
         vc.title = "Outfits"
-         vc.tabBarItem = UITabBarItem(title: "Clothes", image: UIImage(named: "man"), tag: 1)
+         vc.tabBarItem = UITabBarItem(title: "Outfits", image: UIImage(named: "man"), tag: 1)
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

@@ -6,7 +6,7 @@
 //  Copyright © 2019 chila. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 enum ClotheStyle: String, CaseIterable {
     case casual = "casualClotheStyle"
@@ -28,5 +28,16 @@ enum PieceType: String, CaseIterable {
     static func with(text: String?) -> PieceType {
         guard let pieceKey = text else { return .top }
         return PieceType(rawValue: pieceKey) ?? .top
+    }
+    
+    func icon() -> UIImage {
+        switch self {
+        case .top:
+            return UIImage(named: "iconPlaceholder")!
+        case .trouser:
+            return UIImage(named: "iconPlaceholder")!
+        case .footwear:
+            return UIImage(named: "iconPlaceholder")!
+        }
     }
 }

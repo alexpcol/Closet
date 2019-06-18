@@ -17,10 +17,12 @@ class ClothesCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = ClothesViewController.instantiate()
+        let vc = ClothesViewController.instantiate(fromStoryboard: "Clothes")
         vc.title = "Clothes"
         vc.tabBarItem = UITabBarItem(title: "Clothes", image: UIImage(named: "shirt"), tag: 0)
         vc.coordinator = self
+        vc.setupView(viewModel: ClotheViewModel())
         navigationController.pushViewController(vc, animated: false)
     }
+    
 }

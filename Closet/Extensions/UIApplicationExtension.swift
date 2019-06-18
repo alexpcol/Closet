@@ -9,12 +9,8 @@
 import UIKit
 import CoreData
 
-protocol CoreDataConntainer {
-    var container: NSPersistentContainer { get }
-}
-
-extension UIViewController: CoreDataConntainer {
-    var container: NSPersistentContainer {
+extension UIApplication {
+    static var container: NSPersistentContainer {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     }
 }

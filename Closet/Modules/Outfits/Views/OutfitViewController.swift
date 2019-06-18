@@ -9,6 +9,7 @@
 import UIKit
 
 class OutfitViewController: UIViewController, Storyboarded {
+    
 
     weak var coordinator: OutfitsCoordinator?
     override func viewDidLoad() {

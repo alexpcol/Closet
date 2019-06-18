@@ -14,6 +14,8 @@ class FashionMakerTests: XCTestCase {
     var dressMaker: DressMaker!
     var fashionMaker: FashionMaker!
     
+    //TODO: generar un container para las pruebas, no utilizar el que se usa para la app
+    
     override func setUp() {
         super.setUp()
         fullFillFashion()
@@ -33,6 +35,13 @@ class FashionMakerTests: XCTestCase {
         let totalOutfits = fashionMaker.fetchAllOutfits()!
         let outfit = fashionMaker.fetchOutfit(withId: totalOutfits[0].id)
         XCTAssertEqual(outfit?.name, "Summer")
+    }
+    
+    func testRemoveOutfitById() {
+        var totalOutfits = fashionMaker.fetchAllOutfits()!
+        fashionMaker.remove(totalOutfits[0])
+        totalOutfits = fashionMaker.fetchAllOutfits()!
+        XCTAssertEqual(totalOutfits.count, 0)
     }
     
     func fullFillFashion() {
