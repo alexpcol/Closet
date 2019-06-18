@@ -36,7 +36,11 @@ class FashionMaker {
         let clothesDatabase = outfitDatabase.clothes
         var clothes = [Clothe]()
         for case let item as ClotheDatabase in clothesDatabase {
-            clothes.append(Clothe(id: item.objectID.uriRepresentation(), color: item.color, piece: item.piece, style: item.style))
+            clothes.append(Clothe(id: item.objectID.uriRepresentation(),
+                                  color: item.color,
+                                  piece: item.piece,
+                                  style: item.style,
+                                  image: item.image))
         }
         
         return Outfit(id: outfitDatabase.objectID.uriRepresentation(), name: name, clothes: clothes)

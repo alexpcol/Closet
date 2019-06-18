@@ -23,7 +23,8 @@ struct Outfit {
                 return Clothe(id: clotheItem.objectID.uriRepresentation(),
                               color: clotheItem.color,
                               piece: clotheItem.piece,
-                              style: clotheItem.style)
+                              style: clotheItem.style,
+                              image: clotheItem.image)
             }
             self.clothes = clothes
         }

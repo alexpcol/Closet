@@ -26,7 +26,8 @@ class DressMaker {
             return Clothe(id: item.objectID.uriRepresentation(),
                           color: item.color,
                           piece: item.piece,
-                          style: item.style)
+                          style: item.style,
+                          image: item.image)
         }
         return clothes
     }
@@ -36,7 +37,8 @@ class DressMaker {
         return Clothe(id: clotheDatabase.objectID.uriRepresentation(),
                       color: clotheDatabase.color,
                       piece: clotheDatabase.piece,
-                      style: clotheDatabase.style)
+                      style: clotheDatabase.style,
+                      image: clotheDatabase.image)
     }
     
     func add(_ clothe: Clothe) {
@@ -44,6 +46,7 @@ class DressMaker {
         clotheDatabase.style = clothe.style.rawValue
         clotheDatabase.color = clothe.color
         clotheDatabase.piece = clothe.piece.rawValue
+        clotheDatabase.image = clothe.image.pngData()! as NSData
         clotheDatabase.outfit = nil
         save()
     }

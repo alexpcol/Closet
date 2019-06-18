@@ -22,18 +22,18 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iq7-po-jqI">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="250"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lSF-0i-jlX" userLabel="ClotheType">
-                                <rect key="frame" x="115" y="5" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="d6D-ds-AjD"/>
-                                    <constraint firstAttribute="width" constant="30" id="phn-r4-gfs"/>
-                                </constraints>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bGX-eC-D8o">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="170"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="170" id="G3E-fQ-W3F"/>
                                     <constraint firstAttribute="width" constant="150" id="NmD-cg-0Mx"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lSF-0i-jlX" userLabel="ClotheType">
+                                <rect key="frame" x="115" y="5" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="d6D-ds-AjD"/>
+                                    <constraint firstAttribute="width" constant="30" id="phn-r4-gfs"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zapato cafe bonito" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sm-Cp-Orf">

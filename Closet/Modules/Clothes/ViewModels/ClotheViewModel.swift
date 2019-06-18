@@ -23,7 +23,7 @@ class ClotheViewModel {
         get {
             return clothes.map({ (clothe: Clothe) -> ClotheCellModel in
                 //TODO: Obtener de base de datos el preview
-                ClotheCellModel(typeIcon: clothe.piece.icon(), preview: clothe.piece.icon(), name: clothe.style.rawValue)
+                ClotheCellModel(typeIcon: clothe.piece.icon(), preview: clothe.image, name: clothe.style.rawValue)
             })
         }
     }
@@ -39,7 +39,10 @@ class ClotheViewModel {
     }
     
     func dumbAddClothe() {
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red, piece: .top, style: .informal))
+        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red,
+                                                     piece: .top,
+                                                     style: .informal,
+                                                     image: UIImage(named: "bear")!))
     }
     
 }

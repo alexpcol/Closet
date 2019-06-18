@@ -2,7 +2,7 @@
 //  ClotheDatabase+CoreDataProperties.swift
 //  Closet
 //
-//  Created by chila on 6/12/19.
+//  Created by chila on 6/17/19.
 //  Copyright © 2019 chila. All rights reserved.
 //
 //
@@ -20,6 +20,7 @@ extension ClotheDatabase {
     @NSManaged public var color: NSObject
     @NSManaged public var piece: String
     @NSManaged public var style: String
+    @NSManaged public var image: NSData
     @NSManaged public var outfit: NSSet?
 
 }

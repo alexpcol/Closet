@@ -14,24 +14,32 @@ struct Clothe: Hashable {
     let color: UIColor
     let piece: PieceType
     let style: ClotheStyle
+    let image: UIImage
     
-    init(id: URL, color: NSObject?, piece: String?, style: String?) {
+    init(id: URL, color: NSObject?, piece: String?, style: String?, image: NSData) {
         self.id = id
         self.color = color as! UIColor
         self.piece = PieceType.with(text: piece)
         self.style = ClotheStyle.with(text: style)
+        if let data = image as Data?{
+            self.image = UIImage(data: data)!
+        }
+        else {
+            self.image = UIImage(named: "bear")!
+        }
     }
     
-    init(id: URL, color: UIColor, piece: PieceType, style: ClotheStyle) {
+    init(id: URL, color: UIColor, piece: PieceType, style: ClotheStyle, image: UIImage) {
         self.id = id
         self.color = color
         self.piece = piece
         self.style = style
+        self.image = image
     }
     
     // Static class for the creation of a ClotheDatabase object
-    static func clotheForDressMakerAdd(color: UIColor, piece: PieceType, style: ClotheStyle) -> Clothe {
-       return  Clothe(id: URL(fileURLWithPath: ""), color: color, piece: piece, style: style)
+    static func clotheForDressMakerAdd(color: UIColor, piece: PieceType, style: ClotheStyle, image: UIImage) -> Clothe {
+       return  Clothe(id: URL(fileURLWithPath: ""), color: color, piece: piece, style: style, image: image)
     }
     
 }

@@ -10,8 +10,6 @@
 		4714C4ED22B1547200A6D872 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4EC22B1547200A6D872 /* UIApplicationExtension.swift */; };
 		4714C4F522B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F122B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift */; };
 		4714C4F622B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F222B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift */; };
-		4714C4F722B170CE00A6D872 /* ClotheDatabase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F322B170CE00A6D872 /* ClotheDatabase+CoreDataClass.swift */; };
-		4714C4F822B170CE00A6D872 /* ClotheDatabase+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F422B170CE00A6D872 /* ClotheDatabase+CoreDataProperties.swift */; };
 		47A8A6A52299A33A0005E34C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6A42299A33A0005E34C /* AppDelegate.swift */; };
 		47A8A6AD2299A33A0005E34C /* Closet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */; };
 		47A8A6AF2299A33B0005E34C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47A8A6AE2299A33B0005E34C /* Assets.xcassets */; };
@@ -20,6 +18,8 @@
 		47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6C82299A7450005E34C /* DressMaker.swift */; };
 		47A8A6CB2299A9AE0005E34C /* ClothesDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */; };
 		47A8A6D12299B5410005E34C /* Clothe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6D02299B5410005E34C /* Clothe.swift */; };
+		47AFE87322B8823C00A0EFEB /* ClotheDatabase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE87122B8823C00A0EFEB /* ClotheDatabase+CoreDataClass.swift */; };
+		47AFE87422B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE87222B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift */; };
 		47B6704522A4627700558DBA /* FashionMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6704422A4627700558DBA /* FashionMaker.swift */; };
 		47B6704722A46A0B00558DBA /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6704622A46A0B00558DBA /* Outfit.swift */; };
 		47D5E6BC22AC1CD70093CF53 /* Closet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */; };
@@ -53,8 +53,6 @@
 		4714C4EC22B1547200A6D872 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		4714C4F122B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutfitDatabase+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4714C4F222B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutfitDatabase+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		4714C4F322B170CE00A6D872 /* ClotheDatabase+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClotheDatabase+CoreDataClass.swift"; sourceTree = "<group>"; };
-		4714C4F422B170CE00A6D872 /* ClotheDatabase+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClotheDatabase+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		47A8A6A12299A33A0005E34C /* Closet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Closet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A8A6A42299A33A0005E34C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47A8A6AC2299A33A0005E34C /* Closet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Closet.xcdatamodel; sourceTree = "<group>"; };
@@ -67,6 +65,8 @@
 		47A8A6C82299A7450005E34C /* DressMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DressMaker.swift; path = ../DressMaker.swift; sourceTree = "<group>"; };
 		47A8A6CA2299A9AE0005E34C /* ClothesDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesDataTypes.swift; sourceTree = "<group>"; };
 		47A8A6D02299B5410005E34C /* Clothe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clothe.swift; sourceTree = "<group>"; };
+		47AFE87122B8823C00A0EFEB /* ClotheDatabase+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClotheDatabase+CoreDataClass.swift"; sourceTree = "<group>"; };
+		47AFE87222B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClotheDatabase+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		47B6704422A4627700558DBA /* FashionMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FashionMaker.swift; path = ../FashionMaker.swift; sourceTree = "<group>"; };
 		47B6704622A46A0B00558DBA /* Outfit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
 		47D5E6BD22AC3CAC0093CF53 /* FashionMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionMakerTests.swift; sourceTree = "<group>"; };
@@ -124,8 +124,8 @@
 		4714C4FA22B171A300A6D872 /* ClotheDatabase */ = {
 			isa = PBXGroup;
 			children = (
-				4714C4F322B170CE00A6D872 /* ClotheDatabase+CoreDataClass.swift */,
-				4714C4F422B170CE00A6D872 /* ClotheDatabase+CoreDataProperties.swift */,
+				47AFE87122B8823C00A0EFEB /* ClotheDatabase+CoreDataClass.swift */,
+				47AFE87222B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift */,
 			);
 			path = ClotheDatabase;
 			sourceTree = "<group>";
@@ -426,10 +426,11 @@
 				47E73E7022B52F0D00A5C15F /* MainTabBarController.swift in Sources */,
 				47E73E6322B5271900A5C15F /* Coordinator.swift in Sources */,
 				47A8A6CB2299A9AE0005E34C /* ClothesDataTypes.swift in Sources */,
+				47AFE87422B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift in Sources */,
 				47B6704722A46A0B00558DBA /* Outfit.swift in Sources */,
 				47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */,
-				4714C4F722B170CE00A6D872 /* ClotheDatabase+CoreDataClass.swift in Sources */,
 				4714C4F622B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift in Sources */,
+				47AFE87322B8823C00A0EFEB /* ClotheDatabase+CoreDataClass.swift in Sources */,
 				4714C4ED22B1547200A6D872 /* UIApplicationExtension.swift in Sources */,
 				47E73E8122B55DB600A5C15F /* ClotheCellModel.swift in Sources */,
 				47E73E8722B5646C00A5C15F /* ClotheViewModel.swift in Sources */,
@@ -440,7 +441,6 @@
 				47E73E6022B5262A00A5C15F /* StorryboardExtension.swift in Sources */,
 				47E73E6E22B52D2200A5C15F /* OutfitViewController.swift in Sources */,
 				47E73E6822B52C6700A5C15F /* ClothesCoordinator.swift in Sources */,
-				4714C4F822B170CE00A6D872 /* ClotheDatabase+CoreDataProperties.swift in Sources */,
 				47E73E7E22B5584300A5C15F /* ClotheCell.swift in Sources */,
 				47A8A6D12299B5410005E34C /* Clothe.swift in Sources */,
 			);
