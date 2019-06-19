@@ -15,8 +15,6 @@ class ClotheCell: UICollectionViewCell {
     
     @IBOutlet weak var typeIcon: UIImageView!
     @IBOutlet weak var preview: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -16,7 +16,6 @@ struct ClotheCellModel {
     let name: String
     
     public func congifure(_ cell: ClotheCell) {
-        cell.name.text = name
         cell.preview.image = preview
         cell.typeIcon.image = typeIcon
     }
