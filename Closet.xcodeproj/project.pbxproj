@@ -22,6 +22,7 @@
 		47AFE87422B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE87222B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift */; };
 		47B6704522A4627700558DBA /* FashionMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6704422A4627700558DBA /* FashionMaker.swift */; };
 		47B6704722A46A0B00558DBA /* Outfit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B6704622A46A0B00558DBA /* Outfit.swift */; };
+		47BA488922B9CB4500D55AFB /* NSNotificationExtensionswift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA488822B9CB4500D55AFB /* NSNotificationExtensionswift.swift */; };
 		47D5E6BC22AC1CD70093CF53 /* Closet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */; };
 		47D5E6BE22AC3CAC0093CF53 /* FashionMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5E6BD22AC3CAC0093CF53 /* FashionMakerTests.swift */; };
 		47E73E6022B5262A00A5C15F /* StorryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E5F22B5262A00A5C15F /* StorryboardExtension.swift */; };
@@ -69,6 +70,7 @@
 		47AFE87222B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClotheDatabase+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		47B6704422A4627700558DBA /* FashionMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FashionMaker.swift; path = ../FashionMaker.swift; sourceTree = "<group>"; };
 		47B6704622A46A0B00558DBA /* Outfit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outfit.swift; sourceTree = "<group>"; };
+		47BA488822B9CB4500D55AFB /* NSNotificationExtensionswift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationExtensionswift.swift; sourceTree = "<group>"; };
 		47D5E6BD22AC3CAC0093CF53 /* FashionMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionMakerTests.swift; sourceTree = "<group>"; };
 		47E73E5F22B5262A00A5C15F /* StorryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorryboardExtension.swift; sourceTree = "<group>"; };
 		47E73E6222B5271900A5C15F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				4714C4EC22B1547200A6D872 /* UIApplicationExtension.swift */,
+				47BA488822B9CB4500D55AFB /* NSNotificationExtensionswift.swift */,
 				47E73E5E22B5260600A5C15F /* Protocols */,
 			);
 			path = Extensions;
@@ -427,6 +430,7 @@
 				47E73E6322B5271900A5C15F /* Coordinator.swift in Sources */,
 				47A8A6CB2299A9AE0005E34C /* ClothesDataTypes.swift in Sources */,
 				47AFE87422B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift in Sources */,
+				47BA488922B9CB4500D55AFB /* NSNotificationExtensionswift.swift in Sources */,
 				47B6704722A46A0B00558DBA /* Outfit.swift in Sources */,
 				47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */,
 				4714C4F622B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift in Sources */,

@@ -24,18 +24,37 @@ class ClothesViewController: UIViewController, Storyboarded {
         self.viewModel = viewModel
     }
     
-    @objc private func addClothe() {
-        viewModel?.dumbAddClothe()
-        viewModel?.refreshFromDatabase()
-        clothesCollection.reloadData()
-    }
-    
     private func initialize() {
         let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addClothe))
         navigationItem.rightBarButtonItems = [addButtonItem]
         clothesCollection.dataSource = self
         clothesCollection.delegate = self
         clothesCollection.register(UINib(nibName: ClotheCell.nibName, bundle: nil), forCellWithReuseIdentifier: ClotheCell.identifier)
+        subscribeNotifications()
+    }
+    
+    private func subscribeNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveNotification(_:)),
+                                               name: .CoreDataDidSavedClothe,
+                                               object: nil)
+    }
+    
+    private func refreshClotheCollection() {
+        viewModel?.refreshFromDatabase()
+        clothesCollection.reloadData()
+    }
+    
+    //MARK:- Actions & Selectors
+    @objc private func addClothe() {
+        viewModel?.dumbAddClothe()
+    }
+    
+    @objc private func didReceiveNotification(_ notification: Notification) {
+        guard let isSaved = notification.userInfo?["saved"] as? Bool else { return }
+        if isSaved {
+            refreshClotheCollection()
+        }
     }
 }
 

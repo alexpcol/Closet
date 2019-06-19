@@ -34,7 +34,7 @@ class ClotheViewModel {
         dressMaker = DressMaker(container: UIApplication.container)
     }
     
-    func refreshFromDatabase()  {
+    func refreshFromDatabase() {
         _clothes = dressMaker.fetchAllClothes() ?? [Clothe]()
     }
     

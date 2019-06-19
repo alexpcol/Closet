@@ -70,8 +70,14 @@ class DressMaker {
         if backgroundContext.hasChanges {
             do{
                 try backgroundContext.save()
+                NotificationCenter.default.post(name: .CoreDataDidSavedClothe,
+                                                object: nil,
+                                                userInfo: ["saved": true])
             } catch  {
                 print("Save Error:\(error)")
+                NotificationCenter.default.post(name: .CoreDataDidSavedClothe,
+                                                object: nil,
+                                                userInfo: ["saved": false])
             }
         }
     }
