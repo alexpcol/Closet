@@ -11,7 +11,6 @@ import UIKit
 class ClothesViewController: UIViewController, Storyboarded {
     
     weak var coordinator: ClothesCoordinator?
-    
     @IBOutlet private weak var clothesCollection: UICollectionView!
     private var viewModel: ClotheViewModel?
     
@@ -25,7 +24,6 @@ class ClothesViewController: UIViewController, Storyboarded {
     }
     
     func setupView(viewModel: ClotheViewModel) {
-        // Configuración inicial al momento de crear la instnacia
         self.viewModel = viewModel
     }
     
@@ -52,7 +50,6 @@ class ClothesViewController: UIViewController, Storyboarded {
     
     //MARK:- Actions & Selectors
     @objc private func addClothe() {
-        //viewModel?.dumbAddClothe()
         coordinator?.addClothe()
     }
     

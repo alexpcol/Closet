@@ -21,6 +21,13 @@ class OutfitsCoordinator: Coordinator {
         vc.title = "Outfits"
          vc.tabBarItem = UITabBarItem(title: "Outfits", image: UIImage(named: "man"), tag: 1)
         vc.coordinator = self
+        vc.setupView(viewModel: OutfitViewModel())
         navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func addOutfit() {
+        let vc = AddOutfitViewController.instantiate(fromStoryboard: "Outfits")
+        vc.setupView(viewModel: AddOutfitViewModel())
+        navigationController.pushViewController(vc, animated: true)
     }
 }

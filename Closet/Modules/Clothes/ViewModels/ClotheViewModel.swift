@@ -9,7 +9,6 @@
 import UIKit
 
 class ClotheViewModel {
-    //TODO: Subscribirme a la notificación de se modifico la base de datos, al recibirla actualizar el arreglo de clothes y recargar la vista por medio de un delegado
     var clothes: [Clothe]  {
         get {
             if _clothes == nil {
@@ -18,18 +17,16 @@ class ClotheViewModel {
             return _clothes!
         }
     }
-    
     var clotheCellModel: [ClotheCellModel]  {
         get {
             return clothes.map({ (clothe: Clothe) -> ClotheCellModel in
-                //TODO: Obtener de base de datos el preview
                 ClotheCellModel(typeIcon: clothe.piece.icon(), preview: clothe.image, name: clothe.style.rawValue)
             })
         }
     }
-    
     private var dressMaker: DressMaker
     private var _clothes: [Clothe]?
+    
     init() {
         dressMaker = DressMaker(container: UIApplication.container)
     }
