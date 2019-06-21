@@ -37,7 +37,7 @@ class ClothesViewController: UIViewController, Storyboarded {
     private func subscribeNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didReceiveNotification(_:)),
-                                               name: .CoreDataDidSavedClothe,
+                                               name: .coreDataDidSavedClothe,
                                                object: nil)
     }
     

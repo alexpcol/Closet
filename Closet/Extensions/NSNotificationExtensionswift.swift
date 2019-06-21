@@ -9,6 +9,7 @@
 import Foundation
 
 extension Notification.Name {
-    static let CoreDataDidSavedClothe = NSNotification.Name("CoreDataDidSavedClothe")
-    static let CoreDataDidSavedOutfit = NSNotification.Name("CoreDataDidSavedOutfit")
+    static let coreDataDidSavedClothe = NSNotification.Name("CoreDataDidSavedClothe")
+    static let coreDataDidSavedOutfit = NSNotification.Name("CoreDataDidSavedOutfit")
+    static let cameraShowItAgain = NSNotification.Name("CameraShowItAgain")
 }

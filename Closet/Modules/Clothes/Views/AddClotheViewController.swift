@@ -39,31 +39,49 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         pickerPiece.dataSource = self
         pickerStyle.delegate = self
         pickerStyle.dataSource = self
-        
-        pickerColor.tag = 1
-        pickerPiece.tag = 2
-        pickerStyle.tag = 3
-        
+        setTags()
+        subscribeNotifications()
+    }
+    
+    private func setTags() {
+        pickerColor.tag = FormTags.pickerAddClotheColor.rawValue
+        pickerPiece.tag = FormTags.pickerAddClothePiece.rawValue
+        pickerStyle.tag = FormTags.pickerAddClotheStyle.rawValue
+    }
+    
+    private func subscribeNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveNotification(_:)),
+                                               name: .cameraShowItAgain,
+                                               object: nil)
     }
     
     //MARK:- Actions
     @objc private func addClothe() {
         print("lol")
     }
+    
+    @objc private func didReceiveNotification(_ notification: Notification) {
+        guard let showCamera = notification.userInfo?["showCamera"] as? Bool else { return }
+        if showCamera {
+            viewModel?.addImage(self)
+        }
+    }
+    
     @IBAction func textFieldTapped(_ sender: UIButton) {
         switch sender.tag {
-        case 1:
+        case FormTags.buttonAddClotheColor.rawValue:
             pickerColor.show()
-        case 2:
+        case FormTags.buttonAddClothePiece.rawValue:
             pickerPiece.show()
-        case 3:
+        case FormTags.buttonAddClotheStyle.rawValue:
             pickerStyle.show()
         default:
             print("default")
         }
     }
     @IBAction func addImageTapped(_ sender: UIButton) {
-        
+        viewModel?.addImage(self)
     }
 }
 
@@ -71,7 +89,7 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
 extension AddClotheViewController: PickerViewDelegate {
     func pickerDataView(pickerView: PickerView, selectedIndex index: Int) {
         switch pickerView.tag {
-        case 1:
+        case FormTags.pickerAddClotheColor.rawValue:
             switch viewModel?.colors[index] {
             case UIColor.red:
                 colorTextField.text = "Red"
@@ -82,9 +100,9 @@ extension AddClotheViewController: PickerViewDelegate {
             default:
                 colorTextField.text = ""
             }
-        case 2:
+        case FormTags.pickerAddClothePiece.rawValue:
             pieceTextField.text = viewModel!.pieces[index].rawValue
-        case 3:
+        case FormTags.pickerAddClotheStyle.rawValue:
             styleTextField.text = viewModel!.styles[index].rawValue
         default:
             break
@@ -97,11 +115,11 @@ extension AddClotheViewController: PickerViewDataSource {
     
     func numberOfRowsFor(pickerView: PickerView) -> Int {
         switch pickerView.tag {
-        case 1:
+        case FormTags.pickerAddClotheColor.rawValue:
             return viewModel?.colors.count ?? 0
-        case 2:
+        case FormTags.pickerAddClothePiece.rawValue:
             return viewModel?.pieces.count ?? 0
-        case 3:
+        case FormTags.pickerAddClotheStyle.rawValue:
             return viewModel?.styles.count ?? 0
         default:
             return 0
@@ -110,7 +128,7 @@ extension AddClotheViewController: PickerViewDataSource {
     
     func titleFor(pickerView: PickerView, atIndex index: Int) -> String {
         switch pickerView.tag {
-        case 1:
+        case FormTags.pickerAddClotheColor.rawValue:
             switch viewModel?.colors[index] {
             case UIColor.red:
                 return "Red"
@@ -121,12 +139,21 @@ extension AddClotheViewController: PickerViewDataSource {
             default:
                 return ""
             }
-        case 2:
+        case FormTags.pickerAddClothePiece.rawValue:
             return viewModel!.pieces[index].rawValue
-        case 3:
+        case FormTags.pickerAddClotheStyle.rawValue:
             return viewModel!.styles[index].rawValue
         default:
             return ""
         }
+    }
+}
+
+//MARK:- PUIImagePickerControllerDelegate
+extension AddClotheViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate
+{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        mainImage.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.dismiss(animated: true, completion: nil)
     }
 }
