@@ -38,6 +38,13 @@
 		47E73E8322B5607300A5C15F /* Clothes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E73E8222B5607300A5C15F /* Clothes.storyboard */; };
 		47E73E8522B5608B00A5C15F /* Outfits.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47E73E8422B5608B00A5C15F /* Outfits.storyboard */; };
 		47E73E8722B5646C00A5C15F /* ClotheViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E8622B5646C00A5C15F /* ClotheViewModel.swift */; };
+		47F58F6E22BC6048006B75E2 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F6D22BC6048006B75E2 /* PickerView.swift */; };
+		47F58F7122BC60E2006B75E2 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F7022BC60E2006B75E2 /* Dynamic.swift */; };
+		47F58F7322BC6451006B75E2 /* PickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F7222BC6451006B75E2 /* PickerViewDataSource.swift */; };
+		47F58F7522BC6487006B75E2 /* PickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F7422BC6487006B75E2 /* PickerViewDelegate.swift */; };
+		47F58F7822BC6808006B75E2 /* AddClotheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F7722BC6808006B75E2 /* AddClotheViewController.swift */; };
+		47F58F7A22BC7893006B75E2 /* AddClotheViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F7922BC7893006B75E2 /* AddClotheViewModel.swift */; };
+		47F58F7C22BC7AEB006B75E2 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F7B22BC7AEB006B75E2 /* FormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +92,13 @@
 		47E73E8222B5607300A5C15F /* Clothes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Clothes.storyboard; sourceTree = "<group>"; };
 		47E73E8422B5608B00A5C15F /* Outfits.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Outfits.storyboard; sourceTree = "<group>"; };
 		47E73E8622B5646C00A5C15F /* ClotheViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheViewModel.swift; sourceTree = "<group>"; };
+		47F58F6D22BC6048006B75E2 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		47F58F7022BC60E2006B75E2 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		47F58F7222BC6451006B75E2 /* PickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDataSource.swift; sourceTree = "<group>"; };
+		47F58F7422BC6487006B75E2 /* PickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDelegate.swift; sourceTree = "<group>"; };
+		47F58F7722BC6808006B75E2 /* AddClotheViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClotheViewController.swift; sourceTree = "<group>"; };
+		47F58F7922BC7893006B75E2 /* AddClotheViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClotheViewModel.swift; sourceTree = "<group>"; };
+		47F58F7B22BC7AEB006B75E2 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				47E73E6F22B52F0D00A5C15F /* MainTabBarController.swift */,
+				47F58F6B22BC5FF0006B75E2 /* Common */,
 				47E73E7522B555EA00A5C15F /* Outfits */,
 				47E73E7422B555D700A5C15F /* Clothes */,
 			);
@@ -280,9 +295,10 @@
 		47E73E7622B5575D00A5C15F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				47E73E8222B5607300A5C15F /* Clothes.storyboard */,
 				47E73E7922B557C800A5C15F /* Cells */,
 				47E73E6922B52CF000A5C15F /* ClothesViewController.swift */,
-				47E73E8222B5607300A5C15F /* Clothes.storyboard */,
+				47F58F7722BC6808006B75E2 /* AddClotheViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +308,7 @@
 			children = (
 				47E73E8022B55DB600A5C15F /* ClotheCellModel.swift */,
 				47E73E8622B5646C00A5C15F /* ClotheViewModel.swift */,
+				47F58F7922BC7893006B75E2 /* AddClotheViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -319,6 +336,42 @@
 				47E73E8422B5608B00A5C15F /* Outfits.storyboard */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		47F58F6B22BC5FF0006B75E2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				47F58F6F22BC60CC006B75E2 /* ViewModel */,
+				47F58F6C22BC6024006B75E2 /* Views */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		47F58F6C22BC6024006B75E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				47F58F7622BC64A7006B75E2 /* PickerView */,
+				47F58F7B22BC7AEB006B75E2 /* FormViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		47F58F6F22BC60CC006B75E2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				47F58F7022BC60E2006B75E2 /* Dynamic.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		47F58F7622BC64A7006B75E2 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				47F58F6D22BC6048006B75E2 /* PickerView.swift */,
+				47F58F7222BC6451006B75E2 /* PickerViewDataSource.swift */,
+				47F58F7422BC6487006B75E2 /* PickerViewDelegate.swift */,
+			);
+			path = PickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,15 +488,22 @@
 				47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */,
 				4714C4F622B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift in Sources */,
 				47AFE87322B8823C00A0EFEB /* ClotheDatabase+CoreDataClass.swift in Sources */,
+				47F58F7122BC60E2006B75E2 /* Dynamic.swift in Sources */,
 				4714C4ED22B1547200A6D872 /* UIApplicationExtension.swift in Sources */,
 				47E73E8122B55DB600A5C15F /* ClotheCellModel.swift in Sources */,
 				47E73E8722B5646C00A5C15F /* ClotheViewModel.swift in Sources */,
 				47E73E6A22B52CF000A5C15F /* ClothesViewController.swift in Sources */,
 				47A8A6A52299A33A0005E34C /* AppDelegate.swift in Sources */,
+				47F58F7322BC6451006B75E2 /* PickerViewDataSource.swift in Sources */,
+				47F58F7C22BC7AEB006B75E2 /* FormViewController.swift in Sources */,
 				47E73E7222B5357300A5C15F /* OutfitsCoordinator.swift in Sources */,
+				47F58F7822BC6808006B75E2 /* AddClotheViewController.swift in Sources */,
+				47F58F7A22BC7893006B75E2 /* AddClotheViewModel.swift in Sources */,
 				47A8A6AD2299A33A0005E34C /* Closet.xcdatamodeld in Sources */,
 				47E73E6022B5262A00A5C15F /* StorryboardExtension.swift in Sources */,
 				47E73E6E22B52D2200A5C15F /* OutfitViewController.swift in Sources */,
+				47F58F6E22BC6048006B75E2 /* PickerView.swift in Sources */,
+				47F58F7522BC6487006B75E2 /* PickerViewDelegate.swift in Sources */,
 				47E73E6822B52C6700A5C15F /* ClothesCoordinator.swift in Sources */,
 				47E73E7E22B5584300A5C15F /* ClotheCell.swift in Sources */,
 				47A8A6D12299B5410005E34C /* Clothe.swift in Sources */,

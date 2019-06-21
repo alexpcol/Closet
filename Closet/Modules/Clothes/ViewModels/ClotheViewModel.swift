@@ -37,12 +37,4 @@ class ClotheViewModel {
     func refreshFromDatabase() {
         _clothes = dressMaker.fetchAllClothes() ?? [Clothe]()
     }
-    
-    func dumbAddClothe() {
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red,
-                                                     piece: .top,
-                                                     style: .informal,
-                                                     image: UIImage(named: "bear")!))
-    }
-    
 }

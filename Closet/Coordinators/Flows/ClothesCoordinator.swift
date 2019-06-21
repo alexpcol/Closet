@@ -25,4 +25,9 @@ class ClothesCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
+    func addClothe() {
+        let vc = AddClotheViewController.instantiate(fromStoryboard: "Clothes")
+        vc.setupView(viewModel: AddClotheViewMothel())
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

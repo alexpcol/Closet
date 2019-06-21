@@ -10,9 +10,10 @@ import UIKit
 
 class ClothesViewController: UIViewController, Storyboarded {
     
+    weak var coordinator: ClothesCoordinator?
+    
     @IBOutlet private weak var clothesCollection: UICollectionView!
     private var viewModel: ClotheViewModel?
-    weak var coordinator: ClothesCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,8 @@ class ClothesViewController: UIViewController, Storyboarded {
     
     //MARK:- Actions & Selectors
     @objc private func addClothe() {
-        viewModel?.dumbAddClothe()
+        //viewModel?.dumbAddClothe()
+        coordinator?.addClothe()
     }
     
     @objc private func didReceiveNotification(_ notification: Notification) {
