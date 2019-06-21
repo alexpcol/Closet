@@ -13,7 +13,7 @@ class AddClotheViewMothel {
     var color: Dynamic<String>
     var piece: Dynamic<String>
     var style: Dynamic<String>
-    var image: Dynamic<UIImage>?
+    var image: Dynamic<UIImage>
     
     var colors = [UIColor]()
     var pieces: [PieceType]
@@ -25,6 +25,7 @@ class AddClotheViewMothel {
         color = Dynamic("")
         piece = Dynamic("")
         style = Dynamic("")
+        image = Dynamic(UIImage(named: "clothePlaceholder")!)
         pieces = PieceType.allCases
         styles = ClotheStyle.allCases
         colors.append(UIColor.red)
@@ -39,12 +40,13 @@ class AddClotheViewMothel {
         }
     }
     
-    func addClothe(_ view: AddClotheViewController) -> Bool {
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red,
-                                                     piece: .top,
-                                                     style: .informal,
-                                                     image: UIImage(named: "bear")!))
-        return true
+    func addClothe() -> Bool {
+        if validateForm() {
+            let clothe = Clothe(color: color.value, piece: piece.value, style: style.value, image: image.value)
+            dressMaker.add(clothe)
+            return true
+        }
+        return false
     }
     
     private func validateForm() -> Bool {
@@ -52,6 +54,9 @@ class AddClotheViewMothel {
             return false
         }
         if piece.value.isEmpty {
+            return false
+        }
+        if style.value.isEmpty {
             return false
         }
         return true

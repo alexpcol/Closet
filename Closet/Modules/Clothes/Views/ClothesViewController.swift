@@ -20,7 +20,7 @@ class ClothesViewController: UIViewController, Storyboarded {
         initialize()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    deinit {
         NotificationCenter.default.removeObserver(self)
     }
     

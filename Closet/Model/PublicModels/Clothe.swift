@@ -16,6 +16,15 @@ struct Clothe: Hashable {
     let style: ClotheStyle
     let image: UIImage
     
+    //Normal?
+    init(id: URL = URL(fileURLWithPath: ""), color: UIColor, piece: PieceType, style: ClotheStyle, image: UIImage) {
+        self.id = id
+        self.color = color
+        self.piece = piece
+        self.style = style
+        self.image = image
+    }
+    //Database
     init(id: URL, color: NSObject?, piece: String?, style: String?, image: NSData) {
         self.id = id
         self.color = color as! UIColor
@@ -25,15 +34,24 @@ struct Clothe: Hashable {
             self.image = UIImage(data: data)!
         }
         else {
-            self.image = UIImage(named: "bear")!
+            self.image = UIImage(named: "clothePlaceholder")!
         }
     }
-    
-    init(id: URL, color: UIColor, piece: PieceType, style: ClotheStyle, image: UIImage) {
+    //Views
+    init(id: URL = URL(fileURLWithPath: ""), color: String, piece: String, style: String, image: UIImage) {
         self.id = id
-        self.color = color
-        self.piece = piece
-        self.style = style
+        switch color {
+        case "Red":
+            self.color = UIColor.red
+        case "Green":
+            self.color = UIColor.green
+        case "Blue":
+            self.color = UIColor.blue
+        default:
+            self.color = UIColor.black
+        }
+        self.piece = PieceType.with(text: piece)
+        self.style = ClotheStyle.with(text: style)
         self.image = image
     }
     

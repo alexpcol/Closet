@@ -46,7 +46,7 @@ class DressMaker {
         clotheDatabase.style = clothe.style.rawValue
         clotheDatabase.color = clothe.color
         clotheDatabase.piece = clothe.piece.rawValue
-        clotheDatabase.image = clothe.image.pngData()! as NSData
+        clotheDatabase.image = clothe.image.jpegData(compressionQuality: 0.75)! as NSData
         clotheDatabase.outfit = nil
         save()
     }

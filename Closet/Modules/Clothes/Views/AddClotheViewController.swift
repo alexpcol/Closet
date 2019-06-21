@@ -24,7 +24,7 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         initialize()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -42,6 +42,7 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         pickerPiece.dataSource = self
         pickerStyle.delegate = self
         pickerStyle.dataSource = self
+        viewModel?.image.value = mainImage.image!
         setTags()
         subscribeNotifications()
         setViewModelProperties()
@@ -70,11 +71,15 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         viewModel?.style.bindAndFire({ [unowned self] in
             self.styleTextField.text = $0
         })
+        viewModel?.image.bindAndFire({ [unowned self] in
+            self.mainImage.image = $0
+        })
     }
     
     //MARK:- Actions
     @objc private func addClothe() {
-        print("lol")
+        (viewModel?.addClothe())! ? AlertsPresenter.shared.showOKAlert(title: "Closet", message: "¡Ropa añadida!", inView: self) :
+                                 AlertsPresenter.shared.showOKAlert(title: "Closet", message: "Verifica tu información", inView: self)
     }
     
     @objc private func didReceiveNotification(_ notification: Notification) {
@@ -169,7 +174,7 @@ extension AddClotheViewController: PickerViewDataSource {
 extension AddClotheViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        mainImage.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        viewModel?.image.value = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -191,7 +191,7 @@
                                                     <action selector="addImageTapped:" destination="vWx-Sp-Qvs" eventType="touchUpInside" id="SiK-nB-SaY"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZYP-gI-VJq">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="ZYP-gI-VJq">
                                                 <rect key="frame" x="117" y="354" width="180" height="180"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="180" id="Jyy-4n-EfN"/>
@@ -250,4 +250,7 @@
             <point key="canvasLocation" x="1728.985507246377" y="16.741071428571427"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="clothePlaceholder" width="600" height="564"/>
+    </resources>
 </document>
