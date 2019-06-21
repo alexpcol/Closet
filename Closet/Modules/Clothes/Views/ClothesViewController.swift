@@ -20,6 +20,10 @@ class ClothesViewController: UIViewController, Storyboarded {
         initialize()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func setupView(viewModel: ClotheViewModel) {
         // Configuración inicial al momento de crear la instnacia
         self.viewModel = viewModel

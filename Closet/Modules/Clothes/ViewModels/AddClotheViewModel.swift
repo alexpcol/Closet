@@ -9,13 +9,22 @@
 import UIKit
 
 class AddClotheViewMothel {
-    private var dressMaker: DressMaker
+
+    var color: Dynamic<String>
+    var piece: Dynamic<String>
+    var style: Dynamic<String>
+    var image: Dynamic<UIImage>?
+    
     var colors = [UIColor]()
     var pieces: [PieceType]
     var styles: [ClotheStyle]
+    private var dressMaker: DressMaker
     
     init() {
         dressMaker = DressMaker(container: UIApplication.container)
+        color = Dynamic("")
+        piece = Dynamic("")
+        style = Dynamic("")
         pieces = PieceType.allCases
         styles = ClotheStyle.allCases
         colors.append(UIColor.red)
@@ -30,11 +39,22 @@ class AddClotheViewMothel {
         }
     }
     
-    func addClothe(_ view: AddClotheViewController) {
+    func addClothe(_ view: AddClotheViewController) -> Bool {
         dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red,
                                                      piece: .top,
                                                      style: .informal,
                                                      image: UIImage(named: "bear")!))
+        return true
+    }
+    
+    private func validateForm() -> Bool {
+        if color.value.isEmpty {
+            return false
+        }
+        if piece.value.isEmpty {
+            return false
+        }
+        return true
     }
     
     private func presentSourceImagesOptions(_ view: AddClotheViewController) {

@@ -12,7 +12,6 @@
 		4714C4F622B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F222B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift */; };
 		47A8A6A52299A33A0005E34C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6A42299A33A0005E34C /* AppDelegate.swift */; };
 		47A8A6AD2299A33A0005E34C /* Closet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */; };
-		47A8A6AF2299A33B0005E34C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47A8A6AE2299A33B0005E34C /* Assets.xcassets */; };
 		47A8A6B22299A33B0005E34C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A8A6B02299A33B0005E34C /* LaunchScreen.storyboard */; };
 		47A8A6BD2299A33B0005E34C /* ClosetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6BC2299A33B0005E34C /* ClosetTests.swift */; };
 		47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6C82299A7450005E34C /* DressMaker.swift */; };
@@ -30,6 +29,7 @@
 		47E3785A22BD21DE00E65C54 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3785922BD21DE00E65C54 /* Camera.swift */; };
 		47E3785C22BD335300E65C54 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3785B22BD335300E65C54 /* Activities.swift */; };
 		47E3785E22BD34AD00E65C54 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3785D22BD34AD00E65C54 /* ActionSheet.swift */; };
+		47E3786022BD431C00E65C54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47E3785F22BD431C00E65C54 /* Assets.xcassets */; };
 		47E73E6022B5262A00A5C15F /* StorryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E5F22B5262A00A5C15F /* StorryboardExtension.swift */; };
 		47E73E6322B5271900A5C15F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6222B5271900A5C15F /* Coordinator.swift */; };
 		47E73E6822B52C6700A5C15F /* ClothesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6722B52C6700A5C15F /* ClothesCoordinator.swift */; };
@@ -69,7 +69,6 @@
 		47A8A6A12299A33A0005E34C /* Closet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Closet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A8A6A42299A33A0005E34C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47A8A6AC2299A33A0005E34C /* Closet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Closet.xcdatamodel; sourceTree = "<group>"; };
-		47A8A6AE2299A33B0005E34C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47A8A6B12299A33B0005E34C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47A8A6B32299A33B0005E34C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47A8A6B82299A33B0005E34C /* ClosetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClosetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +88,7 @@
 		47E3785922BD21DE00E65C54 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		47E3785B22BD335300E65C54 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 		47E3785D22BD34AD00E65C54 /* ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
+		47E3785F22BD431C00E65C54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47E73E5F22B5262A00A5C15F /* StorryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorryboardExtension.swift; sourceTree = "<group>"; };
 		47E73E6222B5271900A5C15F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		47E73E6722B52C6700A5C15F /* ClothesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCoordinator.swift; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 		4714C4F022B1555C00A6D872 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47E3785F22BD431C00E65C54 /* Assets.xcassets */,
 				47A8A6B02299A33B0005E34C /* LaunchScreen.storyboard */,
-				47A8A6AE2299A33B0005E34C /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -488,9 +488,9 @@
 			files = (
 				47A8A6B22299A33B0005E34C /* LaunchScreen.storyboard in Resources */,
 				47E73E8322B5607300A5C15F /* Clothes.storyboard in Resources */,
-				47A8A6AF2299A33B0005E34C /* Assets.xcassets in Resources */,
 				47E73E7F22B5584300A5C15F /* ClotheCell.xib in Resources */,
 				47E73E8522B5608B00A5C15F /* Outfits.storyboard in Resources */,
+				47E3786022BD431C00E65C54 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

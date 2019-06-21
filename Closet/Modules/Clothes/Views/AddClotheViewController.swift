@@ -24,6 +24,9 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         initialize()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     func setupView(viewModel: AddClotheViewMothel) {
         // Configuración inicial al momento de crear la instnacia
@@ -41,6 +44,7 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         pickerStyle.dataSource = self
         setTags()
         subscribeNotifications()
+        setViewModelProperties()
     }
     
     private func setTags() {
@@ -54,6 +58,18 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
                                                selector: #selector(didReceiveNotification(_:)),
                                                name: .cameraShowItAgain,
                                                object: nil)
+    }
+    
+    private func setViewModelProperties() {
+        viewModel?.color.bindAndFire({ [unowned self] in
+            self.colorTextField.text = $0
+        })
+        viewModel?.piece.bindAndFire({ [unowned self] in
+            self.pieceTextField.text = $0
+        })
+        viewModel?.style.bindAndFire({ [unowned self] in
+            self.styleTextField.text = $0
+        })
     }
     
     //MARK:- Actions
@@ -92,18 +108,18 @@ extension AddClotheViewController: PickerViewDelegate {
         case FormTags.pickerAddClotheColor.rawValue:
             switch viewModel?.colors[index] {
             case UIColor.red:
-                colorTextField.text = "Red"
+                viewModel?.color.value = "Red"
             case UIColor.green:
-                colorTextField.text = "Green"
+                viewModel?.color.value = "Green"
             case UIColor.blue:
-                colorTextField.text = "Blue"
+                viewModel?.color.value = "Blue"
             default:
-                colorTextField.text = ""
+                viewModel?.color.value = ""
             }
         case FormTags.pickerAddClothePiece.rawValue:
-            pieceTextField.text = viewModel!.pieces[index].rawValue
+            viewModel?.piece.value = viewModel!.pieces[index].rawValue
         case FormTags.pickerAddClotheStyle.rawValue:
-            styleTextField.text = viewModel!.styles[index].rawValue
+            viewModel?.style.value = viewModel!.styles[index].rawValue
         default:
             break
         }
@@ -150,9 +166,9 @@ extension AddClotheViewController: PickerViewDataSource {
 }
 
 //MARK:- PUIImagePickerControllerDelegate
-extension AddClotheViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate
-{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+extension AddClotheViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         mainImage.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
     }
