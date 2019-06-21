@@ -13,6 +13,9 @@ enum FormTags: Int {
     case buttonAddClotheColor = 0
     case buttonAddClothePiece
     case buttonAddClotheStyle
+    case buttonAddTopPiece
+    case buttonAddTrouserPiece
+    case buttonAddFootwearPiece
     //MARK:. PickerViews
     case pickerAddClotheColor
     case pickerAddClothePiece

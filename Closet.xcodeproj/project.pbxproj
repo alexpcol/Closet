@@ -34,6 +34,8 @@
 		47E3786522BD62DC00E65C54 /* OutfitCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3786422BD62DC00E65C54 /* OutfitCellModel.swift */; };
 		47E3786722BD668B00E65C54 /* AddOutfitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3786622BD668B00E65C54 /* AddOutfitViewController.swift */; };
 		47E3786922BD676A00E65C54 /* AddOutfitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3786822BD676A00E65C54 /* AddOutfitViewModel.swift */; };
+		47E3786B22BD69D100E65C54 /* PickClothePieceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3786A22BD69D100E65C54 /* PickClothePieceTypeViewController.swift */; };
+		47E3786D22BD69FF00E65C54 /* PickClothePieceTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3786C22BD69FF00E65C54 /* PickClothePieceTypeViewModel.swift */; };
 		47E73E6022B5262A00A5C15F /* StorryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E5F22B5262A00A5C15F /* StorryboardExtension.swift */; };
 		47E73E6322B5271900A5C15F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6222B5271900A5C15F /* Coordinator.swift */; };
 		47E73E6822B52C6700A5C15F /* ClothesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6722B52C6700A5C15F /* ClothesCoordinator.swift */; };
@@ -97,6 +99,8 @@
 		47E3786422BD62DC00E65C54 /* OutfitCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitCellModel.swift; sourceTree = "<group>"; };
 		47E3786622BD668B00E65C54 /* AddOutfitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutfitViewController.swift; sourceTree = "<group>"; };
 		47E3786822BD676A00E65C54 /* AddOutfitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutfitViewModel.swift; sourceTree = "<group>"; };
+		47E3786A22BD69D100E65C54 /* PickClothePieceTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickClothePieceTypeViewController.swift; sourceTree = "<group>"; };
+		47E3786C22BD69FF00E65C54 /* PickClothePieceTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickClothePieceTypeViewModel.swift; sourceTree = "<group>"; };
 		47E73E5F22B5262A00A5C15F /* StorryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorryboardExtension.swift; sourceTree = "<group>"; };
 		47E73E6222B5271900A5C15F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		47E73E6722B52C6700A5C15F /* ClothesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCoordinator.swift; sourceTree = "<group>"; };
@@ -365,6 +369,7 @@
 				47E3786122BD5C6D00E65C54 /* OutfitViewModel.swift */,
 				47E3786422BD62DC00E65C54 /* OutfitCellModel.swift */,
 				47E3786822BD676A00E65C54 /* AddOutfitViewModel.swift */,
+				47E3786C22BD69FF00E65C54 /* PickClothePieceTypeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				47E73E8422B5608B00A5C15F /* Outfits.storyboard */,
 				47E73E6D22B52D2200A5C15F /* OutfitViewController.swift */,
 				47E3786622BD668B00E65C54 /* AddOutfitViewController.swift */,
+				47E3786A22BD69D100E65C54 /* PickClothePieceTypeViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -535,6 +541,7 @@
 				47A8A6C92299A7450005E34C /* DressMaker.swift in Sources */,
 				47E3786922BD676A00E65C54 /* AddOutfitViewModel.swift in Sources */,
 				4714C4F622B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift in Sources */,
+				47E3786B22BD69D100E65C54 /* PickClothePieceTypeViewController.swift in Sources */,
 				47AFE87322B8823C00A0EFEB /* ClotheDatabase+CoreDataClass.swift in Sources */,
 				47F58F7122BC60E2006B75E2 /* Dynamic.swift in Sources */,
 				47E3786222BD5C6D00E65C54 /* OutfitViewModel.swift in Sources */,
@@ -546,6 +553,7 @@
 				47F58F7322BC6451006B75E2 /* PickerViewDataSource.swift in Sources */,
 				47E3785722BD1FAE00E65C54 /* Alerts.swift in Sources */,
 				47F58F7C22BC7AEB006B75E2 /* FormViewController.swift in Sources */,
+				47E3786D22BD69FF00E65C54 /* PickClothePieceTypeViewModel.swift in Sources */,
 				47E73E7222B5357300A5C15F /* OutfitsCoordinator.swift in Sources */,
 				47F58F7822BC6808006B75E2 /* AddClotheViewController.swift in Sources */,
 				47F58F7A22BC7893006B75E2 /* AddClotheViewModel.swift in Sources */,

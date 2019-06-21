@@ -57,13 +57,145 @@
                     <view key="view" contentMode="scaleToFill" id="G1l-uo-Tob">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WfR-jL-4xA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdK-hQ-PIa">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u5Z-yE-T06" userLabel="Top View">
+                                                <rect key="frame" x="8" y="16" width="398" height="180"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiF-eV-FP9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <state key="normal" title="Top"/>
+                                                        <connections>
+                                                            <action selector="clothePieceTapped:" destination="XuW-Iy-bDC" eventType="touchUpInside" id="HJy-qc-lkD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="a5z-y7-U6O">
+                                                        <rect key="frame" x="204" y="0.0" width="194" height="180"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="md7-mn-jgG"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2O6-tW-rID" userLabel="Trouser View">
+                                                <rect key="frame" x="8" y="212" width="398" height="180"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe4-4r-ThR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <state key="normal" title="Trouser"/>
+                                                        <connections>
+                                                            <action selector="clothePieceTapped:" destination="XuW-Iy-bDC" eventType="touchUpInside" id="8eA-f0-Df8"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="ObO-oR-xo6">
+                                                        <rect key="frame" x="204" y="0.0" width="194" height="180"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="yNG-VY-j4j"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ilv-FS-6da" userLabel="Footwear View">
+                                                <rect key="frame" x="8" y="408" width="398" height="180"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnG-I2-c1w">
+                                                        <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <state key="normal" title="FootWear"/>
+                                                        <connections>
+                                                            <action selector="clothePieceTapped:" destination="XuW-Iy-bDC" eventType="touchUpInside" id="8XE-LO-M3M"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="mkf-BU-nuK">
+                                                        <rect key="frame" x="204" y="0.0" width="194" height="180"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="vOD-MG-YdU"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="2O6-tW-rID" firstAttribute="leading" secondItem="JdK-hQ-PIa" secondAttribute="leading" constant="8" id="IHk-RB-kfn"/>
+                                            <constraint firstAttribute="trailing" secondItem="2O6-tW-rID" secondAttribute="trailing" constant="8" id="L1R-2T-VRP"/>
+                                            <constraint firstItem="u5Z-yE-T06" firstAttribute="leading" secondItem="JdK-hQ-PIa" secondAttribute="leading" constant="8" id="Oi8-rU-SRd"/>
+                                            <constraint firstItem="Ilv-FS-6da" firstAttribute="top" secondItem="2O6-tW-rID" secondAttribute="bottom" constant="16" id="SeF-3c-TJE"/>
+                                            <constraint firstAttribute="trailing" secondItem="u5Z-yE-T06" secondAttribute="trailing" constant="8" id="Tba-Va-t5u"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ilv-FS-6da" secondAttribute="trailing" constant="8" id="ZDU-vo-7Nj"/>
+                                            <constraint firstItem="u5Z-yE-T06" firstAttribute="top" secondItem="JdK-hQ-PIa" secondAttribute="top" constant="16" id="dTF-mz-Yez"/>
+                                            <constraint firstItem="2O6-tW-rID" firstAttribute="top" secondItem="u5Z-yE-T06" secondAttribute="bottom" constant="16" id="eTD-gV-dQR"/>
+                                            <constraint firstItem="Ilv-FS-6da" firstAttribute="leading" secondItem="JdK-hQ-PIa" secondAttribute="leading" constant="8" id="gK0-g2-b5z"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="JdK-hQ-PIa" secondAttribute="trailing" id="MAu-My-ctn"/>
+                                    <constraint firstItem="JdK-hQ-PIa" firstAttribute="leading" secondItem="WfR-jL-4xA" secondAttribute="leading" id="Yul-JF-DnD"/>
+                                    <constraint firstAttribute="bottom" secondItem="JdK-hQ-PIa" secondAttribute="bottom" id="bUa-2o-Rcs"/>
+                                    <constraint firstItem="JdK-hQ-PIa" firstAttribute="top" secondItem="WfR-jL-4xA" secondAttribute="top" id="sB1-DZ-reM"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WfR-jL-4xA" firstAttribute="top" secondItem="Wny-1e-jzL" secondAttribute="top" id="1IT-Je-1GO"/>
+                            <constraint firstItem="WfR-jL-4xA" firstAttribute="leading" secondItem="Wny-1e-jzL" secondAttribute="leading" id="Aef-KH-09L"/>
+                            <constraint firstItem="Wny-1e-jzL" firstAttribute="bottom" secondItem="WfR-jL-4xA" secondAttribute="bottom" id="MHb-Ey-zFo"/>
+                            <constraint firstItem="Wny-1e-jzL" firstAttribute="trailing" secondItem="WfR-jL-4xA" secondAttribute="trailing" id="Tbv-Ou-SDe"/>
+                            <constraint firstItem="JdK-hQ-PIa" firstAttribute="height" secondItem="G1l-uo-Tob" secondAttribute="height" id="a57-yi-g4U"/>
+                            <constraint firstItem="JdK-hQ-PIa" firstAttribute="width" secondItem="G1l-uo-Tob" secondAttribute="width" id="d4G-AE-Hft"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Wny-1e-jzL"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJU-e8-Swq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2596" y="17"/>
+            <point key="canvasLocation" x="2594.202898550725" y="16.741071428571427"/>
+        </scene>
+        <!--Pick Clothe Piece Type View Controller-->
+        <scene sceneID="Fs6-RU-I9A">
+            <objects>
+                <viewController storyboardIdentifier="PickClothePieceTypeViewController" id="h7U-4n-kmv" customClass="PickClothePieceTypeViewController" customModule="Closet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="psU-tU-vjX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cqo-qx-1mn">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rT4-X0-Fuc">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Cqo-qx-1mn" firstAttribute="top" secondItem="3bB-tU-7h2" secondAttribute="top" id="A6N-et-pX7"/>
+                            <constraint firstItem="Cqo-qx-1mn" firstAttribute="leading" secondItem="3bB-tU-7h2" secondAttribute="leading" id="HDC-u6-ozb"/>
+                            <constraint firstItem="3bB-tU-7h2" firstAttribute="trailing" secondItem="Cqo-qx-1mn" secondAttribute="trailing" id="IA0-Gg-F1m"/>
+                            <constraint firstItem="3bB-tU-7h2" firstAttribute="bottom" secondItem="Cqo-qx-1mn" secondAttribute="bottom" id="Kor-zA-ejB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3bB-tU-7h2"/>
+                    </view>
+                    <connections>
+                        <outlet property="clothesCollection" destination="Cqo-qx-1mn" id="1gn-x0-Bin"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NRX-Iq-va0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3396" y="17"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="clothePlaceholder" width="600" height="564"/>
+    </resources>
 </document>

@@ -27,7 +27,16 @@ class OutfitsCoordinator: Coordinator {
     
     func addOutfit() {
         let vc = AddOutfitViewController.instantiate(fromStoryboard: "Outfits")
+        vc.coordinator = self
         vc.setupView(viewModel: AddOutfitViewModel())
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func pickClothe(withPiece piece: PieceType) {
+        let vc = PickClothePieceTypeViewController.instantiate(fromStoryboard: "Outfits")
+        let nav = UINavigationController(rootViewController: vc)
+        vc.piece = piece
+        vc.setupView(viewModel: PickClothePieceTypeViewModel())
+        navigationController.present(nav, animated: true)
     }
 }

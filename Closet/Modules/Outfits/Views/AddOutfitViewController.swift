@@ -10,6 +10,7 @@ import UIKit
 
 class AddOutfitViewController: UIViewController, Storyboarded {
 
+    weak var coordinator: OutfitsCoordinator?
     private var viewModel: AddOutfitViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,20 @@ class AddOutfitViewController: UIViewController, Storyboarded {
         let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addOutfit))
         navigationItem.rightBarButtonItems = [addButtonItem]
     }
+    
+    @IBAction func clothePieceTapped(_ sender: UIButton) {
+        switch sender.tag {
+        case FormTags.buttonAddTopPiece.rawValue:
+            coordinator?.pickClothe(withPiece: .top)
+        case FormTags.buttonAddTrouserPiece.rawValue:
+            coordinator?.pickClothe(withPiece: .trouser)
+        case FormTags.buttonAddFootwearPiece.rawValue:
+            coordinator?.pickClothe(withPiece: .footwear)
+        default:
+            print("default")
+        }
+    }
+    
     
     @objc private func addOutfit() {
         print("lol")
