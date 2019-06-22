@@ -8,9 +8,13 @@
 
 import UIKit
 
-class AddOutfitViewController: UIViewController, Storyboarded {
+class AddOutfitViewController: GenericFormVC, Storyboarded {
 
     weak var coordinator: OutfitsCoordinator?
+    @IBOutlet weak var outfitName: UITextField!
+    @IBOutlet weak var clotheTop: UIImageView!
+    @IBOutlet weak var clotheTrouser: UIImageView!
+    @IBOutlet weak var clotheFootwear: UIImageView!
     private var viewModel: AddOutfitViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +28,19 @@ class AddOutfitViewController: UIViewController, Storyboarded {
     private func initialize() {
         let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addOutfit))
         navigationItem.rightBarButtonItems = [addButtonItem]
+        outfitName.tag = FormTags.textFieldAddOutfitName.rawValue
+        outfitName.delegate = self
+        setViewModelProperties()
     }
     
     @IBAction func clothePieceTapped(_ sender: UIButton) {
         switch sender.tag {
         case FormTags.buttonAddTopPiece.rawValue:
-            coordinator?.pickClothe(withPiece: .top)
+            coordinator?.pickClothe(in: self, withPiece: .top)
         case FormTags.buttonAddTrouserPiece.rawValue:
-            coordinator?.pickClothe(withPiece: .trouser)
+            coordinator?.pickClothe(in: self, withPiece: .trouser)
         case FormTags.buttonAddFootwearPiece.rawValue:
-            coordinator?.pickClothe(withPiece: .footwear)
+            coordinator?.pickClothe(in: self, withPiece: .footwear)
         default:
             print("default")
         }
@@ -41,6 +48,53 @@ class AddOutfitViewController: UIViewController, Storyboarded {
     
     
     @objc private func addOutfit() {
-        print("lol")
+        (viewModel?.addOutfit())! ? AlertsPresenter.shared.showOKAlert(title: "Closet", message: "¡Outfit añadido!", inView: self) :
+            AlertsPresenter.shared.showOKAlert(title: "Closet", message: "Verifica tu información", inView: self)
+    }
+    
+    private func setViewModelProperties() {
+        viewModel?.name.bindAndFire({ [unowned self] in
+            self.outfitName.text = $0
+        })
+        viewModel?.clotheTop.bindAndFire({ [weak self] (clothe) in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.clotheTop.image = clothe.image
+        })
+        viewModel?.clotheTrouser.bindAndFire({ [weak self] (clothe) in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.clotheTrouser.image = clothe.image
+        })
+        viewModel?.clotheFootwear.bindAndFire({ [weak self] (clothe) in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.clotheFootwear.image = clothe.image
+        })
+    }
+}
+
+extension AddOutfitViewController {
+    override func textFieldDidEndEditing(_ textField: UITextField) {
+        let text = textField.text ?? ""
+        if textField.tag == FormTags.textFieldAddOutfitName.rawValue {
+            viewModel?.name.value = text
+        }
+    }
+}
+
+extension AddOutfitViewController: ClothePicked {
+    func didSelectClothe(_ clothe: Clothe) {
+        switch clothe.piece {
+        case .top:
+            viewModel?.clotheTop.value = clothe
+        case .trouser:
+            viewModel?.clotheTrouser.value = clothe
+        case .footwear:
+            viewModel?.clotheFootwear.value = clothe
+        }
     }
 }

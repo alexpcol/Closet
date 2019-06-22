@@ -64,8 +64,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdK-hQ-PIa">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                         <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Outfit name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nDT-a8-Lcc">
+                                                <rect key="frame" x="8" y="16" width="398" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u5Z-yE-T06" userLabel="Top View">
-                                                <rect key="frame" x="8" y="16" width="398" height="180"/>
+                                                <rect key="frame" x="8" y="62" width="398" height="180"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiF-eV-FP9">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
@@ -83,7 +89,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2O6-tW-rID" userLabel="Trouser View">
-                                                <rect key="frame" x="8" y="212" width="398" height="180"/>
+                                                <rect key="frame" x="8" y="258" width="398" height="180"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe4-4r-ThR">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
@@ -101,7 +107,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ilv-FS-6da" userLabel="Footwear View">
-                                                <rect key="frame" x="8" y="408" width="398" height="180"/>
+                                                <rect key="frame" x="8" y="454" width="398" height="180"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnG-I2-c1w">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
@@ -121,15 +127,18 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="nDT-a8-Lcc" secondAttribute="trailing" constant="8" id="DV3-k4-aU4"/>
+                                            <constraint firstItem="u5Z-yE-T06" firstAttribute="top" secondItem="nDT-a8-Lcc" secondAttribute="bottom" constant="16" id="HHi-Zi-B6O"/>
                                             <constraint firstItem="2O6-tW-rID" firstAttribute="leading" secondItem="JdK-hQ-PIa" secondAttribute="leading" constant="8" id="IHk-RB-kfn"/>
                                             <constraint firstAttribute="trailing" secondItem="2O6-tW-rID" secondAttribute="trailing" constant="8" id="L1R-2T-VRP"/>
                                             <constraint firstItem="u5Z-yE-T06" firstAttribute="leading" secondItem="JdK-hQ-PIa" secondAttribute="leading" constant="8" id="Oi8-rU-SRd"/>
                                             <constraint firstItem="Ilv-FS-6da" firstAttribute="top" secondItem="2O6-tW-rID" secondAttribute="bottom" constant="16" id="SeF-3c-TJE"/>
                                             <constraint firstAttribute="trailing" secondItem="u5Z-yE-T06" secondAttribute="trailing" constant="8" id="Tba-Va-t5u"/>
                                             <constraint firstAttribute="trailing" secondItem="Ilv-FS-6da" secondAttribute="trailing" constant="8" id="ZDU-vo-7Nj"/>
-                                            <constraint firstItem="u5Z-yE-T06" firstAttribute="top" secondItem="JdK-hQ-PIa" secondAttribute="top" constant="16" id="dTF-mz-Yez"/>
                                             <constraint firstItem="2O6-tW-rID" firstAttribute="top" secondItem="u5Z-yE-T06" secondAttribute="bottom" constant="16" id="eTD-gV-dQR"/>
                                             <constraint firstItem="Ilv-FS-6da" firstAttribute="leading" secondItem="JdK-hQ-PIa" secondAttribute="leading" constant="8" id="gK0-g2-b5z"/>
+                                            <constraint firstItem="nDT-a8-Lcc" firstAttribute="top" secondItem="JdK-hQ-PIa" secondAttribute="top" constant="16" id="h9I-zV-8ig"/>
+                                            <constraint firstItem="nDT-a8-Lcc" firstAttribute="leading" secondItem="JdK-hQ-PIa" secondAttribute="leading" constant="8" id="yQu-qO-A5S"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -152,6 +161,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wny-1e-jzL"/>
                     </view>
+                    <connections>
+                        <outlet property="clotheFootwear" destination="mkf-BU-nuK" id="WsF-c1-Ujc"/>
+                        <outlet property="clotheTop" destination="a5z-y7-U6O" id="zCJ-0n-GV2"/>
+                        <outlet property="clotheTrouser" destination="ObO-oR-xo6" id="O2I-aa-d6C"/>
+                        <outlet property="outfitName" destination="nDT-a8-Lcc" id="btU-jU-95L"/>
+                        <outlet property="scrollView" destination="WfR-jL-4xA" id="3Ab-ge-6xh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJU-e8-Swq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

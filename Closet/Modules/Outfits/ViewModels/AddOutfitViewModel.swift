@@ -9,5 +9,43 @@
 import UIKit
 
 class AddOutfitViewModel {
+    var name: Dynamic<String>
+    var clotheTop: Dynamic<Clothe>
+    var clotheTrouser: Dynamic<Clothe>
+    var clotheFootwear: Dynamic<Clothe>
+    
+    private var fashionMaker: FashionMaker
+    
+    init() {
+        fashionMaker = FashionMaker(container: UIApplication.container)
+        name = Dynamic("")
+        clotheTop = Dynamic(Clothe.clotheForDressMakerAdd(color: .clear, piece: .footwear, style: .sport, image: UIImage(named: "clothePlaceholder")!))
+        clotheTrouser = Dynamic(Clothe.clotheForDressMakerAdd(color: .clear, piece: .footwear, style: .sport, image: UIImage(named: "clothePlaceholder")!))
+        clotheFootwear = Dynamic(Clothe.clotheForDressMakerAdd(color: .clear, piece: .footwear, style: .sport, image: UIImage(named: "clothePlaceholder")!))
+    }
+    func addOutfit() -> Bool {
+        if validateForm() {
+            let outfit = Outfit(name: name.value, clothes: [clotheTop.value, clotheTrouser.value, clotheFootwear.value])
+            fashionMaker.add(outfit)
+            return true
+        }
+        return false
+    }
+    
+    private func validateForm() -> Bool {
+        if name.value.isEmpty {
+            return false
+        }
+        if clotheTop.value.color == .clear{
+            return false
+        }
+        if clotheTrouser.value.color == .clear{
+            return false
+        }
+        if clotheFootwear.value.color == .clear{
+            return false
+        }
+        return true
+    }
     
 }

@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol ClothePicked: class {
+    func didSelectClothe(_ clothe: Clothe)
+}
+
 class PickClothePieceTypeViewController: UIViewController, Storyboarded {
     
     var piece: PieceType?
+    weak var delegate: ClothePicked?
     @IBOutlet private weak var clothesCollection: UICollectionView!
     private var viewModel: PickClothePieceTypeViewModel?
     override func viewDidLoad() {
@@ -34,6 +39,14 @@ class PickClothePieceTypeViewController: UIViewController, Storyboarded {
     
     @objc private func close() {
         self.dismiss(animated: true)
+    }
+}
+
+extension PickClothePieceTypeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let clothe = viewModel?.clothes[indexPath.row] else { return }
+        delegate?.didSelectClothe(clothe)
+        close()
     }
 }
 

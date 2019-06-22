@@ -16,8 +16,10 @@ enum FormTags: Int {
     case buttonAddTopPiece
     case buttonAddTrouserPiece
     case buttonAddFootwearPiece
-    //MARK:. PickerViews
+    //MARK:- PickerViews
     case pickerAddClotheColor
     case pickerAddClothePiece
     case pickerAddClotheStyle
+    //MARK:- Texfields
+    case textFieldAddOutfitName
 }

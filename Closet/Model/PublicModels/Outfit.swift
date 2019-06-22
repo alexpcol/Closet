@@ -14,6 +14,14 @@ struct Outfit {
     let name: String
     let clothes: [Clothe]
     
+    //Normal?
+    init(id: URL = URL(fileURLWithPath: ""), name: String, clothes: [Clothe]) {
+        self.id = id
+        self.name = name
+        self.clothes = clothes
+    }
+    
+    //Database
     init(id: URL, name: String?, clothes: NSSet?) {
         self.id = id
         self.name = name ?? ""
@@ -32,13 +40,7 @@ struct Outfit {
             self.clothes = [Clothe]()
         }
     }
-    
-    init(id: URL, name: String, clothes: [Clothe]) {
-        self.id = id
-        self.name = name
-        self.clothes = clothes
-    }
-    
+
     // Static class for the creation of a ClotheDatabase object
     static func outfitForFashionMakerAdd(name: String, clothes: [Clothe]) -> Outfit {
         return Outfit(id: URL(fileURLWithPath: ""), name: name, clothes: clothes)

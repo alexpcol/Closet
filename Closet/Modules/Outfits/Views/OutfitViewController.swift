@@ -27,7 +27,6 @@ class OutfitViewController: UIViewController, Storyboarded {
     private func initialize() {
         let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addOutfit))
         navigationItem.rightBarButtonItems = [addButtonItem]
-        outfitsTable.delegate = self
         outfitsTable.dataSource = self
         subscribeNotifications()
     }
@@ -35,7 +34,7 @@ class OutfitViewController: UIViewController, Storyboarded {
     private func subscribeNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didReceiveNotification(_:)),
-                                               name: .coreDataDidSavedClothe,
+                                               name: .coreDataDidSavedOutfit,
                                                object: nil)
     }
     private func refreshClotheCollection() {
@@ -53,10 +52,6 @@ class OutfitViewController: UIViewController, Storyboarded {
             refreshClotheCollection()
         }
     }
-    
-}
-
-extension OutfitViewController: UITableViewDelegate {
     
 }
 
