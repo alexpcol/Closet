@@ -14,7 +14,7 @@ struct Outfit {
     let name: String
     let clothes: [Clothe]
     
-    //Normal?
+    //Normal
     init(id: URL = URL(fileURLWithPath: ""), name: String, clothes: [Clothe]) {
         self.id = id
         self.name = name

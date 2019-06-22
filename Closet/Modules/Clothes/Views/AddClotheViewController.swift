@@ -29,7 +29,6 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
     }
     
     func setupView(viewModel: AddClotheViewMothel) {
-        // Configuración inicial al momento de crear la instnacia
         self.viewModel = viewModel
     }
     

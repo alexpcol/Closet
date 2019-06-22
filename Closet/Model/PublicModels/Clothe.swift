@@ -16,7 +16,7 @@ struct Clothe: Hashable {
     let style: ClotheStyle
     let image: UIImage
     
-    //Normal?
+    //Normal
     init(id: URL = URL(fileURLWithPath: ""), color: UIColor, piece: PieceType, style: ClotheStyle, image: UIImage) {
         self.id = id
         self.color = color

@@ -12,7 +12,6 @@ class GenericFormVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var viewKeyboardMask: UIView!
     
-    /// To keep track which textfield is begin edited and move the view properly
     var activeField: UITextField!
     var activeTextView: UITextView!
     var isScrollEnabled = true
@@ -27,9 +26,6 @@ class GenericFormVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        /// Set the configuration to move the view properly every time the
-        /// Keyboard is shown, also configures the view to hide the keyboard when
-        /// the user touches the screen outside any textfield
         registerForKeyboardNotifications()
         hideKeyboardOnViewTouch(viewKeyboardMask)
     }
@@ -41,7 +37,6 @@ class GenericFormVC: UIViewController {
         center.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    /// Configures the Keyboard notifications to keep track the keyboard behaviour
     func registerForKeyboardNotifications(){
         let center = NotificationCenter.default
         center.addObserver(self,
@@ -58,7 +53,6 @@ class GenericFormVC: UIViewController {
                            object: nil)
     }
     
-    /// Called when the UIKeyboardDidShowNotification is sent.
     @objc func keyboardWasShown(_ notification: NSNotification){
         guard activeField != nil || activeTextView != nil else{return}
         
@@ -71,9 +65,8 @@ class GenericFormVC: UIViewController {
         guard kbSize != nil else {return}
         let screenHeight = UIScreen.main.bounds.size.height
         let Ymax = screenHeight - (kbSize!.height + kbToolbarHeight)
-        
-        //Get the textField Y position according to main view
-        var txtFieldYpos = Ymax // Temp value just to calculate the real one
+
+        var txtFieldYpos = Ymax
         if activeField != nil {
             txtFieldYpos = activeField.convert(activeField.bounds, to: view).origin.y
             txtFieldYpos = txtFieldYpos + activeField.frame.size.height
@@ -84,9 +77,6 @@ class GenericFormVC: UIViewController {
             return
         }
         
-        //guard txtFieldYpos > Ymax else{return} not sure if this part is necessary
-        
-        //Active text field is hidden by keyboard, scroll it so it's visible
         var txtFrame: CGRect!
         if activeField != nil {
             txtFrame = activeField.frame
@@ -102,16 +92,13 @@ class GenericFormVC: UIViewController {
                           height: txtFrame.size.height)
         scrollView.scrollRectToVisible(rect, animated: true)
     }
-    
-    /// Called when the UIKeyboardWillHideNotification is sent
+
     @objc func keyboardWillBeHidden(_ notification: NSNotification){
         scrollView.contentInset = UIEdgeInsets.zero
         scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
         scrollView.isScrollEnabled = isScrollEnabled
     }
 }
-
-
 
 //MARK:- UITextFieldDelegate
 extension GenericFormVC: UITextFieldDelegate {
@@ -142,7 +129,6 @@ extension GenericFormVC: UITextViewDelegate {
 //MARK:- Keyboard related methods
 public extension UIViewController {
     
-    /// Dismisses the keyboard when touching anywhere outside UITextField
     func hideKeyboardOnViewTouch(_ view: UIView? = nil) {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
         
@@ -157,9 +143,6 @@ public extension UIViewController {
         subview.gestureRecognizers?.forEach(subview.removeGestureRecognizer)
     }
     
-    /// Causes the view (or one of its embedded text fields) to resign the 1st responder status
-    /// - note: if you want to dismiss the keyboard when touching outside UITextField use
-    /// 'hideKeyboardOnViewTouch' method instead
     @IBAction func hideKeyboard(){
         DispatchQueue.main.async {
             self.view.endEditing(true)

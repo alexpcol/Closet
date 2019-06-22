@@ -18,7 +18,6 @@ class ClotheCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     private func setup( ) {

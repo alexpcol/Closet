@@ -105,7 +105,6 @@ class DressMaker {
     }
     
     private func save() {
-        //TODO: Crear notificación de que se modificó la base de datos
         if backgroundContext.hasChanges {
             do{
                 try backgroundContext.save()

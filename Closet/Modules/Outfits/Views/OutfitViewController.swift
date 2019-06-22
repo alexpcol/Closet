@@ -20,13 +20,13 @@ class OutfitViewController: UIViewController, Storyboarded {
     }
     
     func setupView(viewModel: OutfitViewModel) {
-        // Configuración inicial al momento de crear la instnacia
         self.viewModel = viewModel
     }
     
     private func initialize() {
         let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addOutfit))
         navigationItem.rightBarButtonItems = [addButtonItem]
+        outfitsTable.delegate = self
         outfitsTable.dataSource = self
         subscribeNotifications()
     }
@@ -53,6 +53,12 @@ class OutfitViewController: UIViewController, Storyboarded {
         }
     }
     
+}
+
+extension OutfitViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension OutfitViewController: UITableViewDataSource {
