@@ -77,8 +77,11 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
     
     //MARK:- Actions
     @objc private func addClothe() {
-        (viewModel?.addClothe())! ? AlertsPresenter.shared.showOKAlert(title: "Closet", message: "¡Ropa añadida!", inView: self) :
-                                 AlertsPresenter.shared.showOKAlert(title: "Closet", message: "Verifica tu información", inView: self)
+        if let addedClothe = viewModel?.addClothe(), addedClothe {
+            AlertsPresenter.shared.showOKAlert(title: "Closet", message: "¡Ropa añadida!", inView: self)
+        } else {
+            AlertsPresenter.shared.showOKAlert(title: "Closet", message: "Verifica tu información", inView: self)
+        }
     }
     
     @objc private func didReceiveNotification(_ notification: Notification) {
