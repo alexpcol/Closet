@@ -17,17 +17,17 @@ class ClothesCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = ClothesViewController.instantiate(fromStoryboard: "Clothes")
-        vc.title = "Clothes"
-        vc.tabBarItem = UITabBarItem(title: "Clothes", image: UIImage(named: "shirt"), tag: 0)
-        vc.coordinator = self
-        vc.setupView(viewModel: ClotheViewModel())
-        navigationController.pushViewController(vc, animated: false)
+        let clothesViewController = ClothesViewController.instantiate(fromStoryboard: "Clothes")
+        clothesViewController.title = "Clothes"
+        clothesViewController.tabBarItem = UITabBarItem(title: "Clothes", image: UIImage(named: "shirt"), tag: 0)
+        clothesViewController.coordinator = self
+        clothesViewController.setupView(viewModel: ClotheViewModel())
+        navigationController.pushViewController(clothesViewController, animated: false)
     }
     
     func addClothe() {
-        let vc = AddClotheViewController.instantiate(fromStoryboard: "Clothes")
-        vc.setupView(viewModel: AddClotheViewMothel())
-        navigationController.pushViewController(vc, animated: true)
+        let addClotheViewController = AddClotheViewController.instantiate(fromStoryboard: "Clothes")
+        addClotheViewController.setupView(viewModel: AddClotheViewMothel())
+        navigationController.pushViewController(addClotheViewController, animated: true)
     }
 }

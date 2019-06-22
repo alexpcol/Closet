@@ -17,27 +17,26 @@ class OutfitsCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = OutfitViewController.instantiate(fromStoryboard: "Outfits")
-        vc.title = "Outfits"
-         vc.tabBarItem = UITabBarItem(title: "Outfits", image: UIImage(named: "man"), tag: 1)
-        vc.coordinator = self
-        vc.setupView(viewModel: OutfitViewModel())
-        navigationController.pushViewController(vc, animated: false)
+        let outfitViewController = OutfitViewController.instantiate(fromStoryboard: "Outfits")
+        outfitViewController.title = "Outfits"
+         outfitViewController.tabBarItem = UITabBarItem(title: "Outfits", image: UIImage(named: "man"), tag: 1)
+        outfitViewController.coordinator = self
+        outfitViewController.setupView(viewModel: OutfitViewModel())
+        navigationController.pushViewController(outfitViewController, animated: false)
     }
     
     func addOutfit() {
-        let vc = AddOutfitViewController.instantiate(fromStoryboard: "Outfits")
-        vc.coordinator = self
-        vc.setupView(viewModel: AddOutfitViewModel())
-        navigationController.pushViewController(vc, animated: true)
+        let addOutfitViewController = AddOutfitViewController.instantiate(fromStoryboard: "Outfits")
+        addOutfitViewController.coordinator = self
+        addOutfitViewController.setupView(viewModel: AddOutfitViewModel())
+        navigationController.pushViewController(addOutfitViewController, animated: true)
     }
     
     func pickClothe(in view: ClothePicked, withPiece piece: PieceType) {
-        let vc = PickClothePieceTypeViewController.instantiate(fromStoryboard: "Outfits")
-        let nav = UINavigationController(rootViewController: vc)
-        vc.piece = piece
-        vc.delegate = view
-        vc.setupView(viewModel: PickClothePieceTypeViewModel())
-        navigationController.present(nav, animated: true)
+        let pickClothePieceTypeViewController = PickClothePieceTypeViewController.instantiate(fromStoryboard: "Outfits")
+        let navigationController = UINavigationController(rootViewController: pickClothePieceTypeViewController)
+        pickClothePieceTypeViewController.delegate = view
+        pickClothePieceTypeViewController.setupView(viewModel: PickClothePieceTypeViewModel(piece: piece))
+        self.navigationController.present(navigationController, animated: true)
     }
 }

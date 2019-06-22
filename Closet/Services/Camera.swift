@@ -16,6 +16,7 @@ struct Camera {
     private init() {}
     static let shared = Camera()
     
+    // Cambiar con un closure de completion handler para manejar el estado de autorizado o no
      func prepare(inView view: UIViewController) -> Bool {
         if self.deviceHasCamera() {
             switch self.getCameraAuthStatus() {
@@ -25,7 +26,7 @@ struct Camera {
                 AlertsPresenter.shared.showAlertWithAction(alertTitle: "A esta app le gustaria acceder a la cámara",
                                                            alertMessage:"Para llevar el control de tu ropa",
                                                            actionTitle: "Abrir Configuraciones",
-                                                           actionStyle: .cancel,
+                                                           actionStyle: .default,
                                                            inView: view) {
                     UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
                 }

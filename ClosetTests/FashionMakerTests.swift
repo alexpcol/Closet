@@ -48,9 +48,9 @@ class FashionMakerTests: XCTestCase {
         dressMaker = DressMaker(container: (UIApplication.shared.delegate as! AppDelegate).persistentContainer)
         fashionMaker = FashionMaker(container: (UIApplication.shared.delegate as! AppDelegate).persistentContainer)
         
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red, piece: .top, style: .casual))
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .green, piece: .trouser, style: .casual))
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .blue, piece: .footwear, style: .casual))
+        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red, piece: .top, style: .casual, image: UIImage(named: "clothePlaceholder")!))
+        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .green, piece: .trouser, style: .casual, image: UIImage(named: "clothePlaceholder")!))
+        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .blue, piece: .footwear, style: .casual, image: UIImage(named: "clothePlaceholder")!))
         
         let clothes = dressMaker.fetchAllClothes()
         

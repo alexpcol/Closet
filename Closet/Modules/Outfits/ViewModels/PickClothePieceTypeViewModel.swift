@@ -24,25 +24,17 @@ class PickClothePieceTypeViewModel {
             })
         }
     }
-    var piece: String
+    private var piece: PieceType
     private var dressMaker: DressMaker
     private var _clothes: [Clothe]?
     
-    init() {
+    init(piece: PieceType) {
         dressMaker = DressMaker(container: UIApplication.container)
-        piece = ""
+        self.piece = piece
     }
     
-    func refreshFromDatabase() {
-        let pieceType = PieceType.with(text: piece)
-        switch pieceType {
-        case .top:
-           _clothes = dressMaker.fetchAllTops() ?? [Clothe]()
-        case .trouser:
-           _clothes = dressMaker.fetchAllTrousers() ?? [Clothe]()
-        case .footwear:
-           _clothes = dressMaker.fetchAllFootwears() ?? [Clothe]()
-        }
+    private func refreshFromDatabase() {
+        _clothes = dressMaker.fetchBy(piece: piece)
         
     }
 }

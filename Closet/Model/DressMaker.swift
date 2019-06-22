@@ -32,35 +32,9 @@ class DressMaker {
         return clothes
     }
     
-    func fetchAllTops() ->[Clothe]? {
-        let predicate = NSPredicate(format: "piece == %@", PieceType.top.rawValue)
-        guard let result = fetchClothes(withPredicate: predicate) else { return nil }
-        let clothes = result.map { (item) -> Clothe in
-            return Clothe(id: item.objectID.uriRepresentation(),
-                          color: item.color,
-                          piece: item.piece,
-                          style: item.style,
-                          image: item.image)
-        }
-        return clothes
-    }
-    
-    func fetchAllTrousers() ->[Clothe]? {
-        let predicate = NSPredicate(format: "piece == %@", PieceType.trouser.rawValue)
-        guard let result = fetchClothes(withPredicate: predicate) else { return nil }
-        let clothes = result.map { (item) -> Clothe in
-            return Clothe(id: item.objectID.uriRepresentation(),
-                          color: item.color,
-                          piece: item.piece,
-                          style: item.style,
-                          image: item.image)
-        }
-        return clothes
-    }
-    
-    func fetchAllFootwears() ->[Clothe]? {
-        let predicate = NSPredicate(format: "piece == %@", PieceType.footwear.rawValue)
-        guard let result = fetchClothes(withPredicate: predicate) else { return nil }
+    func fetchBy(piece: PieceType) -> [Clothe] {
+        let predicate = NSPredicate(format: "piece == %@", piece.rawValue)
+        guard let result = fetchClothesDatabase(withPredicate: predicate) else { return [Clothe]() }
         let clothes = result.map { (item) -> Clothe in
             return Clothe(id: item.objectID.uriRepresentation(),
                           color: item.color,
@@ -129,7 +103,7 @@ class DressMaker {
         }
     }
     
-    private func fetchClothes(withPredicate predicate: NSPredicate) -> [ClotheDatabase]? {
+    private func fetchClothesDatabase(withPredicate predicate: NSPredicate) -> [ClotheDatabase]? {
         let request: NSFetchRequest<ClotheDatabase> = ClotheDatabase.fetchRequest()
         request.predicate = predicate
         do{

@@ -14,7 +14,6 @@ protocol ClothePicked: class {
 
 class PickClothePieceTypeViewController: UIViewController, Storyboarded {
     
-    var piece: PieceType?
     weak var delegate: ClothePicked?
     @IBOutlet private weak var clothesCollection: UICollectionView!
     private var viewModel: PickClothePieceTypeViewModel?
@@ -33,8 +32,6 @@ class PickClothePieceTypeViewController: UIViewController, Storyboarded {
         clothesCollection.dataSource = self
         clothesCollection.delegate = self
         clothesCollection.register(UINib(nibName: ClotheCell.nibName, bundle: nil), forCellWithReuseIdentifier: ClotheCell.identifier)
-        guard let piece = piece else { return }
-        viewModel?.piece = piece.rawValue
     }
     
     @objc private func close() {

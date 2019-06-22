@@ -194,6 +194,7 @@
 				47E73E6122B5270500A5C15F /* Coordinators */,
 				47E73E5D22B525C500A5C15F /* Extensions */,
 				47A8A6C72299A6510005E34C /* Model */,
+				47F58F6B22BC5FF0006B75E2 /* Common */,
 				47E73E7322B555B700A5C15F /* Modules */,
 				4714C4F022B1555C00A6D872 /* Resources */,
 				47A8A6B32299A33B0005E34C /* Info.plist */,
@@ -308,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				47E73E6F22B52F0D00A5C15F /* MainTabBarController.swift */,
-				47F58F6B22BC5FF0006B75E2 /* Common */,
 				47E73E7522B555EA00A5C15F /* Outfits */,
 				47E73E7422B555D700A5C15F /* Clothes */,
 			);
