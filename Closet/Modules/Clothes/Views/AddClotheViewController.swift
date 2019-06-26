@@ -43,7 +43,6 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         pickerStyle.dataSource = self
         viewModel.image.value = mainImage.image!
         setTags()
-        subscribeNotifications()
         setViewModelProperties()
     }
     
@@ -51,13 +50,6 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         pickerColor.tag = FormTags.pickerAddClotheColor.rawValue
         pickerPiece.tag = FormTags.pickerAddClothePiece.rawValue
         pickerStyle.tag = FormTags.pickerAddClotheStyle.rawValue
-    }
-    
-    private func subscribeNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didReceiveNotification(_:)),
-                                               name: .cameraShowItAgain,
-                                               object: nil)
     }
     
     private func setViewModelProperties() {
@@ -81,13 +73,6 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         AlertsPresenter.shared.showOKAlert(title: resultModel.title, message: resultModel.message, inView: self)
     }
     
-    @objc private func didReceiveNotification(_ notification: Notification) {
-        guard let showCamera = notification.userInfo?["showCamera"] as? Bool else { return }
-        if showCamera {
-            viewModel.addImage(self, cameraPermissions: Camera.shared)
-        }
-    }
-    
     @IBAction func textFieldTapped(_ sender: UIButton) {
         switch sender.tag {
         case FormTags.buttonAddClotheColor.rawValue:
@@ -101,7 +86,9 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         }
     }
     @IBAction func addImageTapped(_ sender: UIButton) {
-        viewModel.addImage(self, cameraPermissions: Camera.shared)
+        viewModel.addImage(self, cameraPermissions: Camera.shared) { (actions) in
+            AlertsPresenter.shared.showActionSheet(actions: actions, title: "Hola", message: nil, inView: self)
+        }
     }
 }
 

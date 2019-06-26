@@ -33,9 +33,14 @@ class AddClotheViewMothel {
         colors.append(UIColor.blue)
     }
     
-    func addImage(_ view: AddClotheViewController, cameraPermissions: CameraAccess) {
-        if cameraPermissions.prepare(inView: view) {
-            presentSourceImagesOptions(view)
+    func addImage(_ view: AddClotheViewController,
+                  cameraPermissions: CameraAccess,
+                  _ completionHandler: @escaping ([UIAlertAction]) -> Void) {
+        
+        cameraPermissions.prepare(inView: view) { (granted) in
+            if granted {
+                self.presentSourceImagesOptions(view, completionHandler)
+            }
         }
     }
     
@@ -139,7 +144,7 @@ class AddClotheViewMothel {
         return true
     }
     
-    private func presentSourceImagesOptions(_ view: AddClotheViewController) {
+    private func presentSourceImagesOptions(_ view: AddClotheViewController,_ completionHandler: @escaping ([UIAlertAction]) -> Void) {
         let camera = UIAlertAction(title: "Camera", style: .default) { (alertAction) in
             ActivityPresenter.shared.showImagePickerFromCamera(inView: view)
         }
@@ -148,6 +153,7 @@ class AddClotheViewMothel {
             ActivityPresenter.shared.showImagePickerFromGallery(inView: view)
         }
         
-        AlertsPresenter.shared.showActionSheet(actions: [camera, library], title: "Hola", message: nil, inView: view)
+        completionHandler([camera,library])
     }
+    
 }

@@ -12,7 +12,7 @@ import Foundation
 import SystemConfiguration
 
 protocol CameraAccess {
-    func prepare(inView view: UIViewController) -> Bool
+    func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void)
 }
 struct Camera: CameraAccess {
     
@@ -20,47 +20,39 @@ struct Camera: CameraAccess {
     static let shared = Camera()
     
     // Cambiar con un closure de completion handler para manejar el estado de autorizado o no
-     func prepare(inView view: UIViewController) -> Bool {
+    func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void) {
         if self.deviceHasCamera() {
             switch self.getCameraAuthStatus() {
             case .authorized:
-                return true
+                completionHandler(true)
             case .denied:
-                AlertsPresenter.shared.showAlertWithAction(alertTitle: "A esta app le gustaria acceder a la cámara",
-                                                           alertMessage:"Para llevar el control de tu ropa",
-                                                           actionTitle: "Abrir Configuraciones",
-                                                           actionStyle: .default,
-                                                           inView: view) {
-                    UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
-                }
-                return false
+                showConfigurationAlert(in: view)
+                completionHandler(false)
             case .notDetermined:
-                self.notDetermined(inView: view)
-                return false
+                self.notDetermined(inView: view, completionHandler)
             default:
-                self.notDetermined(inView: view)
-                return false
+                self.notDetermined(inView: view, completionHandler)
             }
         } else {
             AlertsPresenter.shared.showOKAlert(title: "Cámara", message: "Dispositivo no tiene cámara", inView: view)
-            return false
+            completionHandler(false)
         }
     }
     
-    private func notDetermined(inView view: UIViewController) {
+    private func notDetermined(inView view: UIViewController, _ completionHandler: @escaping (Bool) -> Void) {
         AlertsPresenter.shared.showAlertWithAction(alertTitle: "A esta app le gustaria acceder a la cámara",
                                                    alertMessage: "Para llevar el control de tu ropa",
                                                    actionTitle: "Permitir",
                                                    actionStyle: .default,
                                                    inView: view) {
             AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { (granted) in
-                if granted {
+                granted ? DispatchQueue.main.async {
+                        completionHandler(true)
+                    } :
                     DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: .cameraShowItAgain,
-                                                        object: nil,
-                                                        userInfo: ["showCamera" : true] )
+                        self.showConfigurationAlert(in: view)
+                        completionHandler(false)
                     }
-                }
             })
         }
     }
@@ -70,5 +62,16 @@ struct Camera: CameraAccess {
     
     private func getCameraAuthStatus() -> AVAuthorizationStatus {
         return AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+    }
+    
+    
+    private func showConfigurationAlert(in view: UIViewController) {
+        AlertsPresenter.shared.showAlertWithAction(alertTitle: "A esta app le gustaria acceder a la cámara",
+                                                   alertMessage:"Para llevar el control de tu ropa",
+                                                   actionTitle: "Abrir Configuraciones",
+                                                   actionStyle: .default,
+                                                   inView: view) {
+                                                    UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+        }
     }
 }
