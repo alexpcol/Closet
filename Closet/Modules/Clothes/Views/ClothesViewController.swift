@@ -46,7 +46,7 @@ class ClothesViewController: UIViewController, Storyboarded {
 
 extension ClothesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.clothes.value.count ?? 0
+        return viewModel.clothes.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
