@@ -9,29 +9,41 @@
 import UIKit
 
 class ClotheViewModel {
-    var clothes: [Clothe]  {
+    var clothes:Dynamic<[Clothe]>  {
         get {
-            if _clothes == nil {
+            if _clothes.value.isEmpty {
                 refreshFromDatabase()
             }
-            return _clothes!
+            return _clothes
+        }
+        set {
+            
         }
     }
     var clotheCellModel: [ClotheCellModel]  {
         get {
-            return clothes.map({ (clothe: Clothe) -> ClotheCellModel in
+            return clothes.value.map({ (clothe: Clothe) -> ClotheCellModel in
                 ClotheCellModel(typeIcon: clothe.piece.icon(), preview: clothe.image, name: clothe.style.rawValue)
             })
         }
     }
     private var dressMaker: DressMaker
-    private var _clothes: [Clothe]?
+    private var _clothes: Dynamic<[Clothe]>
     
     init() {
         dressMaker = DressMaker(container: UIApplication.container)
+        _clothes = Dynamic([Clothe]())
+        NotificationCenter.default.addObserver(forName: .coreDataDidSavedClothe, object: nil, queue: nil) { [weak self] (info) in
+            guard let isSaved = info.userInfo?["saved"] as? Bool else { return }
+            if isSaved {
+                self?.refreshFromDatabase()
+                self?.clothes = self!._clothes
+            }
+        }
     }
     
     func refreshFromDatabase() {
-        _clothes = dressMaker.fetchAllClothes() ?? [Clothe]()
+        _clothes.value = dressMaker.fetchAllClothes() ?? clothes.value
+        
     }
 }
