@@ -13,7 +13,7 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
     private var pickerColor = PickerView()
     private var pickerPiece = PickerView()
     private var pickerStyle = PickerView()
-    private var viewModel: AddClotheViewMothel?
+    private var viewModel: AddClotheViewMothel!
     @IBOutlet private weak var colorTextField: UITextField!
     @IBOutlet private weak var pieceTextField: UITextField!
     @IBOutlet private weak var styleTextField: UITextField!
@@ -41,7 +41,7 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         pickerPiece.dataSource = self
         pickerStyle.delegate = self
         pickerStyle.dataSource = self
-        viewModel?.image.value = mainImage.image!
+        viewModel.image.value = mainImage.image!
         setTags()
         subscribeNotifications()
         setViewModelProperties()
@@ -61,33 +61,30 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
     }
     
     private func setViewModelProperties() {
-        viewModel?.color.bindAndFire({ [unowned self] in
+        viewModel.color.bindAndFire({ [unowned self] in
             self.colorTextField.text = $0
         })
-        viewModel?.piece.bindAndFire({ [unowned self] in
+        viewModel.piece.bindAndFire({ [unowned self] in
             self.pieceTextField.text = $0
         })
-        viewModel?.style.bindAndFire({ [unowned self] in
+        viewModel.style.bindAndFire({ [unowned self] in
             self.styleTextField.text = $0
         })
-        viewModel?.image.bindAndFire({ [unowned self] in
+        viewModel.image.bindAndFire({ [unowned self] in
             self.mainImage.image = $0
         })
     }
     
     //MARK:- Actions
     @objc private func addClothe() {
-        if let addedClothe = viewModel?.addClothe(), addedClothe {
-            AlertsPresenter.shared.showOKAlert(title: "Closet", message: "¡Ropa añadida!", inView: self)
-        } else {
-            AlertsPresenter.shared.showOKAlert(title: "Closet", message: "Verifica tu información", inView: self)
-        }
+        let resultModel = viewModel.addClothe()
+        AlertsPresenter.shared.showOKAlert(title: resultModel.title, message: resultModel.message, inView: self)
     }
     
     @objc private func didReceiveNotification(_ notification: Notification) {
         guard let showCamera = notification.userInfo?["showCamera"] as? Bool else { return }
         if showCamera {
-            viewModel?.addImage(self)
+            viewModel.addImage(self, cameraPermissions: Camera.shared)
         }
     }
     
@@ -104,7 +101,7 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         }
     }
     @IBAction func addImageTapped(_ sender: UIButton) {
-        viewModel?.addImage(self)
+        viewModel.addImage(self, cameraPermissions: Camera.shared)
     }
 }
 
@@ -113,20 +110,11 @@ extension AddClotheViewController: PickerViewDelegate {
     func pickerDataView(pickerView: PickerView, selectedIndex index: Int) {
         switch pickerView.tag {
         case FormTags.pickerAddClotheColor.rawValue:
-            switch viewModel?.colors[index] {
-            case UIColor.red:
-                viewModel?.color.value = "Red"
-            case UIColor.green:
-                viewModel?.color.value = "Green"
-            case UIColor.blue:
-                viewModel?.color.value = "Blue"
-            default:
-                viewModel?.color.value = ""
-            }
+            viewModel.color.value = viewModel.colorName(index)
         case FormTags.pickerAddClothePiece.rawValue:
-            viewModel?.piece.value = viewModel!.pieces[index].rawValue
+            viewModel.piece.value = viewModel.pieceName(for: index)
         case FormTags.pickerAddClotheStyle.rawValue:
-            viewModel?.style.value = viewModel!.styles[index].rawValue
+            viewModel.style.value = viewModel.styleName(for: index)
         default:
             break
         }
@@ -139,11 +127,11 @@ extension AddClotheViewController: PickerViewDataSource {
     func numberOfRowsFor(pickerView: PickerView) -> Int {
         switch pickerView.tag {
         case FormTags.pickerAddClotheColor.rawValue:
-            return viewModel?.colors.count ?? 0
+            return viewModel.colors.count
         case FormTags.pickerAddClothePiece.rawValue:
-            return viewModel?.pieces.count ?? 0
+            return viewModel.pieces.count
         case FormTags.pickerAddClotheStyle.rawValue:
-            return viewModel?.styles.count ?? 0
+            return viewModel.styles.count
         default:
             return 0
         }
@@ -152,20 +140,11 @@ extension AddClotheViewController: PickerViewDataSource {
     func titleFor(pickerView: PickerView, atIndex index: Int) -> String {
         switch pickerView.tag {
         case FormTags.pickerAddClotheColor.rawValue:
-            switch viewModel?.colors[index] {
-            case UIColor.red:
-                return "Red"
-            case UIColor.green:
-                return "Green"
-            case UIColor.blue:
-                return "Blue"
-            default:
-                return ""
-            }
+            return viewModel.colorName(index)
         case FormTags.pickerAddClothePiece.rawValue:
-            return viewModel!.pieces[index].rawValue
+            return viewModel.pieceName(for: index)
         case FormTags.pickerAddClotheStyle.rawValue:
-            return viewModel!.styles[index].rawValue
+            return viewModel.styleName(for: index)
         default:
             return ""
         }
@@ -176,7 +155,7 @@ extension AddClotheViewController: PickerViewDataSource {
 extension AddClotheViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        viewModel?.image.value = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        viewModel.image.value = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         self.dismiss(animated: true, completion: nil)
     }
 }

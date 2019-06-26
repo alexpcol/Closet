@@ -11,7 +11,10 @@ import AVKit
 import Foundation
 import SystemConfiguration
 
-struct Camera {
+protocol CameraAccess {
+    func prepare(inView view: UIViewController) -> Bool
+}
+struct Camera: CameraAccess {
     
     private init() {}
     static let shared = Camera()

@@ -11,10 +11,10 @@ import CoreData
 @testable import Closet
 
 class ClosetTests: XCTestCase {
-
+    
     var dressMaker: DressMaker!
     lazy var managedObjectModel: NSManagedObjectModel = {
-        return NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))])!
+        return NSManagedObjectModel.mergedModel(from: [Bundle(identifier: "com.chila.Closet")!])!
     }()
     lazy var mockPersistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Closet", managedObjectModel: managedObjectModel)
@@ -35,12 +35,12 @@ class ClosetTests: XCTestCase {
         super.setUp()
         fullFillDressMaker()
     }
-
+    
     override func tearDown() {
         cleanDressMaker()
         super.tearDown()
     }
-
+    
     func testFetchAllClothes() {
         let total = dressMaker.fetchAllClothes()!
         XCTAssertEqual(total.count, 3)
@@ -63,30 +63,26 @@ class ClosetTests: XCTestCase {
     
     func fullFillDressMaker() {
         dressMaker = DressMaker(container: mockPersistentContainer)
-        createClotheDabase(color: .red,
-                            piece: .top,
-                            style: .casual,
-                            image: UIImage(named: "clothePlaceholder")!)
-        createClotheDabase(color: .blue,
-                            piece: .trouser,
-                            style: .casual,
-                            image: UIImage(named: "clothePlaceholder")!)
-        createClotheDabase(color: .green,
-                            piece: .footwear,
-                            style: .casual,
-                            image: UIImage(named: "clothePlaceholder")!)
+        createClotheDabase(color: UIColor.red, piece: .top, style: .casual)
+        createClotheDabase(color: UIColor.blue, piece: .trouser, style: .casual)
+        createClotheDabase(color: UIColor.green, piece: .footwear, style: .casual)
+        
+        //        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .red, piece: .top, style: .casual))
+        //        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .blue, piece: .trouser, style: .casual))
+        //        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .green, piece: .footwear, style: .casual))
         try? mockPersistentContainer.viewContext.save()
     }
     
-    func createClotheDabase (color: UIColor, piece: PieceType, style: ClotheStyle, image: UIImage) {
+    func createClotheDabase (color: UIColor, piece: PieceType, style: ClotheStyle) {
         let clotheDatabase = NSEntityDescription.insertNewObject(forEntityName: "ClotheDatabase", into: mockPersistentContainer.viewContext)
         clotheDatabase.setValue(color, forKey: "color")
         clotheDatabase.setValue(piece.rawValue, forKey: "piece")
         clotheDatabase.setValue(style.rawValue, forKey: "style")
+        clotheDatabase.setValue(UIImage(named: "clothePlaceholder")?.jpegData(compressionQuality: 0.75)!, forKey: "image")
     }
     
-    
     func cleanDressMaker() {
+        
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "ClotheDatabase")
         do{
             let result = try self.mockPersistentContainer.viewContext.fetch(request)
@@ -97,15 +93,12 @@ class ClosetTests: XCTestCase {
         } catch {
             print("error")
         }
+        //        guard let clothes = dressMaker.fetchAllClothes() else { return }
+        //        for clothe in clothes {
+        //            dressMaker.remove(clothe: clothe)
+        //        }
+        //        try? mockPersistentContainer.viewContext.save()
+        //        dressMaker = nil
     }
     
-//    func cleanDressMaker() {
-//        guard let clothes = dressMaker.fetchAllClothes() else { return }
-//        for clothe in clothes {
-//            dressMaker.remove(clothe)
-//        }
-//        dressMaker = nil
-//    }
-    
-
 }

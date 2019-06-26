@@ -33,20 +33,97 @@ class AddClotheViewMothel {
         colors.append(UIColor.blue)
     }
     
-    
-    func addImage(_ view: AddClotheViewController) {
-        if Camera.shared.prepare(inView: view) {
+    func addImage(_ view: AddClotheViewController, cameraPermissions: CameraAccess) {
+        if cameraPermissions.prepare(inView: view) {
             presentSourceImagesOptions(view)
         }
     }
     
-    func addClothe() -> Bool {
+    func addClothe() -> AlertHeaderModel {
         if validateForm() {
-            let clothe = Clothe(color: color.value, piece: piece.value, style: style.value, image: image.value)
+            let clothe = Clothe(color: color.value, piece: pieceType(for: piece.value), style: styleType(for: style.value), image: image.value)
             dressMaker.add(clothe)
-            return true
+            return AlertHeaderModel(title: "Closet", message: "¡Ropa añadida!")
         }
-        return false
+        return AlertHeaderModel(title: "Closet", message: "Verifica tu información")
+    }
+    
+    func colorName(_ index: Int) -> String {
+        if index < colors.count {
+            switch colors[index] {
+            case UIColor.red:
+                return "Red"
+            case UIColor.green:
+                return "Green"
+            case UIColor.blue:
+                return "Blue"
+            default:
+                return ""
+            }
+        }
+        return ""
+    }
+    
+    func pieceName(for index: Int) -> String {
+        if index < pieces.count {
+            switch pieces[index] {
+            case .top:
+                return "Para torso"
+            case .trouser:
+                return "Para piernas"
+            case .footwear:
+                return "Para pies"
+            }
+        }
+        return ""
+    }
+    
+    func styleName(for index: Int) -> String {
+        if index < styles.count {
+            switch styles[index] {
+            case .casual:
+                return "Estilo casual👕"
+            case .formal:
+                return "Estilo formal 👔"
+            case .informal:
+                return "Estilo informal🧢"
+            case .sport:
+                return "Estilo deportivo🎽"
+            }
+        }
+        return ""
+    }
+    
+    private func pieceType(for pieceName: String) -> String {
+        var piece:PieceType = .top
+        switch pieceName {
+        case "Para torso":
+            piece = .top
+        case "Para piernas":
+            piece = .trouser
+        case "Para pies":
+            piece = .footwear
+        default:
+            piece = .top
+        }
+        return piece.rawValue
+    }
+    
+    private func styleType(for styleName: String) -> String {
+        var style: ClotheStyle = .casual
+        switch styleName {
+        case "Estilo casual👕":
+            style = .casual
+        case "Estilo formal 👔":
+            style = .formal
+        case "Estilo informal🧢":
+            style = .informal
+        case "Estilo deportivo🎽":
+            style = .sport
+        default:
+            style = .casual
+        }
+        return style.rawValue
     }
     
     private func validateForm() -> Bool {
