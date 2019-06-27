@@ -23,13 +23,13 @@ class AddOutfitViewModel {
         clotheTrouser = Dynamic(Clothe.clotheForDressMakerAdd(color: .clear, piece: .footwear, style: .sport, image: UIImage(named: "clothePlaceholder")!))
         clotheFootwear = Dynamic(Clothe.clotheForDressMakerAdd(color: .clear, piece: .footwear, style: .sport, image: UIImage(named: "clothePlaceholder")!))
     }
-    func addOutfit() -> Bool {
+    func addOutfit() -> AlertHeaderModel {
         if validateForm() {
             let outfit = Outfit(name: name.value, clothes: [clotheTop.value, clotheTrouser.value, clotheFootwear.value])
             fashionMaker.add(outfit)
-            return true
+            return AlertHeaderModel(title: "Closet", message: "¡Outfit añadido!")
         }
-        return false
+        return AlertHeaderModel(title: "Closet", message: "Verifica tu información")
     }
     
     private func validateForm() -> Bool {

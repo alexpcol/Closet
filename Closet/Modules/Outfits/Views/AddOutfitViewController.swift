@@ -15,7 +15,7 @@ class AddOutfitViewController: GenericFormVC, Storyboarded {
     @IBOutlet weak var clotheTop: UIImageView!
     @IBOutlet weak var clotheTrouser: UIImageView!
     @IBOutlet weak var clotheFootwear: UIImageView!
-    private var viewModel: AddOutfitViewModel?
+    private var viewModel: AddOutfitViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
@@ -48,27 +48,27 @@ class AddOutfitViewController: GenericFormVC, Storyboarded {
     
     
     @objc private func addOutfit() {
-        (viewModel?.addOutfit())! ? AlertsPresenter.shared.showOKAlert(title: "Closet", message: "¡Outfit añadido!", inView: self) :
-            AlertsPresenter.shared.showOKAlert(title: "Closet", message: "Verifica tu información", inView: self)
+        let resultModel = viewModel.addOutfit()
+        AlertsPresenter.shared.showOKAlert(title: resultModel.title, message: resultModel.message, inView: self)
     }
     
     private func setViewModelProperties() {
-        viewModel?.name.bindAndFire({ [unowned self] in
+        viewModel.name.bindAndFire({ [unowned self] in
             self.outfitName.text = $0
         })
-        viewModel?.clotheTop.bindAndFire({ [weak self] (clothe) in
+        viewModel.clotheTop.bindAndFire({ [weak self] (clothe) in
             guard let strongSelf = self else {
                 return
             }
             strongSelf.clotheTop.image = clothe.image
         })
-        viewModel?.clotheTrouser.bindAndFire({ [weak self] (clothe) in
+        viewModel.clotheTrouser.bindAndFire({ [weak self] (clothe) in
             guard let strongSelf = self else {
                 return
             }
             strongSelf.clotheTrouser.image = clothe.image
         })
-        viewModel?.clotheFootwear.bindAndFire({ [weak self] (clothe) in
+        viewModel.clotheFootwear.bindAndFire({ [weak self] (clothe) in
             guard let strongSelf = self else {
                 return
             }
@@ -81,7 +81,7 @@ extension AddOutfitViewController {
     override func textFieldDidEndEditing(_ textField: UITextField) {
         let text = textField.text ?? ""
         if textField.tag == FormTags.textFieldAddOutfitName.rawValue {
-            viewModel?.name.value = text
+            viewModel.name.value = text
         }
     }
 }
@@ -90,11 +90,11 @@ extension AddOutfitViewController: ClothePicked {
     func didSelectClothe(_ clothe: Clothe) {
         switch clothe.piece {
         case .top:
-            viewModel?.clotheTop.value = clothe
+            viewModel.clotheTop.value = clothe
         case .trouser:
-            viewModel?.clotheTrouser.value = clothe
+            viewModel.clotheTrouser.value = clothe
         case .footwear:
-            viewModel?.clotheFootwear.value = clothe
+            viewModel.clotheFootwear.value = clothe
         }
     }
 }

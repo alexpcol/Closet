@@ -59,6 +59,4 @@ extension OutfitViewController: UITableViewDataSource {
         viewModel.outfitCellModel[indexPath.row].congifure(cell)
         return cell
     }
-    
-    
 }
