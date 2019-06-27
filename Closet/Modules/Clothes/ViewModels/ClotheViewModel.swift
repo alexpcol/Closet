@@ -43,7 +43,7 @@ class ClotheViewModel {
     }
     
     func refreshFromDatabase() {
-        _clothes.value = dressMaker.fetchAllClothes() ?? clothes.value
+        _clothes.value = dressMaker.fetchAllClothes() ?? _clothes.value
         
     }
 }

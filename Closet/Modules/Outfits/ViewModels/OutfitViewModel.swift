@@ -9,30 +9,41 @@
 import UIKit
 
 class OutfitViewModel {
-    var outfits: [Outfit]  {
+    var outfits:Dynamic<[Outfit]>   {
         get {
-            if _outfits == nil {
+            if _outfits.value.isEmpty {
                 refreshFromDatabase()
             }
-            return _outfits!
+            return _outfits
+        }
+        set {
+            
         }
     }
     var outfitCellModel: [OutfitCellModel]  {
         get {
-            return outfits.map({ (outfit: Outfit) -> OutfitCellModel in
+            return outfits.value.map({ (outfit: Outfit) -> OutfitCellModel in
                 OutfitCellModel(name: outfit.name)
             })
         }
     }
     private var fashionMaker: FashionMaker
-    private var _outfits: [Outfit]?
+    private var _outfits: Dynamic<[Outfit]>
     
     init() {
         fashionMaker = FashionMaker(container: UIApplication.container)
+        _outfits = Dynamic([Outfit]())
+        NotificationCenter.default.addObserver(forName: .coreDataDidSavedOutfit, object: nil, queue: nil) { [weak self] (info) in
+            guard let isSaved = info.userInfo?["saved"] as? Bool else { return }
+            if isSaved {
+                self?.refreshFromDatabase()
+                self?.outfits = self!._outfits
+            }
+        }
     }
     
     func refreshFromDatabase() {
-        _outfits = fashionMaker.fetchAllOutfits() ?? [Outfit]()
+        _outfits.value = fashionMaker.fetchAllOutfits() ?? _outfits.value
     }
 }
 

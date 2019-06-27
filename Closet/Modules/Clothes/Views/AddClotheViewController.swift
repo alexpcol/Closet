@@ -24,10 +24,6 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
         initialize()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     func setupView(viewModel: AddClotheViewMothel) {
         self.viewModel = viewModel
     }

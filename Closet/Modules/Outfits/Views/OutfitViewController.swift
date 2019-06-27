@@ -12,15 +12,11 @@ class OutfitViewController: UIViewController, Storyboarded {
     
     weak var coordinator: OutfitsCoordinator?
     @IBOutlet weak var outfitsTable: UITableView!
-    private var viewModel: OutfitViewModel?
+    private var viewModel: OutfitViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     func setupView(viewModel: OutfitViewModel) {
@@ -32,31 +28,19 @@ class OutfitViewController: UIViewController, Storyboarded {
         navigationItem.rightBarButtonItems = [addButtonItem]
         outfitsTable.delegate = self
         outfitsTable.dataSource = self
-        subscribeNotifications()
+        setViewModelProperties()
     }
     
-    private func subscribeNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didReceiveNotification(_:)),
-                                               name: .coreDataDidSavedOutfit,
-                                               object: nil)
-    }
-    private func refreshClotheCollection() {
-        viewModel?.refreshFromDatabase()
-        outfitsTable.reloadData()
+    private func setViewModelProperties() {
+        viewModel.outfits.bindAndFire { [unowned self] (_) in
+            self.outfitsTable.reloadData()
+        }
     }
     
     //MARK:- Actions & Selectors
     @objc private func addOutfit() {
         coordinator?.addOutfit()
     }
-    @objc private func didReceiveNotification(_ notification: Notification) {
-        guard let isSaved = notification.userInfo?["saved"] as? Bool else { return }
-        if isSaved {
-            refreshClotheCollection()
-        }
-    }
-    
 }
 
 extension OutfitViewController: UITableViewDelegate {
@@ -67,12 +51,12 @@ extension OutfitViewController: UITableViewDelegate {
 
 extension OutfitViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.outfits.count ?? 0
+        return viewModel.outfits.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-        viewModel?.outfitCellModel[indexPath.row].congifure(cell)
+        viewModel.outfitCellModel[indexPath.row].congifure(cell)
         return cell
     }
     
