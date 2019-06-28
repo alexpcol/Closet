@@ -10,8 +10,7 @@ import XCTest
 import CoreData
 @testable import Closet
 
-class ClosetTests: XCTestCase {
-    
+class DressMakerTests: XCTestCase {
     var dressMaker: DressMaker!
     lazy var managedObjectModel: NSManagedObjectModel = {
         return NSManagedObjectModel.mergedModel(from: [Bundle(identifier: "com.chila.Closet")!])!
@@ -54,7 +53,7 @@ class ClosetTests: XCTestCase {
         XCTAssertEqual(clothe.style, total[0].style)
     }
     
-    func testRemoveCloetheById() {
+    func testRemoveClotheById() {
         var total = dressMaker.fetchAllClothes()!
         dressMaker.remove(total[0])
         total = dressMaker.fetchAllClothes()!
@@ -66,10 +65,6 @@ class ClosetTests: XCTestCase {
         createClotheDabase(color: UIColor.red, piece: .top, style: .casual)
         createClotheDabase(color: UIColor.blue, piece: .trouser, style: .casual)
         createClotheDabase(color: UIColor.green, piece: .footwear, style: .casual)
-        
-        //        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .red, piece: .top, style: .casual))
-        //        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .blue, piece: .trouser, style: .casual))
-        //        dressMaker.add(clothe: Clothe.clotheForDressMakerAdd(color: .green, piece: .footwear, style: .casual))
         try? mockPersistentContainer.viewContext.save()
     }
     
@@ -82,7 +77,6 @@ class ClosetTests: XCTestCase {
     }
     
     func cleanDressMaker() {
-        
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "ClotheDatabase")
         do{
             let result = try self.mockPersistentContainer.viewContext.fetch(request)
@@ -93,12 +87,5 @@ class ClosetTests: XCTestCase {
         } catch {
             print("error")
         }
-        //        guard let clothes = dressMaker.fetchAllClothes() else { return }
-        //        for clothe in clothes {
-        //            dressMaker.remove(clothe: clothe)
-        //        }
-        //        try? mockPersistentContainer.viewContext.save()
-        //        dressMaker = nil
     }
-    
 }

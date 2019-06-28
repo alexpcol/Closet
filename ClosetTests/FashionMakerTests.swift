@@ -13,8 +13,23 @@ import CoreData
 class FashionMakerTests: XCTestCase {
     var dressMaker: DressMaker!
     var fashionMaker: FashionMaker!
-    
-    //TODO: generar un container para las pruebas, no utilizar el que se usa para la app
+    lazy var managedObjectModel: NSManagedObjectModel = {
+        return NSManagedObjectModel.mergedModel(from: [Bundle(identifier: "com.chila.Closet")!])!
+    }()
+    lazy var mockPersistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Closet", managedObjectModel: managedObjectModel)
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores(completionHandler: { (description, error) in
+            precondition(description.type == NSInMemoryStoreType)
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
     
     override func setUp() {
         super.setUp()
@@ -33,8 +48,9 @@ class FashionMakerTests: XCTestCase {
     
     func testFetchOutfitById() {
         let totalOutfits = fashionMaker.fetchAllOutfits()!
-        let outfit = fashionMaker.fetchOutfit(withId: totalOutfits[0].id)
-        XCTAssertEqual(outfit?.name, "Summer")
+        let outfit = fashionMaker.fetchOutfit(withId: totalOutfits[0].id)!
+        XCTAssertEqual(outfit.name, "Summer")
+        XCTAssertEqual(outfit.clothes.count, 3)
     }
     
     func testRemoveOutfitById() {
@@ -45,29 +61,53 @@ class FashionMakerTests: XCTestCase {
     }
     
     func fullFillFashion() {
-        dressMaker = DressMaker(container: (UIApplication.shared.delegate as! AppDelegate).persistentContainer)
-        fashionMaker = FashionMaker(container: (UIApplication.shared.delegate as! AppDelegate).persistentContainer)
+        dressMaker = DressMaker(container: mockPersistentContainer)
+        fashionMaker = FashionMaker(container: mockPersistentContainer)
+        var clothes:[NSManagedObject] = []
+        for n in 0...3 {
+            switch n {
+            case 0:
+                clothes.append(createClotheDabase(color: UIColor.red, piece: .top, style: .casual))
+            case 1:
+                clothes.append(createClotheDabase(color: UIColor.red, piece: .top, style: .casual))
+            case 2:
+                clothes.append(createClotheDabase(color: UIColor.red, piece: .top, style: .casual))
+            default:
+                print("lol")
+                
+            }
+        }
+        createOutfitDabase(name: "Summer", clothes)
         
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .red, piece: .top, style: .casual, image: UIImage(named: "clothePlaceholder")!))
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .green, piece: .trouser, style: .casual, image: UIImage(named: "clothePlaceholder")!))
-        dressMaker.add(Clothe.clotheForDressMakerAdd(color: .blue, piece: .footwear, style: .casual, image: UIImage(named: "clothePlaceholder")!))
-        
-        let clothes = dressMaker.fetchAllClothes()
-        
-        fashionMaker.add(Outfit.outfitForFashionMakerAdd(name: "Summer", clothes: clothes!))
+        try? mockPersistentContainer.viewContext.save()
+    }
+    
+    func createClotheDabase(color: UIColor, piece: PieceType, style: ClotheStyle) -> NSManagedObject {
+        let clotheDatabase = NSEntityDescription.insertNewObject(forEntityName: "ClotheDatabase", into: mockPersistentContainer.viewContext)
+        clotheDatabase.setValue(color, forKey: "color")
+        clotheDatabase.setValue(piece.rawValue, forKey: "piece")
+        clotheDatabase.setValue(style.rawValue, forKey: "style")
+        clotheDatabase.setValue(UIImage(named: "clothePlaceholder")?.jpegData(compressionQuality: 0.75)!, forKey: "image")
+        return clotheDatabase
+    }
+    
+    func createOutfitDabase(name: String,_ clothes: [NSManagedObject]) {
+        let outfitDatabase = NSEntityDescription.insertNewObject(forEntityName: "OutfitDatabase", into: mockPersistentContainer.viewContext)
+        outfitDatabase.setValue(name, forKey: "name")
+        outfitDatabase.setValue(NSSet(array: clothes), forKey: "clothes")
     }
     
     func clearFashionMaker() {
-        guard let outfits = fashionMaker.fetchAllOutfits() else { return }
-        for outfit in outfits {
-            fashionMaker.remove(outfit)
+        let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest<NSFetchRequestResult>(entityName: "OutfitDatabase")
+        do{
+            let result = try self.mockPersistentContainer.viewContext.fetch(request)
+            for case let item as NSManagedObject in result {
+                mockPersistentContainer.viewContext.delete(item)
+            }
+            try mockPersistentContainer.viewContext.save()
+        } catch {
+            print("error")
         }
-        guard let clothes = dressMaker.fetchAllClothes() else { return }
-        for clothe in clothes {
-            dressMaker.remove(clothe)
-        }
-        dressMaker = nil
-        fashionMaker = nil
     }
 
 }
