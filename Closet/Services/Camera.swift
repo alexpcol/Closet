@@ -19,7 +19,6 @@ struct Camera: CameraAccess {
     private init() {}
     static let shared = Camera()
     
-    // Cambiar con un closure de completion handler para manejar el estado de autorizado o no
     func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void) {
         if self.deviceHasCamera() {
             switch self.getCameraAuthStatus() {

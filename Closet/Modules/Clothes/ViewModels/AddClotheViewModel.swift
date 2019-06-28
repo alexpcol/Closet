@@ -35,12 +35,9 @@ class AddClotheViewMothel {
     
     func addImage(_ view: AddClotheViewController,
                   cameraPermissions: CameraAccess,
-                  _ completionHandler: @escaping ([UIAlertAction]) -> Void) {
-        
+                  _ completionHandler: @escaping ([UIAlertAction]?) -> Void) {
         cameraPermissions.prepare(inView: view) { (granted) in
-            if granted {
-                self.presentSourceImagesOptions(view, completionHandler)
-            }
+            granted ? self.presentSourceImagesOptions(view, completionHandler) : completionHandler(nil)
         }
     }
     

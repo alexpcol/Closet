@@ -83,6 +83,7 @@ class AddClotheViewController: GenericFormVC, Storyboarded {
     }
     @IBAction func addImageTapped(_ sender: UIButton) {
         viewModel.addImage(self, cameraPermissions: Camera.shared) { (actions) in
+            guard let actions = actions else { return }
             AlertsPresenter.shared.showActionSheet(actions: actions, title: "Hola", message: nil, inView: self)
         }
     }

@@ -13,46 +13,61 @@ class AddClotheViewModelTests: XCTestCase {
 
     var viewModel: AddClotheViewMothel!
     override func setUp() {
-        //fullFill()
+        fullFill()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
         viewModel = nil
     }
+    
+    func testAddImageFailed() {
+        let cameraAccess = FakeCameraAccess()
+        var testActions:[UIAlertAction] = []
+        let expectation = self.expectation(description: "there is no camera so there are no actions")
+        viewModel.addImage(AddClotheViewController(), cameraPermissions: cameraAccess) { (actions) in
+            guard let actions = actions else { expectation.fulfill(); return }
+            testActions = actions
+        }
+        waitForExpectations(timeout: 0.3, handler: nil)
+        XCTAssertEqual(testActions.count, 0)
+    }
+    
+    func testActionSheetOptions() {
+        let cameraAccess = MockCameraAccess()
+        var testActions:[UIAlertAction] = []
+        let expectation = self.expectation(description: "action sheet added")
+        viewModel.addImage(AddClotheViewController(), cameraPermissions: cameraAccess) { (actions) in
+            guard let actions = actions else { return }
+            testActions = actions
+            AlertsPresenter.shared.showActionSheet(actions: actions, title: "Test", message: nil, inView: UIViewController())
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 0.3, handler: nil)
+        XCTAssertEqual(testActions.count, 2)
+    }
 
-//    func testClothePieceOptions() {
-//        XCTAssertEqual(viewModel.pieceName(0), "Para torso", "incorrect top piece picker option")
-//        XCTAssertEqual(viewModel.pieceName(1), "Para piernas", "incorrect trouser piece picker option")
-//        XCTAssertEqual(viewModel.pieceName(2), "Para pies", "incorrect footwear piece picker option")
-//    }
-//    
-//    func testAllPiecesHaveNames() {
-//        for (index, element) in PieceType.allCases.enumerated() {
-//            XCTAssertNotEqual(viewModel.pieceName(index), "", "There is no name for piece \(element)")
-//        }
-//    }
-//    
-//    func testAllStylesHaveNames() {
-//        for (index, element) in ClotheStyle.allCases.enumerated() {
-//            XCTAssertNotEqual(viewModel.styleName(index), "", "There is no name for style \(element)")
-//        }
-//    }
-//    
-//    func testAddImage() {
-//        let cameraAccess = FakeCameraAccess()
-//        viewModel.addImage(AddClotheViewController(), cameraPermissions: cameraAccess)
-//    }
+    func testClothePieceOptions() {
+        XCTAssertEqual(viewModel.pieceName(for: 0), "Para torso", "incorrect top piece picker option")
+        XCTAssertEqual(viewModel.pieceName(for: 1), "Para piernas", "incorrect trouser piece picker option")
+        XCTAssertEqual(viewModel.pieceName(for: 2), "Para pies", "incorrect footwear piece picker option")
+    }
 //
-//    // Crear una clase que herede de CameraAccess
-//    func fullFill() {
-//        viewModel = AddClotheViewMothel()
-//    }
+    // Crear una clase que herede de CameraAccess
+    func fullFill() {
+        viewModel = AddClotheViewMothel()
+    }
 
 }
-// Es fake para respuestas falsas
-//class FakeCameraAccess: CameraAccess {
-//    func prepare(inView view: UIViewController) -> Bool {
-//        return true
-//    }
-//}
+ //Es fake para respuestas falsas
+class FakeCameraAccess: CameraAccess {
+    func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(false)
+    }
+}
+
+class MockCameraAccess: CameraAccess {
+    func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(true)
+    }
+}
