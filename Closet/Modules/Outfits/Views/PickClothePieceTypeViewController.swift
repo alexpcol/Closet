@@ -13,10 +13,10 @@ protocol ClothePicked: class {
 }
 
 class PickClothePieceTypeViewController: UIViewController, Storyboarded {
-    
     weak var delegate: ClothePicked?
     @IBOutlet private weak var clothesCollection: UICollectionView!
     private var viewModel: PickClothePieceTypeViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()

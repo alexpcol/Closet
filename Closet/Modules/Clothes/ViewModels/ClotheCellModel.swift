@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 struct ClotheCellModel {
-    
     let typeIcon: UIImage
     let preview: UIImage
     let name: String

@@ -54,11 +54,11 @@ class AddClotheViewMothel {
         if index < colors.count {
             switch colors[index] {
             case UIColor.red:
-                return "Red"
+                return "Rojo"
             case UIColor.green:
-                return "Green"
+                return "Verde"
             case UIColor.blue:
-                return "Blue"
+                return "Azul"
             default:
                 return ""
             }

@@ -16,9 +16,7 @@ class ClotheViewModel {
             }
             return _clothes
         }
-        set {
-            
-        }
+        set {}
     }
     var clotheCellModel: [ClotheCellModel]  {
         get {
@@ -42,8 +40,7 @@ class ClotheViewModel {
         }
     }
     
-    func refreshFromDatabase() {
+    private func refreshFromDatabase() {
         _clothes.value = dressMaker.fetchAllClothes() ?? _clothes.value
-        
     }
 }

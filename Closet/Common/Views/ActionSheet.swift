@@ -16,8 +16,7 @@ struct ActionSheetPresneter {
     func showActionSheet(actions:[UIAlertAction], title:String?, message:String?, inView view:UIViewController) {
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        for action in actions
-        {
+        for action in actions {
             alertController.addAction(action)
         }
         alertController.addAction(cancelAction)

@@ -9,9 +9,8 @@
 import UIKit
 
 class OutfitViewController: UIViewController, Storyboarded {
-    
     weak var coordinator: OutfitsCoordinator?
-    @IBOutlet weak var outfitsTable: UITableView!
+    @IBOutlet private weak var outfitsTable: UITableView!
     private var viewModel: OutfitViewModel!
     
     override func viewDidLoad() {

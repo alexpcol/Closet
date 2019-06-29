@@ -9,7 +9,6 @@
 import UIKit
 
 struct OutfitCellModel {
-    
     let name: String
     
     public func congifure(_ cell: UITableViewCell) {

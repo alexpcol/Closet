@@ -9,13 +9,13 @@
 import UIKit
 
 class AddOutfitViewController: GenericFormVC, Storyboarded {
-
     weak var coordinator: OutfitsCoordinator?
-    @IBOutlet weak var outfitName: UITextField!
-    @IBOutlet weak var clotheTop: UIImageView!
-    @IBOutlet weak var clotheTrouser: UIImageView!
-    @IBOutlet weak var clotheFootwear: UIImageView!
+    @IBOutlet private weak var outfitName: UITextField!
+    @IBOutlet private weak var clotheTop: UIImageView!
+    @IBOutlet private weak var clotheTrouser: UIImageView!
+    @IBOutlet private weak var clotheFootwear: UIImageView!
     private var viewModel: AddOutfitViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
@@ -56,23 +56,14 @@ class AddOutfitViewController: GenericFormVC, Storyboarded {
         viewModel.name.bindAndFire({ [unowned self] in
             self.outfitName.text = $0
         })
-        viewModel.clotheTop.bindAndFire({ [weak self] (clothe) in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.clotheTop.image = clothe.image
+        viewModel.clotheTop.bindAndFire({ [unowned self] (clothe) in
+            self.clotheTop.image = clothe.image
         })
-        viewModel.clotheTrouser.bindAndFire({ [weak self] (clothe) in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.clotheTrouser.image = clothe.image
+        viewModel.clotheTrouser.bindAndFire({ [unowned self] (clothe) in
+            self.clotheTrouser.image = clothe.image
         })
-        viewModel.clotheFootwear.bindAndFire({ [weak self] (clothe) in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.clotheFootwear.image = clothe.image
+        viewModel.clotheFootwear.bindAndFire({ [unowned self] (clothe) in
+            self.clotheFootwear.image = clothe.image
         })
     }
 }

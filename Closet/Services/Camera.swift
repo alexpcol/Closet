@@ -8,14 +8,13 @@
 
 import UIKit
 import AVKit
-import Foundation
 import SystemConfiguration
 
 protocol CameraAccess {
     func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void)
 }
+
 struct Camera: CameraAccess {
-    
     private init() {}
     static let shared = Camera()
     
@@ -70,7 +69,7 @@ struct Camera: CameraAccess {
                                                    actionTitle: "Abrir Configuraciones",
                                                    actionStyle: .default,
                                                    inView: view) {
-                                                    UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string:UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
         }
     }
 }

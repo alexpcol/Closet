@@ -8,13 +8,9 @@
 import UIKit
 
 struct ActivityPresenter {
-    
     private init() {}
-    
     static let shared = ActivityPresenter()
     
-    
-    //MARK:- Media Activities
     func showImagePickerFromCamera(inView view: UIImagePickerControllerDelegate & UINavigationControllerDelegate) {
         guard let viewController = view as? UIViewController else { return }
         let myPickerController = UIImagePickerController()

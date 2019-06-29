@@ -11,5 +11,4 @@ import Foundation
 extension Notification.Name {
     static let coreDataDidSavedClothe = NSNotification.Name("coreDataDidSavedClothe")
     static let coreDataDidSavedOutfit = NSNotification.Name("coreDataDidSavedOutfit")
-    static let cameraShowItAgain = NSNotification.Name("cameraShowItAgain")
 }

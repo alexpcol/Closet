@@ -75,7 +75,7 @@
                                                 <subviews>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiF-eV-FP9">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
-                                                        <state key="normal" title="Top"/>
+                                                        <state key="normal" title="Para torso"/>
                                                         <connections>
                                                             <action selector="clothePieceTapped:" destination="XuW-Iy-bDC" eventType="touchUpInside" id="HJy-qc-lkD"/>
                                                         </connections>
@@ -93,7 +93,7 @@
                                                 <subviews>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe4-4r-ThR">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
-                                                        <state key="normal" title="Trouser"/>
+                                                        <state key="normal" title="Para piernas"/>
                                                         <connections>
                                                             <action selector="clothePieceTapped:" destination="XuW-Iy-bDC" eventType="touchUpInside" id="8eA-f0-Df8"/>
                                                         </connections>
@@ -111,7 +111,7 @@
                                                 <subviews>
                                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnG-I2-c1w">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
-                                                        <state key="normal" title="FootWear"/>
+                                                        <state key="normal" title="Para pies"/>
                                                         <connections>
                                                             <action selector="clothePieceTapped:" destination="XuW-Iy-bDC" eventType="touchUpInside" id="8XE-LO-M3M"/>
                                                         </connections>
