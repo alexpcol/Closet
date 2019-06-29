@@ -9,12 +9,19 @@
 import Foundation
 import UIKit
 
+enum ClotheProperties {
+    case color
+    case piece
+    case style
+}
+
 struct Clothe: Hashable {
     let id: URL
     let color: UIColor
     let piece: PieceType
     let style: ClotheStyle
     let image: UIImage
+    
     
     //Normal
     init(id: URL = URL(fileURLWithPath: ""), color: UIColor, piece: PieceType, style: ClotheStyle, image: UIImage) {

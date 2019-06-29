@@ -10,6 +10,7 @@ import UIKit
 
 class AddClotheViewMothel {
 
+    //TODO:- Cambiar el naming de los propiedades que interactuan con la vista y que sean inidces para trabajar los datos con los arreglos y evitar doble casteo
     var color: Dynamic<String>
     var piece: Dynamic<String>
     var style: Dynamic<String>

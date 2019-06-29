@@ -22,7 +22,7 @@ class AddClotheViewModelTests: XCTestCase {
     }
     
     func testAddImageFailed() {
-        let cameraAccess = FakeCameraAccess()
+        let cameraAccess = FakeCameraAccessFailure()
         var testActions:[UIAlertAction] = []
         let expectation = self.expectation(description: "there is no camera so there are no actions")
         viewModel.addImage(AddClotheViewController(), cameraPermissions: cameraAccess) { (actions) in
@@ -34,7 +34,7 @@ class AddClotheViewModelTests: XCTestCase {
     }
     
     func testActionSheetOptions() {
-        let cameraAccess = MockCameraAccess()
+        let cameraAccess = MockCameraAccessSuccess()
         var testActions:[UIAlertAction] = []
         let expectation = self.expectation(description: "action sheet added")
         viewModel.addImage(AddClotheViewController(), cameraPermissions: cameraAccess) { (actions) in
@@ -46,13 +46,15 @@ class AddClotheViewModelTests: XCTestCase {
         waitForExpectations(timeout: 0.3, handler: nil)
         XCTAssertEqual(testActions.count, 2)
     }
+    
+    // TODO:- Revisar los titulos de las alertas
 
     func testClothePieceOptions() {
         XCTAssertEqual(viewModel.pieceName(for: 0), "Para torso", "incorrect top piece picker option")
         XCTAssertEqual(viewModel.pieceName(for: 1), "Para piernas", "incorrect trouser piece picker option")
         XCTAssertEqual(viewModel.pieceName(for: 2), "Para pies", "incorrect footwear piece picker option")
     }
-//
+
     // Crear una clase que herede de CameraAccess
     func fullFill() {
         viewModel = AddClotheViewMothel()
@@ -60,13 +62,13 @@ class AddClotheViewModelTests: XCTestCase {
 
 }
  //Es fake para respuestas falsas
-class FakeCameraAccess: CameraAccess {
+class FakeCameraAccessFailure: CameraAccess {
     func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void) {
         completionHandler(false)
     }
 }
 
-class MockCameraAccess: CameraAccess {
+class MockCameraAccessSuccess: CameraAccess {
     func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void) {
         completionHandler(true)
     }
