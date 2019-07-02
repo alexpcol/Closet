@@ -33,7 +33,7 @@ protocol AddClothePresentable {
 }
 
 protocol AddClotheViewable: class {
-    func showSaveButton(action: @escaping () -> Void)
+    func showSaveButton(action: @escaping () -> AlertHeaderModel)
     func setup(title: String, presenter: AddClothePresentable)
     func show(clotheImage: UIImage)
     func showClothe(property: ClotheProperties,withText text: String)

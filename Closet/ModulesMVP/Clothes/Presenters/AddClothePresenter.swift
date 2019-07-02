@@ -77,6 +77,22 @@ class AddClothePresenter: AddClothePresentable {
         view?.show(clotheImage: image)
     }
     
+    private func validateForm() -> Bool {
+        if colorSelected == nil {
+            return false
+        }
+        if pieceSelected == nil {
+            return false
+        }
+        if styleSelected == nil {
+            return false
+        }
+        if imageSelected == nil {
+            return false
+        }
+        return true
+    }
+    
     private func presentSourceImagesOptions(_ view: UIViewController,_ completionHandler: @escaping ([UIAlertAction]) -> Void) {
         let viewController = view as! AddClotheViewControllerMVP
         let camera = UIAlertAction(title: "Camera", style: .default) { (alertAction) in
@@ -134,7 +150,12 @@ class AddClothePresenter: AddClothePresentable {
         }
         return stylesNames
     }
-    private func saveClothe() {
-        
+    private func saveClothe() -> AlertHeaderModel {
+        if validateForm() {
+            let clothe = Clothe(color: colorSelected!, piece: pieceSelected!, style: styleSelected!, image: imageSelected!)
+            dressMaker.add(clothe)
+            return AlertHeaderModel(title: "Closet", message: "¡Ropa añadida!")
+        }
+        return AlertHeaderModel(title: "Closet", message: "Verifica tu información")
     }
 }

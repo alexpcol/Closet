@@ -19,10 +19,10 @@ class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded
     private var property: ClotheProperties?
     private let picker = PickerView()
     private var presenter: AddClothePresentable!
-    private var saveButtonAction:(() -> Void)?
+    private var saveButtonAction:(() -> AlertHeaderModel)!
     
     //MARK:- Viewable Methods
-    func showSaveButton(action: @escaping () -> Void) {
+    func showSaveButton(action: @escaping () -> AlertHeaderModel) {
         saveButtonAction = action
         let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapSaveButton))
         navigationItem.rightBarButtonItems = [addButtonItem]
@@ -77,7 +77,8 @@ class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded
     }
     
     @objc private func didTapSaveButton() {
-        saveButtonAction?()
+        let resultModel = saveButtonAction()
+        AlertsPresenter.shared.showOKAlert(title: resultModel.title, message: resultModel.message, inView: self)
     }
 }
 
