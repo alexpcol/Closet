@@ -12,12 +12,14 @@ import UIKit
 
 //MARK:- Clothes
 protocol ClothePresentable {
+    func fetchClothes()
 }
 
 protocol ClotheViewable: class {
     func showAddButton(action: @escaping () -> Void)
     func setup(title: String, presenter: ClothePresentable)
     func setSection(icon: String, title: String)
+    func show(clothes:[Clothe])
 }
 
 //MARK:- AddClothes

@@ -20,8 +20,9 @@ class ClotheCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    private func setup( ) {
-        
+    func setup(clothe: Clothe) {
+        typeIcon.image = clothe.piece.icon()
+        preview.image = clothe.image
     }
 
 }

@@ -39,6 +39,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QBr-ML-meZ"/>
                     </view>
+                    <connections>
+                        <outlet property="clothesCollection" destination="aad-1e-UKO" id="kff-lQ-j5w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adv-C8-UcF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

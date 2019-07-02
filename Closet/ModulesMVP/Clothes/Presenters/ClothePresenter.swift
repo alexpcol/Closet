@@ -17,6 +17,12 @@ class ClothePresenter: ClothePresentable {
     init(withDressMaker dressMaker: DressMaker, coordinator: ClothesCoordinator) {
         self.coordinator = coordinator
         self.dressMaker = dressMaker
+        NotificationCenter.default.addObserver(forName: .coreDataDidSavedClothe, object: nil, queue: nil) { [weak self] (info) in
+            guard let isSaved = info.userInfo?["saved"] as? Bool else { return }
+            if isSaved {
+                self?.fetchClothes()
+            }
+        }
     }
     
     func attach(view: ClotheViewable) {
@@ -26,5 +32,10 @@ class ClothePresenter: ClothePresentable {
         self.view?.showAddButton(action: {
             self.coordinator.addClothe()
         })
+    }
+    
+    func fetchClothes() {
+        let clothes = dressMaker.fetchAllClothes() ?? [Clothe]()
+        view?.show(clothes: clothes)
     }
 }
