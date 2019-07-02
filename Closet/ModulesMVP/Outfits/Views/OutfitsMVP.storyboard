@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Outfit View ControllerMVP-->
+        <scene sceneID="eJ7-Xf-pNs">
+            <objects>
+                <viewController storyboardIdentifier="OutfitViewControllerMVP" id="dQq-5H-qgn" customClass="OutfitViewControllerMVP" customModule="Closet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3sn-KE-Pu0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yRo-bl-NWr">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableCell" id="diS-jJ-eS5">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="diS-jJ-eS5" id="yNJ-qL-l9r">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iT0-yC-g2c" firstAttribute="trailing" secondItem="yRo-bl-NWr" secondAttribute="trailing" id="1vj-Ir-XLN"/>
+                            <constraint firstItem="iT0-yC-g2c" firstAttribute="bottom" secondItem="yRo-bl-NWr" secondAttribute="bottom" id="AAN-58-HCo"/>
+                            <constraint firstItem="yRo-bl-NWr" firstAttribute="leading" secondItem="iT0-yC-g2c" secondAttribute="leading" id="HkO-t4-scr"/>
+                            <constraint firstItem="yRo-bl-NWr" firstAttribute="top" secondItem="iT0-yC-g2c" secondAttribute="top" id="bpE-N2-ssI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iT0-yC-g2c"/>
+                    </view>
+                    <connections>
+                        <outlet property="outfitsTable" destination="yRo-bl-NWr" id="q1H-WV-ZzX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="seW-4v-Fcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1726" y="17"/>
+        </scene>
+        <!--Add Outfit View ControllerMVP-->
+        <scene sceneID="cCU-oT-e9r">
+            <objects>
+                <viewController storyboardIdentifier="AddOutfitViewControllerMVP" id="z3N-Za-JVZ" customClass="AddOutfitViewControllerMVP" customModule="Closet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="apB-wR-sbV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4H-qR-0eg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zne-cF-kVg">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Outfit name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JCR-U6-3RT">
+                                                <rect key="frame" x="8" y="16" width="398" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="z3N-Za-JVZ" id="Djp-In-L5y"/>
+                                                </connections>
+                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3VM-gW-fwQ" userLabel="Top View">
+                                                <rect key="frame" x="8" y="62" width="398" height="180"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UM6-1R-ZtI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <state key="normal" title="Para torso"/>
+                                                        <connections>
+                                                            <action selector="didSelectTop:" destination="z3N-Za-JVZ" eventType="touchUpInside" id="c2n-h6-Iad"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="iPu-2I-xAn">
+                                                        <rect key="frame" x="204" y="0.0" width="194" height="180"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="u0n-9I-HFG"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dop-Vh-rSy" userLabel="Trouser View">
+                                                <rect key="frame" x="8" y="258" width="398" height="180"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0X-C0-lEp">
+                                                        <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <state key="normal" title="Para piernas"/>
+                                                        <connections>
+                                                            <action selector="didSelectTrouser:" destination="z3N-Za-JVZ" eventType="touchUpInside" id="Rjz-gY-HtC"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="g2d-3k-aFf">
+                                                        <rect key="frame" x="204" y="0.0" width="194" height="180"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="jCJ-Ev-Oee"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Og3-31-UtT" userLabel="Footwear View">
+                                                <rect key="frame" x="8" y="454" width="398" height="180"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpQ-cT-ZZW">
+                                                        <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <state key="normal" title="Para pies"/>
+                                                        <connections>
+                                                            <action selector="disSelectFootwear:" destination="z3N-Za-JVZ" eventType="touchUpInside" id="ON3-qp-YJh"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="gMG-QR-Ws8">
+                                                        <rect key="frame" x="204" y="0.0" width="194" height="180"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="180" id="5Ae-m2-tx3"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="dop-Vh-rSy" secondAttribute="trailing" constant="8" id="0vj-5G-pAd"/>
+                                            <constraint firstItem="Og3-31-UtT" firstAttribute="top" secondItem="dop-Vh-rSy" secondAttribute="bottom" constant="16" id="56e-qB-q2f"/>
+                                            <constraint firstItem="3VM-gW-fwQ" firstAttribute="leading" secondItem="Zne-cF-kVg" secondAttribute="leading" constant="8" id="ALA-9R-BLg"/>
+                                            <constraint firstItem="3VM-gW-fwQ" firstAttribute="top" secondItem="JCR-U6-3RT" secondAttribute="bottom" constant="16" id="F44-5G-8ni"/>
+                                            <constraint firstItem="dop-Vh-rSy" firstAttribute="top" secondItem="3VM-gW-fwQ" secondAttribute="bottom" constant="16" id="OZX-KN-3pk"/>
+                                            <constraint firstAttribute="trailing" secondItem="Og3-31-UtT" secondAttribute="trailing" constant="8" id="Qld-zT-9ZK"/>
+                                            <constraint firstItem="dop-Vh-rSy" firstAttribute="leading" secondItem="Zne-cF-kVg" secondAttribute="leading" constant="8" id="TQG-IN-hTg"/>
+                                            <constraint firstAttribute="trailing" secondItem="JCR-U6-3RT" secondAttribute="trailing" constant="8" id="UUd-5w-eON"/>
+                                            <constraint firstItem="JCR-U6-3RT" firstAttribute="top" secondItem="Zne-cF-kVg" secondAttribute="top" constant="16" id="Wws-Pj-yrp"/>
+                                            <constraint firstAttribute="trailing" secondItem="3VM-gW-fwQ" secondAttribute="trailing" constant="8" id="eJI-1t-RW8"/>
+                                            <constraint firstItem="Og3-31-UtT" firstAttribute="leading" secondItem="Zne-cF-kVg" secondAttribute="leading" constant="8" id="fJP-U0-vcW"/>
+                                            <constraint firstItem="JCR-U6-3RT" firstAttribute="leading" secondItem="Zne-cF-kVg" secondAttribute="leading" constant="8" id="pJz-A8-eWv"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Zne-cF-kVg" firstAttribute="leading" secondItem="R4H-qR-0eg" secondAttribute="leading" id="1zB-4C-0kO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zne-cF-kVg" secondAttribute="trailing" id="3eb-sK-GTR"/>
+                                    <constraint firstItem="Zne-cF-kVg" firstAttribute="top" secondItem="R4H-qR-0eg" secondAttribute="top" id="flZ-qB-RTD"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zne-cF-kVg" secondAttribute="bottom" id="l2e-R5-HgY"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="R4H-qR-0eg" firstAttribute="top" secondItem="ZxI-Qp-dvX" secondAttribute="top" id="CLR-H9-iwy"/>
+                            <constraint firstItem="Zne-cF-kVg" firstAttribute="height" secondItem="apB-wR-sbV" secondAttribute="height" id="I1c-Ip-7ll"/>
+                            <constraint firstItem="R4H-qR-0eg" firstAttribute="leading" secondItem="ZxI-Qp-dvX" secondAttribute="leading" id="TDB-ih-DHo"/>
+                            <constraint firstItem="Zne-cF-kVg" firstAttribute="width" secondItem="apB-wR-sbV" secondAttribute="width" id="WwQ-SQ-J2Z"/>
+                            <constraint firstItem="ZxI-Qp-dvX" firstAttribute="bottom" secondItem="R4H-qR-0eg" secondAttribute="bottom" id="oMt-0z-qQN"/>
+                            <constraint firstItem="ZxI-Qp-dvX" firstAttribute="trailing" secondItem="R4H-qR-0eg" secondAttribute="trailing" id="r03-45-sVb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZxI-Qp-dvX"/>
+                    </view>
+                    <connections>
+                        <outlet property="nameText" destination="JCR-U6-3RT" id="pNd-aB-WPS"/>
+                        <outlet property="scrollView" destination="R4H-qR-0eg" id="T8R-J1-FSO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GS4-bj-xaq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2435" y="17"/>
+        </scene>
+        <!--Pick Clothe View ControllerMVP-->
+        <scene sceneID="cGG-tB-nDk">
+            <objects>
+                <viewController storyboardIdentifier="PickClotheViewControllerMVP" id="ATf-Mo-VZ2" customClass="PickClotheViewControllerMVP" customModule="Closet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Pc-S0-6Tb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pMC-9T-DSx">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7fb-iS-fpM">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WXz-TE-JFL" firstAttribute="trailing" secondItem="pMC-9T-DSx" secondAttribute="trailing" id="7YQ-FN-SgK"/>
+                            <constraint firstItem="pMC-9T-DSx" firstAttribute="top" secondItem="WXz-TE-JFL" secondAttribute="top" id="UHp-h9-Wbw"/>
+                            <constraint firstItem="WXz-TE-JFL" firstAttribute="bottom" secondItem="pMC-9T-DSx" secondAttribute="bottom" id="Yte-Bl-28T"/>
+                            <constraint firstItem="pMC-9T-DSx" firstAttribute="leading" secondItem="WXz-TE-JFL" secondAttribute="leading" id="h78-U0-CNW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WXz-TE-JFL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NBK-5R-DFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3225" y="17"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="clothePlaceholder" width="600" height="564"/>
+    </resources>
+</document>

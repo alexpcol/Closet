@@ -5,10 +5,7 @@
 //  Created by chila on 6/29/19.
 //  Copyright © 2019 chila. All rights reserved.
 //
-
-import Foundation
 import UIKit
-
 
 //MARK:- Clothes
 protocol ClothePresentable {
