@@ -28,6 +28,10 @@ class ClotheViewControllerMVP: UIViewController, ClotheViewable, Storyboarded {
         self.tabBarItem = UITabBarItem(title: title, image: UIImage(named: icon), tag: 0)
     }
     
+    //MARK:- Actions
+    
+    
+    
     @objc private func didTapAddButton() {
         addButtonAction?()
     }

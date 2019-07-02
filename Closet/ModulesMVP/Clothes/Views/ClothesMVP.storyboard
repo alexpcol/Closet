@@ -75,6 +75,9 @@
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2g-SR-wbd">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="32"/>
+                                                        <connections>
+                                                            <action selector="didSelectColor:" destination="5Dy-UZ-ubT" eventType="touchUpInside" id="Psv-Le-79P"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -110,6 +113,9 @@
                                                     </textField>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdj-il-GJ9">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="32"/>
+                                                        <connections>
+                                                            <action selector="didSelectPiece:" destination="5Dy-UZ-ubT" eventType="touchUpInside" id="4JH-x1-QLt"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -145,6 +151,9 @@
                                                     </textField>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knx-iI-oK7">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="32"/>
+                                                        <connections>
+                                                            <action selector="didSelectStyle:" destination="5Dy-UZ-ubT" eventType="touchUpInside" id="c1h-5c-qSw"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,6 +175,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asN-52-YWv">
                                                 <rect key="frame" x="8" y="304" width="398" height="30"/>
                                                 <state key="normal" title="Add Image"/>
+                                                <connections>
+                                                    <action selector="didTapAddImage:" destination="5Dy-UZ-ubT" eventType="touchUpInside" id="6cw-rn-s2c"/>
+                                                </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clothePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="t0u-ah-4Y1">
                                                 <rect key="frame" x="117" y="354" width="180" height="180"/>
@@ -214,7 +226,11 @@
                         <viewLayoutGuide key="safeArea" id="7qV-Jx-A2i"/>
                     </view>
                     <connections>
+                        <outlet property="clotheImage" destination="t0u-ah-4Y1" id="5wg-mK-X1e"/>
+                        <outlet property="colorText" destination="JDQ-1m-lHx" id="oql-gc-tFj"/>
+                        <outlet property="pieceText" destination="KOt-Ds-AkC" id="wLs-X3-Ct2"/>
                         <outlet property="scrollView" destination="FCY-d0-mBa" id="kVF-mR-9wE"/>
+                        <outlet property="styleText" destination="ri3-iG-g82" id="Gxt-KJ-0eF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1E3-JG-gNO" userLabel="First Responder" sceneMemberID="firstResponder"/>

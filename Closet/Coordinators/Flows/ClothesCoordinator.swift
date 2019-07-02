@@ -35,14 +35,14 @@ class ClothesCoordinator: Coordinator {
     //MARK:- MVP Methods
     func start() {
         let clotheViewControllerMVP = ClotheViewControllerMVP.instantiate(fromStoryboard: "ClothesMVP")
-        let presenter = ClothePresenter(coordinator: self)
+        let presenter = ClothePresenter(withDressMaker: DressMaker(container: UIApplication.container), coordinator: self)
         presenter.attach(view: clotheViewControllerMVP as ClotheViewable)
         navigationController.pushViewController(clotheViewControllerMVP, animated: true)
     }
     
     func addClothe() {
         let addClotheViewControllerMVP = AddClotheViewControllerMVP.instantiate(fromStoryboard: "ClothesMVP")
-        let presenter = AddClothePresenter()
+        let presenter = AddClothePresenter(withDressMaker: DressMaker(container: UIApplication.container))
         presenter.attach(view: addClotheViewControllerMVP as AddClotheViewable)
         navigationController.pushViewController(addClotheViewControllerMVP, animated: true)
     }

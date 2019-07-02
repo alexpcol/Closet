@@ -23,14 +23,18 @@ protocol ClotheViewable: class {
 //MARK:- AddClothes
 protocol AddClothePresentable {
     func startEditing(property: ClotheProperties)
-    func didSelectAddImge()
+    func prepareMediaOptions(in view: UIViewController,
+                          withCameraPersmissions cameraPermissions: CameraAccess,
+                          _ completionHandler: @escaping ([UIAlertAction]?) -> Void)
+    func didSelectOption(index: Int, for property: ClotheProperties)
+    func didSelect(image:UIImage)
 }
 
 protocol AddClotheViewable: class {
     func showSaveButton(action: @escaping () -> Void)
     func setup(title: String, presenter: AddClothePresentable)
     func show(clotheImage: UIImage)
-    func showClothe(property: ClotheProperties, text: String)
-    func showPicker(with options: [String], didSelect:@escaping (Int) -> Void)
+    func showClothe(property: ClotheProperties,withText text: String)
+    func showPicker(with options: [String], for property: ClotheProperties)
 }
 

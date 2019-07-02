@@ -12,9 +12,11 @@ class ClothePresenter: ClothePresentable {
     private weak var view: ClotheViewable?
     private var coordinator: ClothesCoordinator!
     private var screenTitle: String = "Clothes"
+    private var dressMaker: DressMaker
     
-    init(coordinator: ClothesCoordinator) {
+    init(withDressMaker dressMaker: DressMaker, coordinator: ClothesCoordinator) {
         self.coordinator = coordinator
+        self.dressMaker = dressMaker
     }
     
     func attach(view: ClotheViewable) {
