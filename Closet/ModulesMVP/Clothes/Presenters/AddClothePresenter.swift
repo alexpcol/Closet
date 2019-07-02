@@ -10,11 +10,11 @@ import Foundation
 
 class AddClothePresenter: AddClothePresentable {
     func startEditing(property: ClotheProperties) {
-        <#code#>
+        print("Hello")
     }
     
     func didSelectAddImge() {
-        <#code#>
+        print("goodbye")
     }
     
     private weak var view: AddClotheViewable?

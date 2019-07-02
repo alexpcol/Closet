@@ -9,6 +9,22 @@
 import UIKit
 
 class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded {
+    func showSaveButton(action: @escaping () -> Void) {
+        print("show")
+    }
+    
+    func show(clotheImage: UIImage) {
+        print("show")
+    }
+    
+    func showClothe(property: ClotheProperties, text: String) {
+        print("show")
+    }
+    
+    func showPicker(with options: [String], didSelect: @escaping (Int) -> Void) {
+        print("show")
+    }
+    
     
     private var presenter: AddClothePresentable!
     override func viewDidLoad() {
