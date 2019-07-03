@@ -34,16 +34,16 @@ class AddOutfitViewController: GenericFormVC, Storyboarded {
     }
     
     @IBAction func clothePieceTapped(_ sender: UIButton) {
-        switch sender.tag {
-        case FormTags.buttonAddTopPiece.rawValue:
-            coordinator?.pickClothe(in: self, withPiece: .top)
-        case FormTags.buttonAddTrouserPiece.rawValue:
-            coordinator?.pickClothe(in: self, withPiece: .trouser)
-        case FormTags.buttonAddFootwearPiece.rawValue:
-            coordinator?.pickClothe(in: self, withPiece: .footwear)
-        default:
-            print("default")
-        }
+//        switch sender.tag {
+//        case FormTags.buttonAddTopPiece.rawValue:
+//            coordinator?.pickClothe(in: self, withPiece: .top)
+//        case FormTags.buttonAddTrouserPiece.rawValue:
+//            coordinator?.pickClothe(in: self, withPiece: .trouser)
+//        case FormTags.buttonAddFootwearPiece.rawValue:
+//            coordinator?.pickClothe(in: self, withPiece: .footwear)
+//        default:
+//            print("default")
+//        }
     }
     
     
@@ -78,14 +78,18 @@ extension AddOutfitViewController {
 }
 
 extension AddOutfitViewController: ClothePicked {
-    func didSelectClothe(_ clothe: Clothe) {
-        switch clothe.piece {
-        case .top:
-            viewModel.clotheTop.value = clothe
-        case .trouser:
-            viewModel.clotheTrouser.value = clothe
-        case .footwear:
-            viewModel.clotheFootwear.value = clothe
-        }
+    func didSelectClothe(_ clothe: Clothe, forPieceType piece: PieceType) {
+        print(clothe)
     }
+    
+//    func didSelectClothe(_ clothe: Clothe) {
+//        switch clothe.piece {
+//        case .top:
+//            viewModel.clotheTop.value = clothe
+//        case .trouser:
+//            viewModel.clotheTrouser.value = clothe
+//        case .footwear:
+//            viewModel.clotheFootwear.value = clothe
+//        }
+//    }
 }

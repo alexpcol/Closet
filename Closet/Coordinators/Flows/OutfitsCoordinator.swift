@@ -40,6 +40,8 @@ class OutfitsCoordinator: Coordinator {
 //        pickClothePieceTypeViewController.setupView(viewModel: PickClothePieceTypeViewModel(piece: piece))
 //        self.navigationController.present(navigationController, animated: true)
 //    }
+    
+    //MARK:-  MVP Methods
     func start() {
         let outfitViewControllerMVP = OutfitViewControllerMVP.instantiate(fromStoryboard: "OutfitsMVP")
         let presenter = OutfitPresenter(withFashionMaker: FashionMaker(container: UIApplication.container),
@@ -56,11 +58,12 @@ class OutfitsCoordinator: Coordinator {
         navigationController.pushViewController(addOutfitViewControllerMVP, animated: true)
     }
 
-    func pickClothe(in view: ClothePicked, withPiece piece: PieceType) {
-        let pickClotheViewControllerMVP = PickClotheViewControllerMVP.instantiate(fromStoryboard: "ClothesMVP")
+    func pickClothe(withPiece piece: PieceType, for presenter: ClothePicked) {
+        let pickClotheViewControllerMVP = PickClotheViewControllerMVP.instantiate(fromStoryboard: "OutfitsMVP")
+        let navigationController = UINavigationController(rootViewController: pickClotheViewControllerMVP)
         let presenter = PickClothePresenter(withDressMaker: DressMaker(container: UIApplication.container),
-                                            andPieceType: piece)
+                                            PieceType: piece, andDelegate: presenter)
         presenter.attach(view: pickClotheViewControllerMVP as PickClotheViewable)
-        navigationController.pushViewController(pickClotheViewControllerMVP, animated: true)
+        self.navigationController.present(navigationController, animated: true)
     }
 }

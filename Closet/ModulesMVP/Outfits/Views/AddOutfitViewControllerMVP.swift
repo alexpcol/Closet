@@ -10,6 +10,10 @@ import UIKit
 
 class AddOutfitViewControllerMVP: GenericFormVC, Storyboarded, AddOutfitViewable {
     @IBOutlet weak var nameText: UITextField!
+    @IBOutlet weak var clotheTop: UIImageView!
+    @IBOutlet weak var clotheTrouser: UIImageView!
+    @IBOutlet weak var clotheFootwear: UIImageView!
+    
     private var presenter: AddOutfitPresentable!
     private var saveButtonAction:(() -> AlertHeaderModel)!
     
@@ -25,7 +29,14 @@ class AddOutfitViewControllerMVP: GenericFormVC, Storyboarded, AddOutfitViewable
     }
     
     func show(clothe: Clothe, forPieceType type: PieceType) {
-        print(type)
+        switch type {
+        case .top:
+            clotheTop.image = clothe.image
+        case .trouser:
+            clotheTrouser.image = clothe.image
+        case .footwear:
+            clotheFootwear.image = clothe.image
+        }
     }
     
     //MARK:- Actions

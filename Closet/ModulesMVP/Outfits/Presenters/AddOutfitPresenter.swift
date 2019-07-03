@@ -34,11 +34,16 @@ class AddOutfitPresenter: AddOutfitPresentable {
         self.name = name
     }
     
-    func startEditing(pieceType type: PieceType) {
-        coordinator.pickClothe(in: self, withPiece: type)
+    func startEditing(pieceType piece: PieceType) {
+        coordinator.pickClothe(withPiece: piece, for: self)
     }
     
     private func saveOutfit() -> AlertHeaderModel {
+        if validateForm() {
+            let outfit = Outfit(name: name!, clothes: [topClothe!, trouserClothe!, footwearClothe!])
+            fashionMaker.add(outfit)
+            return AlertHeaderModel(title: "Closet", message: "¡Outfit añadido!")
+        }
         return AlertHeaderModel(title: "Closet", message: "Verifica tu información")
     }
     
@@ -52,12 +57,23 @@ class AddOutfitPresenter: AddOutfitPresentable {
         if trouserClothe == nil {
             return false
         }
+        if footwearClothe == nil {
+            return false
+        }
         return true
     }
 }
 
 extension AddOutfitPresenter: ClothePicked {
-    func didSelectClothe(_ clothe: Clothe) {
-        print(clothe.piece)
+    func didSelectClothe(_ clothe: Clothe, forPieceType piece: PieceType) {
+        switch piece {
+        case .top:
+            topClothe = clothe
+        case .trouser:
+            trouserClothe = clothe
+        case .footwear:
+            footwearClothe = clothe
+        }
+        view?.show(clothe: clothe, forPieceType: piece)
     }
 }

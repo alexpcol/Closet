@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ClothePicked: class {
-    func didSelectClothe(_ clothe: Clothe)
+    func didSelectClothe(_ clothe: Clothe, forPieceType piece: PieceType)
 }
 
 class PickClothePieceTypeViewController: UIViewController, Storyboarded {
@@ -41,8 +41,8 @@ class PickClothePieceTypeViewController: UIViewController, Storyboarded {
 
 extension PickClothePieceTypeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectClothe(viewModel.clothes[indexPath.row])
-        close()
+//        delegate?.didSelectClothe(viewModel.clothes[indexPath.row])
+//        close()
     }
 }
 

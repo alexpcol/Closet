@@ -165,6 +165,9 @@
                         <viewLayoutGuide key="safeArea" id="ZxI-Qp-dvX"/>
                     </view>
                     <connections>
+                        <outlet property="clotheFootwear" destination="gMG-QR-Ws8" id="WA6-kI-HOd"/>
+                        <outlet property="clotheTop" destination="iPu-2I-xAn" id="Pgy-s9-uye"/>
+                        <outlet property="clotheTrouser" destination="g2d-3k-aFf" id="EW6-Ke-QCA"/>
                         <outlet property="nameText" destination="JCR-U6-3RT" id="pNd-aB-WPS"/>
                         <outlet property="scrollView" destination="R4H-qR-0eg" id="T8R-J1-FSO"/>
                     </connections>
@@ -202,6 +205,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WXz-TE-JFL"/>
                     </view>
+                    <connections>
+                        <outlet property="clothesCollection" destination="pMC-9T-DSx" id="5Mi-fR-tqE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBK-5R-DFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

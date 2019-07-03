@@ -34,9 +34,12 @@ protocol AddOutfitViewable: class {
 
 //MARK:- PickClothes
 protocol PickClothePresentable {
-    
+    func fetchClothes()
+    func didSelectOption(index: Int)
 }
 
 protocol PickClotheViewable: class {
-    
+    func show(clothes:[Clothe])
+    func setup(title: String, presenter: PickClothePresentable)
+    func showCloseButton()
 }
