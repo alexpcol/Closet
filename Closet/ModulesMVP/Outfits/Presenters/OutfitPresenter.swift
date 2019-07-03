@@ -17,7 +17,7 @@ class OutfitPresenter: OutfitPresentable {
     init(withFashionMaker fashionMaker: FashionMaker, coordinator: OutfitsCoordinator) {
         self.coordinator = coordinator
         self.fashionMaker = fashionMaker
-        NotificationCenter.default.addObserver(forName: .coreDataDidSavedClothe, object: nil, queue: nil) { [weak self] (info) in
+        NotificationCenter.default.addObserver(forName: .coreDataDidSavedOutfit, object: nil, queue: nil) { [weak self] (info) in
             guard let isSaved = info.userInfo?["saved"] as? Bool else { return }
             if isSaved {
                 self?.fetchOutfits()
