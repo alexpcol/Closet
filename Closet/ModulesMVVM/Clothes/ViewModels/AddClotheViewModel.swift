@@ -143,11 +143,11 @@ class AddClotheViewMothel {
     }
     
     private func presentSourceImagesOptions(_ view: AddClotheViewController,_ completionHandler: @escaping ([UIAlertAction]) -> Void) {
-        let camera = UIAlertAction(title: "Camera", style: .default) { (alertAction) in
+        let camera = UIAlertAction(title: "Cámara", style: .default) { (alertAction) in
             ActivityPresenter.shared.showImagePickerFromCamera(inView: view)
         }
         
-        let library = UIAlertAction(title: "Library", style: .default) { (alertAction) in
+        let library = UIAlertAction(title: "Galería", style: .default) { (alertAction) in
             ActivityPresenter.shared.showImagePickerFromGallery(inView: view)
         }
         
