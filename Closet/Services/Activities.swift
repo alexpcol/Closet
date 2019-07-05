@@ -26,5 +26,4 @@ struct ActivityPresenter {
         myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         viewController.present(myPickerController, animated: true, completion: nil)
     }
-    
 }

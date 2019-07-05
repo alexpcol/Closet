@@ -35,7 +35,6 @@ class AddClothePresenter: AddClothePresentable {
     }
     
     func startEditing(property: ClotheProperties) {
-        print(property)
         switch property {
         case .color:
             view?.showPicker(with: colorNames(), for: .color)

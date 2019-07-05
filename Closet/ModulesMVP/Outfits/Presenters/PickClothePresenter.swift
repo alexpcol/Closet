@@ -23,7 +23,7 @@ class PickClothePresenter: PickClothePresentable {
     
     func attach(view: PickClotheViewable) {
         self.view = view
-        self.view?.setup(title: "Clothes", presenter: self)
+        self.view?.setup(title: "Ropa", presenter: self)
         self.view?.showCloseButton()
     }
     

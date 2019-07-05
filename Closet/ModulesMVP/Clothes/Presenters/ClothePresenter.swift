@@ -11,7 +11,7 @@ import Foundation
 class ClothePresenter: ClothePresentable {
     private weak var view: ClotheViewable?
     private var coordinator: ClothesCoordinator!
-    private var screenTitle: String = "Clothes"
+    private var screenTitle: String = "Ropa"
     private var dressMaker: DressMaker
     
     init(withDressMaker dressMaker: DressMaker, coordinator: ClothesCoordinator) {

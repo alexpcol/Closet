@@ -27,9 +27,9 @@ struct Camera: CameraAccess {
                 showConfigurationAlert(in: view)
                 completionHandler(false)
             case .notDetermined:
-                self.notDetermined(inView: view, completionHandler)
+                notDetermined(inView: view, completionHandler)
             default:
-                self.notDetermined(inView: view, completionHandler)
+                notDetermined(inView: view, completionHandler)
             }
         } else {
             AlertsPresenter.shared.showOKAlert(title: "Cámara", message: "Dispositivo no tiene cámara", inView: view)
