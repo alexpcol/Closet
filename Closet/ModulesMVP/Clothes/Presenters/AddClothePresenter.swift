@@ -28,7 +28,7 @@ class AddClothePresenter: AddClothePresentable {
     
     func attach(view: AddClotheViewable) {
         self.view = view
-        self.view?.setup(title: "New", presenter: self as AddClothePresentable)
+        self.view?.setup(title: "Nueva", presenter: self as AddClothePresentable)
         self.view?.showSaveButton(action: {
             self.saveClothe()
         })
