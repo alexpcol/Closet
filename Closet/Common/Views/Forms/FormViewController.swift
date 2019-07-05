@@ -44,10 +44,6 @@ class GenericFormVC: UIViewController {
                            name: UIResponder.keyboardDidShowNotification,
                            object: nil)
         center.addObserver(self,
-                           selector: #selector(self.keyboardWasShown(_:)),
-                           name:  UIResponder.keyboardDidChangeFrameNotification,
-                           object: nil)
-        center.addObserver(self,
                            selector: #selector(self.keyboardWillBeHidden(_:)),
                            name: UIResponder.keyboardWillHideNotification,
                            object: nil)
