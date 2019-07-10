@@ -43,6 +43,7 @@
 		47BDF5E522C7DCA400417FFE /* ClothesMVP.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47BDF5E422C7DCA400417FFE /* ClothesMVP.storyboard */; };
 		47BDF5E722C7E27300417FFE /* AddClotheViewControllerMVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BDF5E622C7E27300417FFE /* AddClotheViewControllerMVP.swift */; };
 		47BDF5E922C7E30C00417FFE /* AddClothePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BDF5E822C7E30C00417FFE /* AddClothePresenter.swift */; };
+		47BE88CB22D6398B0001F64A /* AddOutfitMVPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE88CA22D6398B0001F64A /* AddOutfitMVPTests.swift */; };
 		47D5E6BC22AC1CD70093CF53 /* Closet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */; };
 		47D5E6BE22AC3CAC0093CF53 /* FashionMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D5E6BD22AC3CAC0093CF53 /* FashionMakerTests.swift */; };
 		47E3785222BD190F00E65C54 /* FormTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3785122BD190F00E65C54 /* FormTags.swift */; };
@@ -126,6 +127,7 @@
 		47BDF5E422C7DCA400417FFE /* ClothesMVP.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ClothesMVP.storyboard; sourceTree = "<group>"; };
 		47BDF5E622C7E27300417FFE /* AddClotheViewControllerMVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClotheViewControllerMVP.swift; sourceTree = "<group>"; };
 		47BDF5E822C7E30C00417FFE /* AddClothePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClothePresenter.swift; sourceTree = "<group>"; };
+		47BE88CA22D6398B0001F64A /* AddOutfitMVPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutfitMVPTests.swift; sourceTree = "<group>"; };
 		47D5E6BD22AC3CAC0093CF53 /* FashionMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionMakerTests.swift; sourceTree = "<group>"; };
 		47E3785122BD190F00E65C54 /* FormTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTags.swift; sourceTree = "<group>"; };
 		47E3785622BD1FAE00E65C54 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				478872D622D10AD000040472 /* AddClotheMVPTests.swift */,
+				47BE88CA22D6398B0001F64A /* AddOutfitMVPTests.swift */,
 			);
 			path = MVP;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47BE88CB22D6398B0001F64A /* AddOutfitMVPTests.swift in Sources */,
 				478872D722D10AD000040472 /* AddClotheMVPTests.swift in Sources */,
 				47D5E6BE22AC3CAC0093CF53 /* FashionMakerTests.swift in Sources */,
 				474759E222BE9F6F0019AB2D /* OutfitDatabase+CoreDataProperties.swift in Sources */,

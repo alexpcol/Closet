@@ -39,5 +39,4 @@ protocol AddClotheViewable: class {
 struct PickerOptionsModel {
     var options: [String]
     var didSelectOptionIndex: (Int) -> Void
-    
 }

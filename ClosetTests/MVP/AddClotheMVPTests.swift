@@ -10,46 +10,50 @@ import XCTest
 @testable import Closet
 
 class AddClotheMVPTests: XCTestCase {
+    var addClotheViewMock: AddClotheViewMock!
+    var dressMakerMock: DressmakerMock!
+    var presenter: AddClothePresenter!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        fullFillAddClothe()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        cleanAddClothe()
+    }
+    
+    func fullFillAddClothe() {
+        addClotheViewMock = AddClotheViewMock()
+        dressMakerMock = DressmakerMock()
+        presenter = AddClothePresenter(withDressMaker: dressMakerMock)
+        presenter.attach(view: addClotheViewMock)
+    }
+    
+    func cleanAddClothe() {
+        addClotheViewMock = nil
+        dressMakerMock = nil
+        presenter = nil
     }
 
     
     func testViewInit() {
-        let addClotheViewMock = AddClotheViewMock()
-        let presenter = AddClothePresenter(withDressMaker: DressmakerMock())
-        presenter.attach(view: addClotheViewMock)
         wait(for: [addClotheViewMock.expectation], timeout: 0.3)
         XCTAssertEqual(addClotheViewMock.setupTitle, "Nueva")
         XCTAssertEqual(addClotheViewMock.setupNumberOfCalls, 1)
     }
     
     func testSaveClotheSuccess_ToDatabase() {
-        let addClotheViewMock = AddClotheViewMock()
-        let dressMakerMock = DressmakerMock()
-        let presenter = AddClothePresenter(withDressMaker: dressMakerMock)
-        presenter.attach(view: addClotheViewMock)
-        
         presenter.startEditing(property: .color)
         presenter.startEditing(property: .style)
         presenter.startEditing(property: .piece)
         presenter.didSelect(image: UIImage(named: "clothePlaceholder")!)
-        
         addClotheViewMock.save()
         XCTAssertEqual(dressMakerMock.addNumberOfCalls, 1)
     }
     
     func testSaveClotheSuccess_Message() {
-        let addClotheViewMock = AddClotheViewMock()
-        let dressMakerMock = DressmakerMock()
-        let presenter = AddClothePresenter(withDressMaker: dressMakerMock)
-        presenter.attach(view: addClotheViewMock)
-        
         presenter.startEditing(property: .color)
         presenter.startEditing(property: .style)
         presenter.startEditing(property: .piece)
@@ -60,11 +64,6 @@ class AddClotheMVPTests: XCTestCase {
     }
     
     func testSaveClotheFailure_MissingColor() {
-        let addClotheViewMock = AddClotheViewMock()
-        let dressMakerMock = DressmakerMock()
-        let presenter = AddClothePresenter(withDressMaker: dressMakerMock)
-        presenter.attach(view: addClotheViewMock)
-    
         presenter.startEditing(property: .style)
         presenter.startEditing(property: .piece)
         presenter.didSelect(image: UIImage(named: "clothePlaceholder")!)
@@ -73,6 +72,49 @@ class AddClotheMVPTests: XCTestCase {
         XCTAssertEqual(addClotheViewMock.saveSuccessMessage, "Verifica tu información")
     }
     
+    func testSaveClotheFailure_MissingStyle() {
+        presenter.startEditing(property: .color)
+        presenter.startEditing(property: .piece)
+        presenter.didSelect(image: UIImage(named: "clothePlaceholder")!)
+        
+        addClotheViewMock.save()
+        XCTAssertEqual(addClotheViewMock.saveSuccessMessage, "Verifica tu información")
+    }
+    
+    func testSaveClotheFailure_MissingPiece() {
+        presenter.startEditing(property: .color)
+        presenter.startEditing(property: .style)
+        presenter.didSelect(image: UIImage(named: "clothePlaceholder")!)
+        
+        addClotheViewMock.save()
+        XCTAssertEqual(addClotheViewMock.saveSuccessMessage, "Verifica tu información")
+    }
+    
+    func testSaveClotheFailure_MissingImage() {
+        presenter.startEditing(property: .color)
+        presenter.startEditing(property: .piece)
+        presenter.startEditing(property: .style)
+        
+        addClotheViewMock.save()
+        XCTAssertEqual(addClotheViewMock.saveSuccessMessage, "Verifica tu información")
+    }
+    
+    func testPickerOptions_ForColors() {
+        presenter.startEditing(property: .color)
+        XCTAssertEqual(addClotheViewMock.pickerOptions, ["Rojo", "Verde", "Azul"])
+    }
+    
+    func testImageSelected() {
+        presenter.didSelect(image: UIImage(named: "clothePlaceholder")!)
+        XCTAssertNotNil(addClotheViewMock.imageSelected)
+    }
+    
+    func testGetNoMediaOptionsForImagesInSimulator() {
+        presenter.prepareMediaOptions(in: UIViewController(), withCameraPersmissions: Camera.shared) { (actions) in
+            guard let realActions = actions else { XCTAssertNil(actions); return }
+            print(realActions)
+        }
+    }
     
 }
 class AddClotheViewMock: AddClotheViewable {
@@ -81,6 +123,8 @@ class AddClotheViewMock: AddClotheViewable {
     var setupNumberOfCalls = 0
     var setupTitle = ""
     var saveSuccessMessage = ""
+    var pickerOptions = [String]()
+    var imageSelected: UIImage?
     
     
     private var saveAction: (() -> AlertHeaderModel)?
@@ -96,14 +140,15 @@ class AddClotheViewMock: AddClotheViewable {
     }
     
     func show(clotheImage: UIImage) {
-        print("show")
+        imageSelected = clotheImage
     }
     
     func showClothe(property: ClotheProperties, withText text: String) {
-        
+        print(property)
     }
     
     func showPicker(withModel model: PickerOptionsModel) {
+        pickerOptions = model.options
         model.didSelectOptionIndex(0)
     }
     
@@ -126,6 +171,4 @@ class DressmakerMock: DressmakerEditable {
     func remove(_ clothe: Clothe) {
         
     }
-    
-    
 }

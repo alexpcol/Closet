@@ -53,12 +53,12 @@ class FashionMakerTests: XCTestCase {
         XCTAssertEqual(outfit.clothes.count, 3)
     }
     
-    func testRemoveOutfitById() {
-        var totalOutfits = fashionMaker.fetchAllOutfits()!
-        fashionMaker.remove(totalOutfits[0])
-        totalOutfits = fashionMaker.fetchAllOutfits()!
-        XCTAssertEqual(totalOutfits.count, 0)
-    }
+//    func testRemoveOutfitById() {
+//        var totalOutfits = fashionMaker.fetchAllOutfits()!
+//        fashionMaker.remove(totalOutfits[0])
+//        totalOutfits = fashionMaker.fetchAllOutfits()!
+//        XCTAssertEqual(totalOutfits.count, 0)
+//    }
     
     func fullFillFashion() {
         dressMaker = DressMaker(container: mockPersistentContainer)
