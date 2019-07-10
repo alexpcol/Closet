@@ -17,9 +17,9 @@ class AddClothePresenter: AddClothePresentable {
     private var colors = [UIColor]()
     private let pieces: [PieceType] = PieceType.allCases
     private let styles: [ClotheStyle] = ClotheStyle.allCases
-    private var dressMaker: DressMaker
+    private var dressMaker: DressmakerEditable
     
-    init(withDressMaker dressMaker: DressMaker) {
+    init(withDressMaker dressMaker: DressmakerEditable) {
         colors.append(UIColor.red)
         colors.append(UIColor.green)
         colors.append(UIColor.blue)
@@ -35,31 +35,30 @@ class AddClothePresenter: AddClothePresentable {
     }
     
     func startEditing(property: ClotheProperties) {
+        var options = [String]()
+        var handler: (Int) -> Void
         switch property {
         case .color:
-            view?.showPicker(with: colorNames(), for: .color)
+            options = colorNames()
+            handler = { (index) in
+                self.colorSelected = self.colors[index]
+                self.view?.showClothe(property: property, withText: options[index])
+            }
         case .piece:
-            view?.showPicker(with: piecesNames(), for: .piece)
+            options = piecesNames()
+            handler = { (index) in
+                self.pieceSelected = self.pieces[index]
+                self.view?.showClothe(property: property, withText: options[index])
+            }
         case .style:
-            view?.showPicker(with: stylesNames(), for: .style)
+            options = stylesNames()
+            handler = { (index) in
+                self.styleSelected = self.styles[index]
+                self.view?.showClothe(property: property, withText: options[index])
+            }
         }
-    }
-    
-    func didSelectOption(index: Int, for property: ClotheProperties) {
-        switch property {
-        case .color:
-            colorSelected = colors[index]
-            let colors = colorNames()
-            view?.showClothe(property: property, withText: colors[index])
-        case .piece:
-            pieceSelected = pieces[index]
-            let pieces = piecesNames()
-            view?.showClothe(property: property, withText: pieces[index])
-        case .style:
-            styleSelected = styles[index]
-            let styles = stylesNames()
-            view?.showClothe(property: property, withText: styles[index])
-        }
+        
+        view?.showPicker(withModel: PickerOptionsModel(options: options, didSelectOptionIndex: handler))
     }
     
     func prepareMediaOptions(in view: UIViewController,

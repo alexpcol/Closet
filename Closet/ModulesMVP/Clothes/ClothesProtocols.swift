@@ -25,7 +25,6 @@ protocol AddClothePresentable {
     func prepareMediaOptions(in view: UIViewController,
                           withCameraPersmissions cameraPermissions: CameraAccess,
                           _ completionHandler: @escaping ([UIAlertAction]?) -> Void)
-    func didSelectOption(index: Int, for property: ClotheProperties)
     func didSelect(image:UIImage)
 }
 
@@ -34,6 +33,11 @@ protocol AddClotheViewable: class {
     func setup(title: String, presenter: AddClothePresentable)
     func show(clotheImage: UIImage)
     func showClothe(property: ClotheProperties,withText text: String)
-    func showPicker(with options: [String], for property: ClotheProperties)
+    func showPicker(withModel model: PickerOptionsModel)
 }
 
+struct PickerOptionsModel {
+    var options: [String]
+    var didSelectOptionIndex: (Int) -> Void
+    
+}

@@ -10,12 +10,12 @@ import UIKit
 
 class PickClothePresenter: PickClothePresentable {
     private var clothes = [Clothe]()
-    private var dressMaker: DressMaker
+    private var dressMaker: DressmakerReadable
     private var pieceSelected: PieceType
     private var delegate: ClothePicked
     private weak var view: PickClotheViewable?
     
-    init(withDressMaker dressMaker: DressMaker, PieceType type: PieceType, andDelegate delegate: ClothePicked) {
+    init(withDressMaker dressMaker: DressmakerReadable, PieceType type: PieceType, andDelegate delegate: ClothePicked) {
         self.dressMaker = dressMaker
         self.delegate = delegate
         pieceSelected = type

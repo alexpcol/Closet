@@ -10,13 +10,14 @@ import UIKit
 
 class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded {
     
+    
+    
     @IBOutlet weak var colorText: UITextField!
     @IBOutlet weak var pieceText: UITextField!
     @IBOutlet weak var styleText: UITextField!
     @IBOutlet weak var clotheImage: UIImageView!
     
-    private var options = [String]()
-    private var property: ClotheProperties?
+    private var pickerOptionsModel: PickerOptionsModel?
     private let picker = PickerView()
     private var presenter: AddClothePresentable!
     private var saveButtonAction:(() -> AlertHeaderModel)!
@@ -43,9 +44,8 @@ class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded
         }
     }
     
-    func showPicker(with options: [String], for property: ClotheProperties) {
-        self.options = options
-        self.property = property
+    func showPicker(withModel model: PickerOptionsModel) {
+        pickerOptionsModel = model
         picker.show()
     }
     
@@ -85,18 +85,17 @@ class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded
 //MARK:- PickerView delegate
 extension AddClotheViewControllerMVP: PickerViewDelegate {
     func pickerDataView(pickerView: PickerView, selectedIndex index: Int) {
-        guard let property = property else { return }
-        presenter.didSelectOption(index: index, for: property)
+        pickerOptionsModel?.didSelectOptionIndex(index)
     }
 }
 //MARK:- PickerView dataSource
 extension AddClotheViewControllerMVP: PickerViewDataSource {
     func titleFor(pickerView: PickerView, atIndex index: Int) -> String {
-        return options[index]
+        return pickerOptionsModel?.options[index] ?? ""
     }
     
     func numberOfRowsFor(pickerView: PickerView) -> Int {
-        return options.count
+        return pickerOptionsModel?.options.count ?? 0
     }
 }
 //MARK:- PUIImagePickerControllerDelegate

@@ -12,9 +12,9 @@ class ClothePresenter: ClothePresentable {
     private weak var view: ClotheViewable?
     private var coordinator: ClothesCoordinator!
     private var screenTitle: String = "Ropa"
-    private var dressMaker: DressMaker
+    private var dressMaker: DressmakerReadable
     
-    init(withDressMaker dressMaker: DressMaker, coordinator: ClothesCoordinator) {
+    init(withDressMaker dressMaker: DressmakerReadable, coordinator: ClothesCoordinator) {
         self.coordinator = coordinator
         self.dressMaker = dressMaker
         NotificationCenter.default.addObserver(forName: .coreDataDidSavedClothe, object: nil, queue: nil) { [weak self] (info) in
