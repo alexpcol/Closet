@@ -10,6 +10,17 @@ import Foundation
 import CoreData
 import UIKit
 
+protocol FashionmakerReadable {
+    func fetchAllOutfits() -> [Outfit]?
+    func fetchOutfit(withId id: URL) -> Outfit?
+}
+
+protocol FashionmakerEditable {
+    func add(_ outfit: Outfit)
+    func update(_ outfit: Outfit)
+    func remove(_ outfit: Outfit)
+}
+
 class FashionMaker {
     private let container: NSPersistentContainer
     private let dressMaker: DressMaker
@@ -20,53 +31,6 @@ class FashionMaker {
     init(container: NSPersistentContainer) {
         self.container = container
         dressMaker = DressMaker(container: container)
-    }
-    
-    func fetchAllOutfits() -> [Outfit]? {
-        guard let result = fetchAllDatabaseOutfit() else { return nil }
-        let outfits = result.map { (item) -> Outfit in
-           return Outfit(id: item.objectID.uriRepresentation(), name: item.name, clothes: item.clothes)
-        }
-        return outfits
-    }
-    
-    func fetchOutfit(withId id: URL) -> Outfit? {
-        guard let outfitDatabase = fetchDatabaseOutfit(withId: id),
-        let name = outfitDatabase.name else { return nil }
-        let clothesDatabase = outfitDatabase.clothes
-        var clothes = [Clothe]()
-        for case let item as ClotheDatabase in clothesDatabase {
-            clothes.append(Clothe(id: item.objectID.uriRepresentation(),
-                                  color: item.color,
-                                  piece: item.piece,
-                                  style: item.style,
-                                  image: item.image))
-        }
-        
-        return Outfit(id: outfitDatabase.objectID.uriRepresentation(), name: name, clothes: clothes)
-    }
-    
-    func add(_ outfit: Outfit) {
-        let outfitDatabase = OutfitDatabase(entity: OutfitDatabase.entity(), insertInto: backgroundContext)
-        outfitDatabase.name = outfit.name
-        for clothe in outfit.clothes {
-            guard let clotheDatabase = dressMaker.fetchDatabaseClothe(withId: clothe.id) else { continue }
-            outfitDatabase.addToClothes(clotheDatabase)
-        }
-        save()
-    }
-    
-    func update(_ outfit: Outfit) {
-        guard let outfitDatabase = fetchDatabaseOutfit(withId: outfit.id) else { return }
-        outfitDatabase.name = outfit.name
-        outfitDatabase.clothes = NSSet(array: outfit.clothes)
-        save()
-    }
-    
-    func remove(_ outfit: Outfit) {
-        guard let outfitDatabase = fetchDatabaseOutfit(withId: outfit.id) else { return }
-        backgroundContext.delete(outfitDatabase)
-        save()
     }
     
     private func save() {
@@ -100,6 +64,53 @@ class FashionMaker {
         }
         return try? backgroundContext.existingObject(with: managedID) as? OutfitDatabase
     }
+}
+
+extension FashionMaker: FashionmakerReadable {
+    func fetchAllOutfits() -> [Outfit]? {
+        guard let result = fetchAllDatabaseOutfit() else { return nil }
+        let outfits = result.map { (item) -> Outfit in
+            return Outfit(id: item.objectID.uriRepresentation(), name: item.name, clothes: item.clothes)
+        }
+        return outfits
+    }
     
+    func fetchOutfit(withId id: URL) -> Outfit? {
+        guard let outfitDatabase = fetchDatabaseOutfit(withId: id),
+            let name = outfitDatabase.name else { return nil }
+        let clothesDatabase = outfitDatabase.clothes
+        var clothes = [Clothe]()
+        for case let item as ClotheDatabase in clothesDatabase {
+            clothes.append(Clothe(id: item.objectID.uriRepresentation(),
+                                  color: item.color,
+                                  piece: item.piece,
+                                  style: item.style,
+                                  image: item.image))
+        }
+        return Outfit(id: outfitDatabase.objectID.uriRepresentation(), name: name, clothes: clothes)
+    }
+}
+extension FashionMaker: FashionmakerEditable {
+    func add(_ outfit: Outfit) {
+        let outfitDatabase = OutfitDatabase(entity: OutfitDatabase.entity(), insertInto: backgroundContext)
+        outfitDatabase.name = outfit.name
+        for clothe in outfit.clothes {
+            guard let clotheDatabase = dressMaker.fetchDatabaseClothe(withId: clothe.id) else { continue }
+            outfitDatabase.addToClothes(clotheDatabase)
+        }
+        save()
+    }
     
+    func update(_ outfit: Outfit) {
+        guard let outfitDatabase = fetchDatabaseOutfit(withId: outfit.id) else { return }
+        outfitDatabase.name = outfit.name
+        outfitDatabase.clothes = NSSet(array: outfit.clothes)
+        save()
+    }
+    
+    func remove(_ outfit: Outfit) {
+        guard let outfitDatabase = fetchDatabaseOutfit(withId: outfit.id) else { return }
+        backgroundContext.delete(outfitDatabase)
+        save()
+    }
 }

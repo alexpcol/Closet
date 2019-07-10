@@ -10,14 +10,14 @@ import UIKit
 
 class AddOutfitPresenter: AddOutfitPresentable {
     private var name: String?
-    private var topClothe: Clothe?
-    private var trouserClothe: Clothe?
-    private var footwearClothe: Clothe?
+    var topClothe: Clothe?
+    var trouserClothe: Clothe?
+    var footwearClothe: Clothe?
     private var coordinator: OutfitsCoordinator!
-    private var fashionMaker: FashionMaker
+    private var fashionMaker: FashionmakerEditable
     private weak var view: AddOutfitViewable?
     
-    init(withFashionMaker fashionMaker: FashionMaker, coordinator: OutfitsCoordinator) {
+    init(withFashionMaker fashionMaker: FashionmakerEditable, coordinator: OutfitsCoordinator) {
         self.coordinator = coordinator
         self.fashionMaker = fashionMaker
     }
