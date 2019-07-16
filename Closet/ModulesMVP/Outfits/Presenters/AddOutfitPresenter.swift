@@ -13,11 +13,11 @@ class AddOutfitPresenter: AddOutfitPresentable {
     var topClothe: Clothe?
     var trouserClothe: Clothe?
     var footwearClothe: Clothe?
-    private var coordinator: OutfitsCoordinator!
+    private var coordinator: OutfitsRouter!
     private var fashionMaker: FashionmakerEditable
     private weak var view: AddOutfitViewable?
     
-    init(withFashionMaker fashionMaker: FashionmakerEditable, coordinator: OutfitsCoordinator) {
+    init(withFashionMaker fashionMaker: FashionmakerEditable, coordinator: OutfitsRouter) {
         self.coordinator = coordinator
         self.fashionMaker = fashionMaker
     }

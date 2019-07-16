@@ -58,10 +58,10 @@
 		47E3785E22BD34AD00E65C54 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E3785D22BD34AD00E65C54 /* ActionSheet.swift */; };
 		47E3786022BD431C00E65C54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47E3785F22BD431C00E65C54 /* Assets.xcassets */; };
 		47E73E6022B5262A00A5C15F /* StorryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E5F22B5262A00A5C15F /* StorryboardExtension.swift */; };
-		47E73E6322B5271900A5C15F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6222B5271900A5C15F /* Coordinator.swift */; };
-		47E73E6822B52C6700A5C15F /* ClothesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6722B52C6700A5C15F /* ClothesCoordinator.swift */; };
+		47E73E6322B5271900A5C15F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6222B5271900A5C15F /* Router.swift */; };
+		47E73E6822B52C6700A5C15F /* ClothesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6722B52C6700A5C15F /* ClothesRouter.swift */; };
 		47E73E7022B52F0D00A5C15F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E6F22B52F0D00A5C15F /* MainTabBarController.swift */; };
-		47E73E7222B5357300A5C15F /* OutfitsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E7122B5357300A5C15F /* OutfitsCoordinator.swift */; };
+		47E73E7222B5357300A5C15F /* OutfitsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E73E7122B5357300A5C15F /* OutfitsRouter.swift */; };
 		47F58F6E22BC6048006B75E2 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F6D22BC6048006B75E2 /* PickerView.swift */; };
 		47F58F7122BC60E2006B75E2 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F7022BC60E2006B75E2 /* Dynamic.swift */; };
 		47F58F7322BC6451006B75E2 /* PickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F58F7222BC6451006B75E2 /* PickerViewDataSource.swift */; };
@@ -130,10 +130,10 @@
 		47E3785D22BD34AD00E65C54 /* ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 		47E3785F22BD431C00E65C54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47E73E5F22B5262A00A5C15F /* StorryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorryboardExtension.swift; sourceTree = "<group>"; };
-		47E73E6222B5271900A5C15F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		47E73E6722B52C6700A5C15F /* ClothesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesCoordinator.swift; sourceTree = "<group>"; };
+		47E73E6222B5271900A5C15F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		47E73E6722B52C6700A5C15F /* ClothesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothesRouter.swift; sourceTree = "<group>"; };
 		47E73E6F22B52F0D00A5C15F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		47E73E7122B5357300A5C15F /* OutfitsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitsCoordinator.swift; sourceTree = "<group>"; };
+		47E73E7122B5357300A5C15F /* OutfitsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitsRouter.swift; sourceTree = "<group>"; };
 		47F58F6D22BC6048006B75E2 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		47F58F7022BC60E2006B75E2 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		47F58F7222BC6451006B75E2 /* PickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDataSource.swift; sourceTree = "<group>"; };
@@ -277,7 +277,7 @@
 			children = (
 				47A8A6A42299A33A0005E34C /* AppDelegate.swift */,
 				47E3785822BD218A00E65C54 /* Services */,
-				47E73E6122B5270500A5C15F /* Coordinators */,
+				47E73E6122B5270500A5C15F /* Router */,
 				47E73E5D22B525C500A5C15F /* Extensions */,
 				47A8A6C72299A6510005E34C /* Model */,
 				47F58F6B22BC5FF0006B75E2 /* Common */,
@@ -431,20 +431,20 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		47E73E6122B5270500A5C15F /* Coordinators */ = {
+		47E73E6122B5270500A5C15F /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				47E73E6222B5271900A5C15F /* Coordinator.swift */,
+				47E73E6222B5271900A5C15F /* Router.swift */,
 				47E73E6422B527DA00A5C15F /* Flows */,
 			);
-			path = Coordinators;
+			path = Router;
 			sourceTree = "<group>";
 		};
 		47E73E6422B527DA00A5C15F /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				47E73E6722B52C6700A5C15F /* ClothesCoordinator.swift */,
-				47E73E7122B5357300A5C15F /* OutfitsCoordinator.swift */,
+				47E73E6722B52C6700A5C15F /* ClothesRouter.swift */,
+				47E73E7122B5357300A5C15F /* OutfitsRouter.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -599,7 +599,7 @@
 				4714C4F522B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift in Sources */,
 				47E73E7022B52F0D00A5C15F /* MainTabBarController.swift in Sources */,
 				47AF626E22DA56B900031DA0 /* ReadClothesInteractor.swift in Sources */,
-				47E73E6322B5271900A5C15F /* Coordinator.swift in Sources */,
+				47E73E6322B5271900A5C15F /* Router.swift in Sources */,
 				47A8A6CB2299A9AE0005E34C /* ClothesDataTypes.swift in Sources */,
 				47AFE87422B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift in Sources */,
 				47BDF5DD22C7D9C100417FFE /* ClothesProtocols.swift in Sources */,
@@ -623,7 +623,7 @@
 				47F58F7322BC6451006B75E2 /* PickerViewDataSource.swift in Sources */,
 				47E3785722BD1FAE00E65C54 /* Alerts.swift in Sources */,
 				47F58F7C22BC7AEB006B75E2 /* FormViewController.swift in Sources */,
-				47E73E7222B5357300A5C15F /* OutfitsCoordinator.swift in Sources */,
+				47E73E7222B5357300A5C15F /* OutfitsRouter.swift in Sources */,
 				47E3785222BD190F00E65C54 /* FormTags.swift in Sources */,
 				47BDF5E722C7E27300417FFE /* AddClotheViewControllerMVP.swift in Sources */,
 				47A8A6AD2299A33A0005E34C /* Closet.xcdatamodeld in Sources */,
@@ -633,7 +633,7 @@
 				47F58F6E22BC6048006B75E2 /* PickerView.swift in Sources */,
 				149B7F7C22CBF06600189909 /* AddOutfitPresenter.swift in Sources */,
 				47F58F7522BC6487006B75E2 /* PickerViewDelegate.swift in Sources */,
-				47E73E6822B52C6700A5C15F /* ClothesCoordinator.swift in Sources */,
+				47E73E6822B52C6700A5C15F /* ClothesRouter.swift in Sources */,
 				47A8A6D12299B5410005E34C /* Clothe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ClothesCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
+class ClothesRouter: Router {
+    var childRouters = [Router]()
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {

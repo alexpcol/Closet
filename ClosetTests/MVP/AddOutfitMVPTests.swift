@@ -24,7 +24,7 @@ class AddOutfitMVPTests: XCTestCase {
     }
     
     func fullFillAddOutfit() {
-        let coordinador = OutfitsCoordinator(navigationController: UINavigationController())
+        let coordinador = OutfitsRouter(navigationController: UINavigationController())
         addOutfitViewMock = AddOutfitViewMock()
         fashionmakerMock = FashionmakerMock()
         presenter = AddOutfitPresenter(withFashionMaker: fashionmakerMock!, coordinator: coordinador)

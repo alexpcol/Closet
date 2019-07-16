@@ -9,8 +9,8 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    let clothesFlow = ClothesCoordinator(navigationController: UINavigationController())
-    let outfitsFlow = OutfitsCoordinator(navigationController: UINavigationController())
+    let clothesFlow = ClothesRouter(navigationController: UINavigationController())
+    let outfitsFlow = OutfitsRouter(navigationController: UINavigationController())
     
     override func viewDidLoad() {
         super.viewDidLoad()

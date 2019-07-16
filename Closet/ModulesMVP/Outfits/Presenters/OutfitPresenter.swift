@@ -10,11 +10,11 @@ import UIKit
 
 class OutfitPresenter: OutfitPresentable {
     private weak var view: OutfitViewable?
-    private var coordinator: OutfitsCoordinator!
+    private var coordinator: OutfitsRouter!
     private var screenTitle: String = "Outfits"
     private var fashionMaker: FashionMaker
     
-    init(withFashionMaker fashionMaker: FashionMaker, coordinator: OutfitsCoordinator) {
+    init(withFashionMaker fashionMaker: FashionMaker, coordinator: OutfitsRouter) {
         self.coordinator = coordinator
         self.fashionMaker = fashionMaker
         NotificationCenter.default.addObserver(forName: .coreDataDidSavedOutfit, object: nil, queue: nil) { [weak self] (info) in
