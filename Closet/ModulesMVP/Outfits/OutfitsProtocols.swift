@@ -43,3 +43,7 @@ protocol PickClotheViewable: class {
     func setup(title: String, presenter: PickClothePresentable)
     func showCloseButton()
 }
+
+protocol ClothePicked: class {
+    func didSelectClothe(_ clothe: Clothe, forPieceType piece: PieceType)
+}

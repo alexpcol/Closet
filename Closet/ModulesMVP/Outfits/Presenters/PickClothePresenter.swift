@@ -28,8 +28,11 @@ class PickClothePresenter: PickClothePresentable {
     }
     
     func fetchClothes() {
-        clothes = dressMaker.fetchBy(piece: pieceSelected)
-        view?.show(clothes: clothes)
+        dressMaker.fetchBy(piece: pieceSelected) {
+            if let clothes = $0 {
+                self.view?.show(clothes: clothes)
+            }
+        }
     }
     
     func didSelectOption(index: Int) {

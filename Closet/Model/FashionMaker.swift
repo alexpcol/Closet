@@ -95,10 +95,10 @@ extension FashionMaker: FashionmakerEditable {
         let outfitDatabase = OutfitDatabase(entity: OutfitDatabase.entity(), insertInto: backgroundContext)
         outfitDatabase.name = outfit.name
         for clothe in outfit.clothes {
-            guard let clotheDatabase = dressMaker.fetchDatabaseClothe(withId: clothe.id) else { continue }
-            outfitDatabase.addToClothes(clotheDatabase)
+//            guard let clotheDatabase = dressMaker.fetchDatabaseClothe(withId: clothe.id) else { continue }
+//            outfitDatabase.addToClothes(clotheDatabase)
         }
-        save()
+//        save()
     }
     
     func update(_ outfit: Outfit) {

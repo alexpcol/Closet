@@ -61,7 +61,7 @@ class OutfitsCoordinator: Coordinator {
     func pickClothe(withPiece piece: PieceType, for pickerDelegate: ClothePicked) {
         let pickClotheViewControllerMVP = PickClotheViewControllerMVP.instantiate(fromStoryboard: "OutfitsMVP")
         let navigationController = UINavigationController(rootViewController: pickClotheViewControllerMVP)
-        let presenter = PickClothePresenter(withDressMaker: DressMaker(container: UIApplication.container),
+        let presenter = PickClothePresenter(withDressMaker: ReadClothesInteractor(withContainer: UIApplication.container),
                                             PieceType: piece, andDelegate: pickerDelegate)
         presenter.attach(view: pickClotheViewControllerMVP as PickClotheViewable)
         self.navigationController.present(navigationController, animated: true)
