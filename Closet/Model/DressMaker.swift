@@ -39,22 +39,6 @@ class DressMaker {
         return try? backgroundContext.existingObject(with: managedID) as? ClotheDatabase
     }
     
-    private func save() {
-        if backgroundContext.hasChanges {
-            do{
-                try backgroundContext.save()
-                NotificationCenter.default.post(name: .coreDataDidSavedClothe,
-                                                object: nil,
-                                                userInfo: ["saved": true])
-            } catch  {
-                print("Save Error:\(error)")
-                NotificationCenter.default.post(name: .coreDataDidSavedClothe,
-                                                object: nil,
-                                                userInfo: ["saved": false])
-            }
-        }
-    }
-    
     private func fetchAllClothesDatabase() -> [ClotheDatabase]? {
         let request: NSFetchRequest<ClotheDatabase> = ClotheDatabase.fetchRequest()
         do{
@@ -71,6 +55,22 @@ class DressMaker {
             return try self.container.viewContext.fetch(request)
         } catch {
             return nil
+        }
+    }
+    
+    private func save() {
+        if backgroundContext.hasChanges {
+            do{
+                try backgroundContext.save()
+                NotificationCenter.default.post(name: .coreDataDidSavedClothe,
+                                                object: nil,
+                                                userInfo: ["saved": true])
+            } catch  {
+                print("Save Error:\(error)")
+                NotificationCenter.default.post(name: .coreDataDidSavedClothe,
+                                                object: nil,
+                                                userInfo: ["saved": false])
+            }
         }
     }
 }

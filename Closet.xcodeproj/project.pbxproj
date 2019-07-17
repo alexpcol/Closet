@@ -15,6 +15,7 @@
 		149B7F8222CBF19A00189909 /* AddOutfitViewControllerMVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B7F8122CBF19A00189909 /* AddOutfitViewControllerMVP.swift */; };
 		149B7F8422CBF20E00189909 /* PickClotheViewControllerMVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B7F8322CBF20E00189909 /* PickClotheViewControllerMVP.swift */; };
 		149B7F8622CBF6F300189909 /* PickClothePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149B7F8522CBF6F300189909 /* PickClothePresenter.swift */; };
+		4704028F22DA3AEC00C64C87 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704028E22DA3AEC00C64C87 /* Mocks.swift */; };
 		4714C4ED22B1547200A6D872 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4EC22B1547200A6D872 /* UIApplicationExtension.swift */; };
 		4714C4F522B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F122B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift */; };
 		4714C4F622B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F222B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift */; };
@@ -99,6 +100,7 @@
 		149B7F8122CBF19A00189909 /* AddOutfitViewControllerMVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutfitViewControllerMVP.swift; sourceTree = "<group>"; };
 		149B7F8322CBF20E00189909 /* PickClotheViewControllerMVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickClotheViewControllerMVP.swift; sourceTree = "<group>"; };
 		149B7F8522CBF6F300189909 /* PickClothePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickClothePresenter.swift; sourceTree = "<group>"; };
+		4704028E22DA3AEC00C64C87 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		4714C4EC22B1547200A6D872 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		4714C4F122B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutfitDatabase+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4714C4F222B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutfitDatabase+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -212,6 +214,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4704028D22DA3AD000C64C87 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4704028E22DA3AEC00C64C87 /* Mocks.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		4714C4F022B1555C00A6D872 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +271,7 @@
 		478872D522D10AB000040472 /* MVP */ = {
 			isa = PBXGroup;
 			children = (
+				4704028D22DA3AD000C64C87 /* Mocks */,
 				478872D622D10AD000040472 /* AddClotheMVPTests.swift */,
 				47BE88CA22D6398B0001F64A /* AddOutfitMVPTests.swift */,
 			);
@@ -727,6 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4704028F22DA3AEC00C64C87 /* Mocks.swift in Sources */,
 				47BE88CB22D6398B0001F64A /* AddOutfitMVPTests.swift in Sources */,
 				478872D722D10AD000040472 /* AddClotheMVPTests.swift in Sources */,
 				47D5E6BE22AC3CAC0093CF53 /* FashionMakerTests.swift in Sources */,

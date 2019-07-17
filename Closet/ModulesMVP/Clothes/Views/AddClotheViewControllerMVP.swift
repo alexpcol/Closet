@@ -10,12 +10,10 @@ import UIKit
 
 class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded {
     
-    
-    
-    @IBOutlet weak var colorText: UITextField!
-    @IBOutlet weak var pieceText: UITextField!
-    @IBOutlet weak var styleText: UITextField!
-    @IBOutlet weak var clotheImage: UIImageView!
+    @IBOutlet private weak var colorText: UITextField!
+    @IBOutlet private weak var pieceText: UITextField!
+    @IBOutlet private weak var styleText: UITextField!
+    @IBOutlet private weak var clotheImage: UIImageView!
     
     private var pickerOptionsModel: PickerOptionsModel?
     private let picker = PickerView()

@@ -128,3 +128,4 @@ class FashionmakerMock: FashionmakerEditable {
         print(outfit)
     }
 }
+

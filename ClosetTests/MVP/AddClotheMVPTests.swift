@@ -10,33 +10,38 @@ import XCTest
 @testable import Closet
 
 class AddClotheMVPTests: XCTestCase {
+    //Variables for presenter Tests
     var addClotheViewMock: AddClotheViewMock!
     var dressMakerMock: DressmakerMock!
     var presenter: AddClothePresenter!
+    
+    //Variables for View Tests
+    var addClotheView: AddClotheViewControllerMVP!
+    var presenterMock: AddClothePresenterMock!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        fullFillAddClothe()
+        fullFillAddClothePresenter()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        cleanAddClothe()
+        cleanAddClothePresenter()
     }
     
-    func fullFillAddClothe() {
+    func fullFillAddClothePresenter() {
         addClotheViewMock = AddClotheViewMock()
+        addClotheView = AddClotheViewControllerMVP()
         dressMakerMock = DressmakerMock()
         presenter = AddClothePresenter(withDressMaker: dressMakerMock)
         presenter.attach(view: addClotheViewMock)
     }
     
-    func cleanAddClothe() {
+    func cleanAddClothePresenter() {
         addClotheViewMock = nil
         dressMakerMock = nil
         presenter = nil
     }
-
     
     func testViewInit() {
         wait(for: [addClotheViewMock.expectation], timeout: 0.3)
@@ -116,7 +121,15 @@ class AddClotheMVPTests: XCTestCase {
         }
     }
     
+    func testGetMediaOptionsForImages() {
+        presenter.prepareMediaOptions(in: addClotheView, withCameraPersmissions: MockCameraAccessSuccess() as CameraAccess) { (actions) in
+            guard let realActions = actions else { return }
+            XCTAssertEqual(realActions.count, 2)
+        }
+    }
 }
+//MARK:- ViewControllers no crearlos en las pruebas
+
 class AddClotheViewMock: AddClotheViewable {
     // Tenemos la opción de ser el expectation para métodos asincronos o por medio de las siguientes variables
     var expectation = XCTestExpectation(description: "Setup called")
@@ -170,5 +183,53 @@ class DressmakerMock: DressmakerEditable {
     
     func remove(_ clothe: Clothe) {
         
+    }
+}
+
+class AddClothePresenterMock: AddClothePresentable {
+    
+    private weak var view: AddClotheViewable?
+    func attach(view: AddClotheViewable) {
+        self.view = view
+        self.view?.setup(title: "Nueva", presenter: self as AddClothePresentable)
+        self.view?.showSaveButton(action: {
+            self.getAlertHeaderModel()
+        })
+    }
+    
+    func startEditing(property: ClotheProperties) {
+        var options = [String]()
+        var handler: (Int) -> Void
+        switch property {
+        case .color:
+            options = ["Rojo","Azul"]
+            handler = { (index) in
+                self.view?.showClothe(property: property, withText: options[index])
+            }
+        case .piece:
+            options = ["Torso","Piernas"]
+            handler = { (index) in
+                self.view?.showClothe(property: property, withText: options[index])
+            }
+        case .style:
+            options = ["Casual","Informal"]
+            handler = { (index) in
+                self.view?.showClothe(property: property, withText: options[index])
+            }
+        }
+        
+        view?.showPicker(withModel: PickerOptionsModel(options: options, didSelectOptionIndex: handler))
+    }
+    
+    func prepareMediaOptions(in view: UIViewController, withCameraPersmissions cameraPermissions: CameraAccess, _ completionHandler: @escaping ([UIAlertAction]?) -> Void) {
+        print(cameraPermissions)
+    }
+    
+    func didSelect(image: UIImage) {
+        print(image)
+    }
+    
+    private func getAlertHeaderModel() -> AlertHeaderModel {
+        return AlertHeaderModel(title: "Alerta", message: "mensaje de alerta")
     }
 }
