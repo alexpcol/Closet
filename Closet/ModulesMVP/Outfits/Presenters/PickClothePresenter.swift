@@ -30,6 +30,7 @@ class PickClothePresenter: PickClothePresentable {
     func fetchClothes() {
         dressMaker.fetchBy(piece: pieceSelected) {
             if let clothes = $0 {
+                self.clothes = clothes
                 self.view?.show(clothes: clothes)
             }
         }

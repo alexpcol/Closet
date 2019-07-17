@@ -44,7 +44,7 @@ class OutfitsRouter: Router {
     //MARK:-  MVP Methods
     func start() {
         let outfitViewControllerMVP = OutfitViewControllerMVP.instantiate(fromStoryboard: "OutfitsMVP")
-        let presenter = OutfitPresenter(withFashionMaker: FashionMaker(container: UIApplication.container),
+        let presenter = OutfitPresenter(withFashionMaker: ReadOutfitsInteractor(withContainer: UIApplication.container),
                                         coordinator: self)
         presenter.attach(view: outfitViewControllerMVP as OutfitViewable)
         navigationController.pushViewController(outfitViewControllerMVP, animated: true)
@@ -52,7 +52,7 @@ class OutfitsRouter: Router {
     
     func addOutfit() {
         let addOutfitViewControllerMVP = AddOutfitViewControllerMVP.instantiate(fromStoryboard: "OutfitsMVP")
-        let presenter = AddOutfitPresenter(withFashionMaker: FashionMaker(container: UIApplication.container),
+        let presenter = AddOutfitPresenter(withFashionMaker: AddOutfitInteractor(withContainer: UIApplication.container),
                                            coordinator: self)
         presenter.attach(view: addOutfitViewControllerMVP as AddOutfitViewable)
         navigationController.pushViewController(addOutfitViewControllerMVP, animated: true)

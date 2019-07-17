@@ -32,7 +32,7 @@ class DressMaker {
         self.container = container
     }
     
-    func fetchDatabaseClothe(withId id: URL,  completion: @escaping (ClotheDatabase?) -> Void) {
+    func fetchDatabaseClothe(withId id: URL, completion: @escaping (ClotheDatabase?) -> Void) {
         guard let managedID = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: id) else {
             completion(nil)
             return
@@ -48,7 +48,6 @@ class DressMaker {
             completion(clothesDatabase)
         } catch {
             completion(nil)
-            return
         }
     }
     
@@ -60,7 +59,7 @@ class DressMaker {
             completion(clothesDatabase)
         } catch {
             completion(nil)
-            return
+            
         }
     }
     

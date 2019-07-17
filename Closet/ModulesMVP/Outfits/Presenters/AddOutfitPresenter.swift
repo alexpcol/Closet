@@ -41,7 +41,7 @@ class AddOutfitPresenter: AddOutfitPresentable {
     private func saveOutfit() -> AlertHeaderModel {
         if validateForm() {
             let outfit = Outfit(name: name!, clothes: [topClothe!, trouserClothe!, footwearClothe!])
-            fashionMaker.add(outfit)
+            fashionMaker.add([outfit])
             return AlertHeaderModel(title: "Closet", message: "¡Outfit añadido!")
         }
         return AlertHeaderModel(title: "Closet", message: "Verifica tu información")
