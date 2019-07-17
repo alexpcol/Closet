@@ -2,7 +2,7 @@
 //  AddOutfitViewControllerMVP.swift
 //  Closet
 //
-//  Created by Mauricio Conde on 7/2/19.
+//  Created by Chila on 7/2/19.
 //  Copyright © 2019 chila. All rights reserved.
 //
 
