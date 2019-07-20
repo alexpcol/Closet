@@ -39,6 +39,10 @@ class AddOutfitViewControllerMVP: GenericFormVC, Storyboarded, AddOutfitViewable
         }
     }
     
+    func closeView() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     //MARK:- Actions
     @IBAction func didSelectTop(_ sender: UIButton) {
         presenter.startEditing(pieceType: .top)
@@ -52,7 +56,13 @@ class AddOutfitViewControllerMVP: GenericFormVC, Storyboarded, AddOutfitViewable
     
     @objc private func didTapSaveButton() {
         let resultModel = saveButtonAction()
-        AlertsPresenter.shared.showOKAlert(title: resultModel.title, message: resultModel.message, inView: self)
+        
+        if let actionTitle = resultModel.alertAction, let completion = resultModel.action {
+            AlertsPresenter.shared.showAlertWithAction(alertTitle: resultModel.title, alertMessage: resultModel.message, actionTitle: actionTitle.rawValue, actionStyle: .default, inView: self, completion: completion)
+        } else {
+            AlertsPresenter.shared.showOKAlert(title: resultModel.title, message: resultModel.message, inView: self)
+        }
+        
     }
 }
 

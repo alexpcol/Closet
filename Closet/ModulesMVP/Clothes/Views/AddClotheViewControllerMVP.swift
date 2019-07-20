@@ -9,7 +9,6 @@
 import UIKit
 
 class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded {
-    
     @IBOutlet private weak var colorText: UITextField!
     @IBOutlet private weak var pieceText: UITextField!
     @IBOutlet private weak var styleText: UITextField!
@@ -54,6 +53,10 @@ class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded
         picker.dataSource = self
     }
     
+    func closeView() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     //MARK:- Actions
     @IBAction private func didSelectColor(_ sender: UIButton) {
         presenter.startEditing(property: .color)
@@ -76,7 +79,12 @@ class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded
     
     @objc private func didTapSaveButton() {
         let resultModel = saveButtonAction()
-        AlertsPresenter.shared.showOKAlert(title: resultModel.title, message: resultModel.message, inView: self)
+        if let actionTitle = resultModel.alertAction, let completion = resultModel.action {
+            AlertsPresenter.shared.showAlertWithAction(alertTitle: resultModel.title, alertMessage: resultModel.message, actionTitle: actionTitle.rawValue, actionStyle: .default, inView: self, completion: completion)
+        } else {
+            AlertsPresenter.shared.showOKAlert(title: resultModel.title, message: resultModel.message, inView: self)
+        }
+        
     }
 }
 
