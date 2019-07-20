@@ -152,7 +152,9 @@ class AddClothePresenter: AddClothePresentable {
         if validateForm() {
             let clothe = Clothe(color: colorSelected!, piece: pieceSelected!, style: styleSelected!, image: imageSelected!)
             dressMaker.add(clothe)
-            return AlertHeaderModel(title: "Closet", message: "¡Ropa añadida!")
+            return AlertHeaderModel(title: "Closet", message: "¡Ropa añadida!", alertAction: .ok) {
+                self.view?.closeView()
+            }
         }
         return AlertHeaderModel(title: "Closet", message: "Verifica tu información")
     }

@@ -10,9 +10,9 @@ import UIKit
 
 class AddOutfitPresenter: AddOutfitPresentable {
     private var name: String?
-    var topClothe: Clothe?
-    var trouserClothe: Clothe?
-    var footwearClothe: Clothe?
+    private var topClothe: Clothe?
+    private var trouserClothe: Clothe?
+    private var footwearClothe: Clothe?
     private var coordinator: OutfitsCoordinator!
     private var fashionMaker: FashionmakerEditable
     private weak var view: AddOutfitViewable?
@@ -42,7 +42,9 @@ class AddOutfitPresenter: AddOutfitPresentable {
         if validateForm() {
             let outfit = Outfit(name: name!, clothes: [topClothe!, trouserClothe!, footwearClothe!])
             fashionMaker.add(outfit)
-            return AlertHeaderModel(title: "Closet", message: "¡Outfit añadido!")
+            return AlertHeaderModel(title: "Closet", message: "¡Outfit añadido!", alertAction: .ok) {
+                self.view?.closeView()
+            }
         }
         return AlertHeaderModel(title: "Closet", message: "Verifica tu información")
     }
