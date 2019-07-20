@@ -34,7 +34,7 @@ class AddClotheViewModelTests: XCTestCase {
     }
     
     func testActionSheetOptions() {
-        let cameraAccess = MockCameraAccessSuccess()
+        let cameraAccess = FakeCameraAccessSuccess()
         var testActions:[UIAlertAction] = []
         let expectation = self.expectation(description: "action sheet added")
         viewModel.addImage(AddClotheViewController(), cameraPermissions: cameraAccess) { (actions) in

@@ -58,7 +58,7 @@ class AddClotheMVPTests: XCTestCase {
         XCTAssertEqual(dressMakerMock.addNumberOfCalls, 1)
     }
     
-    func testSaveClotheSuccess_Message() {
+    func testSaveClotheSuccess_Message_CloseView() {
         presenter.startEditing(property: .color)
         presenter.startEditing(property: .style)
         presenter.startEditing(property: .piece)
@@ -66,15 +66,18 @@ class AddClotheMVPTests: XCTestCase {
         
         addClotheViewMock.save()
         XCTAssertEqual(addClotheViewMock.saveSuccessMessage, "¡Ropa añadida!")
+        XCTAssertEqual(addClotheViewMock.closeViewNumberOfCalls, 1)
+
     }
     
-    func testSaveClotheFailure_MissingColor() {
+    func testSaveClotheFailure_MissingColor_CloseView() {
         presenter.startEditing(property: .style)
         presenter.startEditing(property: .piece)
         presenter.didSelect(image: UIImage(named: "clothePlaceholder")!)
         
         addClotheViewMock.save()
         XCTAssertEqual(addClotheViewMock.saveSuccessMessage, "Verifica tu información")
+        XCTAssertEqual(addClotheViewMock.closeViewNumberOfCalls, 0)
     }
     
     func testSaveClotheFailure_MissingStyle() {
@@ -114,15 +117,15 @@ class AddClotheMVPTests: XCTestCase {
         XCTAssertNotNil(addClotheViewMock.imageSelected)
     }
     
-    func testGetNoMediaOptionsForImagesInSimulator() {
-        presenter.prepareMediaOptions(in: UIViewController(), withCameraPersmissions: Camera.shared) { (actions) in
+    func testGetMediaOptionsForImages_Failure() {
+        presenter.prepareMediaOptions(in: addClotheView, withCameraPersmissions: FakeCameraAccessFailure() as CameraAccess) { (actions) in
             guard let realActions = actions else { XCTAssertNil(actions); return }
             print(realActions)
         }
     }
     
     func testGetMediaOptionsForImages() {
-        presenter.prepareMediaOptions(in: addClotheView, withCameraPersmissions: MockCameraAccessSuccess() as CameraAccess) { (actions) in
+        presenter.prepareMediaOptions(in: addClotheView, withCameraPersmissions: FakeCameraAccessSuccess() as CameraAccess) { (actions) in
             guard let realActions = actions else { return }
             XCTAssertEqual(realActions.count, 2)
         }
@@ -138,6 +141,7 @@ class AddClotheViewMock: AddClotheViewable {
     var saveSuccessMessage = ""
     var pickerOptions = [String]()
     var imageSelected: UIImage?
+    var closeViewNumberOfCalls = 0
     
     
     private var saveAction: (() -> AlertHeaderModel)?
@@ -165,8 +169,13 @@ class AddClotheViewMock: AddClotheViewable {
         model.didSelectOptionIndex(0)
     }
     
+    func closeView() {
+        closeViewNumberOfCalls += 1
+    }
+    
     func save() {
         let headerModel = saveAction?()
+        headerModel?.action?()
         saveSuccessMessage = headerModel!.message
     }
 }

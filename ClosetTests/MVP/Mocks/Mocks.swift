@@ -16,7 +16,7 @@ class FakeCameraAccessFailure: CameraAccess {
     }
 }
 
-class MockCameraAccessSuccess: CameraAccess {
+class FakeCameraAccessSuccess: CameraAccess {
     func prepare(inView view: UIViewController, completionHandler: @escaping (Bool) -> Void) {
         completionHandler(true)
     }
