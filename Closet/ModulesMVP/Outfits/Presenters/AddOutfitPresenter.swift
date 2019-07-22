@@ -13,12 +13,12 @@ class AddOutfitPresenter: AddOutfitPresentable {
     private var topClothe: Clothe?
     private var trouserClothe: Clothe?
     private var footwearClothe: Clothe?
-    private var coordinator: OutfitsRouter!
+    private let router: OutfitsRouter
     private var fashionMaker: FashionmakerEditable
     private weak var view: AddOutfitViewable?
     
-    init(withFashionMaker fashionMaker: FashionmakerEditable, coordinator: OutfitsRouter) {
-        self.coordinator = coordinator
+    init(withFashionMaker fashionMaker: FashionmakerEditable, router: OutfitsRouter) {
+        self.router = router
         self.fashionMaker = fashionMaker
     }
     
@@ -35,7 +35,7 @@ class AddOutfitPresenter: AddOutfitPresentable {
     }
     
     func startEditing(pieceType piece: PieceType) {
-        coordinator.pickClothe(withPiece: piece, for: self)
+        router.pickClothe(withPiece: piece, for: self)
     }
     
     private func saveOutfit() -> AlertHeaderModel {
@@ -43,7 +43,7 @@ class AddOutfitPresenter: AddOutfitPresentable {
             let outfit = Outfit(name: name!, clothes: [topClothe!, trouserClothe!, footwearClothe!])
             fashionMaker.add([outfit])
             return AlertHeaderModel(title: "Closet", message: "¡Outfit añadido!", alertAction: .ok) {
-                self.view?.closeView()
+                self.router.returnToPreviousView()
             }
         }
         return AlertHeaderModel(title: "Closet", message: "Verifica tu información")

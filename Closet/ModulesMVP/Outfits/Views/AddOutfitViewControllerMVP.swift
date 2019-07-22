@@ -39,10 +39,6 @@ class AddOutfitViewControllerMVP: GenericFormVC, Storyboarded, AddOutfitViewable
         }
     }
     
-    func closeView() {
-        navigationController?.popViewController(animated: true)
-    }
-    
     //MARK:- Actions
     @IBAction func didSelectTop(_ sender: UIButton) {
         presenter.startEditing(pieceType: .top)

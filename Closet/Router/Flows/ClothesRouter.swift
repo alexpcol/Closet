@@ -35,14 +35,14 @@ class ClothesRouter: Router {
     //MARK:- MVP Methods
     func start() {
         let clotheViewControllerMVP = ClotheViewControllerMVP.instantiate(fromStoryboard: "ClothesMVP")
-        let presenter = ClothePresenter(withDressMaker: ReadClothesInteractor(withContainer: UIApplication.container), coordinator: self)
+        let presenter = ClothePresenter(withDressMaker: ReadClothesInteractor(withContainer: UIApplication.container), router: self)
         presenter.attach(view: clotheViewControllerMVP as ClotheViewable)
         navigationController.pushViewController(clotheViewControllerMVP, animated: true)
     }
 
     func addClothe() {
         let addClotheViewControllerMVP = AddClotheViewControllerMVP.instantiate(fromStoryboard: "ClothesMVP")
-        let presenter = AddClothePresenter(withDressMaker: AddClotheInteractor(withContainer: UIApplication.container))
+        let presenter = AddClothePresenter(withDressMaker: AddClotheInteractor(withContainer: UIApplication.container), router: self)
         presenter.attach(view: addClotheViewControllerMVP as AddClotheViewable)
         navigationController.pushViewController(addClotheViewControllerMVP, animated: true)
     }

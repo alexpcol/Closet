@@ -17,10 +17,10 @@ enum ClotheProperties {
 
 struct Clothe: Hashable {
     let id: URL
-    let color: UIColor
-    let piece: PieceType
-    let style: ClotheStyle
-    let image: UIImage
+    var color: UIColor
+    var piece: PieceType
+    var style: ClotheStyle
+    var image: UIImage
     
     
     //Normal

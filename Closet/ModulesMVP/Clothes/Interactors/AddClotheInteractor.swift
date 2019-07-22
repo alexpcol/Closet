@@ -46,7 +46,7 @@ class AddClotheInteractor: DressmakerEditable {
     }
     
     private func createClotheDatabaseEntity(clothe: Clothe, inContext context: NSManagedObjectContext) {
-        let clotheDatabase = ClotheDatabase(entity: ClotheDatabase.entity(), insertInto: context)
+        let clotheDatabase = ClotheDatabase(context: context)
         clotheDatabase.style = clothe.style.rawValue
         clotheDatabase.color = clothe.color
         clotheDatabase.piece = clothe.piece.rawValue

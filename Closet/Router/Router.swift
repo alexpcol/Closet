@@ -14,4 +14,15 @@ protocol Router: AnyObject {
     var navigationController: UINavigationController {get set}
     
     func start()
+    func returnToPreviousView()
+}
+
+extension Router {
+    func returnToPreviousView() {
+        if navigationController.presentedViewController != nil {
+            navigationController.dismiss(animated: true)
+        } else {
+            navigationController.popViewController(animated: true)
+        }
+    }
 }

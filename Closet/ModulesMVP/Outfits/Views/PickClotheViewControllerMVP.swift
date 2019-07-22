@@ -31,20 +31,14 @@ class PickClotheViewControllerMVP: UIViewController, Storyboarded, PickClotheVie
     }
     
     func showCloseButton() {
-        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(close))
+        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: presenter, action: #selector(presenter.cancel))
         navigationItem.leftBarButtonItems = [cancel]
-    }
-    
-    //MARK:- Actions
-    @objc private func close() {
-        self.dismiss(animated: true)
     }
 }
 
 extension PickClotheViewControllerMVP: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.didSelectOption(index: indexPath.row)
-        close()
     }
     
 }

@@ -53,10 +53,6 @@ class AddClotheViewControllerMVP: GenericFormVC, AddClotheViewable, Storyboarded
         picker.dataSource = self
     }
     
-    func closeView() {
-        navigationController?.popViewController(animated: true)
-    }
-    
     //MARK:- Actions
     @IBAction private func didSelectColor(_ sender: UIButton) {
         presenter.startEditing(property: .color)

@@ -30,13 +30,13 @@ protocol AddOutfitViewable: class {
     func showSaveButton(action: @escaping () -> AlertHeaderModel)
     func setup(title: String, presenter: AddOutfitPresentable)
     func show(clothe: Clothe, forPieceType type: PieceType)
-    func closeView()
 }
 
 //MARK:- PickClothes
-protocol PickClothePresentable {
+@objc protocol PickClothePresentable {
     func fetchClothes()
     func didSelectOption(index: Int)
+    @objc func cancel()
 }
 
 protocol PickClotheViewable: class {

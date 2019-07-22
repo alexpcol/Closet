@@ -10,6 +10,7 @@ import UIKit
 
 class AddClothePresenter: AddClothePresentable {
     private weak var view: AddClotheViewable?
+    private var router: ClothesRouter!
     private var colorSelected: UIColor?
     private var pieceSelected: PieceType?
     private var styleSelected: ClotheStyle?
@@ -19,11 +20,12 @@ class AddClothePresenter: AddClothePresentable {
     private let styles: [ClotheStyle] = ClotheStyle.allCases
     private var dressMaker: DressmakerEditable
     
-    init(withDressMaker dressMaker: DressmakerEditable) {
+    init(withDressMaker dressMaker: DressmakerEditable, router: ClothesRouter) {
         colors.append(UIColor.red)
         colors.append(UIColor.green)
         colors.append(UIColor.blue)
         self.dressMaker = dressMaker
+        self.router = router
     }
     
     func attach(view: AddClotheViewable) {
@@ -153,7 +155,7 @@ class AddClothePresenter: AddClothePresentable {
             let clothe = Clothe(color: colorSelected!, piece: pieceSelected!, style: styleSelected!, image: imageSelected!)
             dressMaker.add([clothe])
             return AlertHeaderModel(title: "Closet", message: "¡Ropa añadida!", alertAction: .ok) {
-                self.view?.closeView()
+                self.router.returnToPreviousView()
             }
         }
         return AlertHeaderModel(title: "Closet", message: "Verifica tu información")

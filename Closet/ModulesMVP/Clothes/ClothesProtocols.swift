@@ -34,7 +34,6 @@ protocol AddClotheViewable: class {
     func show(clotheImage: UIImage)
     func showClothe(property: ClotheProperties,withText text: String)
     func showPicker(withModel model: PickerOptionsModel)
-    func closeView()
 }
 
 struct PickerOptionsModel {

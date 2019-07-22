@@ -9,15 +9,17 @@
 import UIKit
 
 class PickClothePresenter: PickClothePresentable {
+    private let router: OutfitsRouter
     private var clothes = [Clothe]()
     private var dressMaker: DressmakerReadable
     private var pieceSelected: PieceType
     private var delegate: ClothePicked
     private weak var view: PickClotheViewable?
     
-    init(withDressMaker dressMaker: DressmakerReadable, PieceType type: PieceType, andDelegate delegate: ClothePicked) {
+    init(withDressMaker dressMaker: DressmakerReadable, PieceType type: PieceType, andDelegate delegate: ClothePicked, router: OutfitsRouter) {
         self.dressMaker = dressMaker
         self.delegate = delegate
+        self.router = router
         pieceSelected = type
     }
     
@@ -38,5 +40,10 @@ class PickClothePresenter: PickClothePresentable {
     
     func didSelectOption(index: Int) {
         delegate.didSelectClothe(clothes[index], forPieceType: pieceSelected)
+        router.returnToPreviousView()
+    }
+    
+    @objc func cancel() {
+        router.returnToPreviousView()
     }
 }
