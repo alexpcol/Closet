@@ -26,6 +26,7 @@
 		474759E422BE9F7C0019AB2D /* ClotheDatabase+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE87222B8823C00A0EFEB /* ClotheDatabase+CoreDataProperties.swift */; };
 		474759EB22BEAF980019AB2D /* AlertHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474759EA22BEAF980019AB2D /* AlertHeaderModel.swift */; };
 		47633DA622E3920300416F65 /* ClotheInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47633DA522E3920300416F65 /* ClotheInteractorTests.swift */; };
+		479B6E4D22E6A36C0070F113 /* OutfitInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479B6E4C22E6A36C0070F113 /* OutfitInteractorTests.swift */; };
 		47A8A6A52299A33A0005E34C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6A42299A33A0005E34C /* AppDelegate.swift */; };
 		47A8A6AD2299A33A0005E34C /* Closet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47A8A6AB2299A33A0005E34C /* Closet.xcdatamodeld */; };
 		47A8A6B22299A33B0005E34C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47A8A6B02299A33B0005E34C /* LaunchScreen.storyboard */; };
@@ -92,6 +93,7 @@
 		4733D3B522DEBAF100F864CD /* AddOutfitInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutfitInteractor.swift; sourceTree = "<group>"; };
 		474759EA22BEAF980019AB2D /* AlertHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHeaderModel.swift; sourceTree = "<group>"; };
 		47633DA522E3920300416F65 /* ClotheInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClotheInteractorTests.swift; sourceTree = "<group>"; };
+		479B6E4C22E6A36C0070F113 /* OutfitInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitInteractorTests.swift; sourceTree = "<group>"; };
 		47A8A6A12299A33A0005E34C /* Closet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Closet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47A8A6A42299A33A0005E34C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47A8A6AC2299A33A0005E34C /* Closet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Closet.xcdatamodel; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				47633DA522E3920300416F65 /* ClotheInteractorTests.swift */,
+				479B6E4C22E6A36C0070F113 /* OutfitInteractorTests.swift */,
 			);
 			path = VIPER;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				474759E222BE9F6F0019AB2D /* OutfitDatabase+CoreDataProperties.swift in Sources */,
+				479B6E4D22E6A36C0070F113 /* OutfitInteractorTests.swift in Sources */,
 				474759E422BE9F7C0019AB2D /* ClotheDatabase+CoreDataProperties.swift in Sources */,
 				474759E122BE9F5D0019AB2D /* OutfitDatabase+CoreDataClass.swift in Sources */,
 				47633DA622E3920300416F65 /* ClotheInteractorTests.swift in Sources */,

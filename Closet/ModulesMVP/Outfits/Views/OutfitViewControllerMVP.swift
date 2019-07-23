@@ -39,7 +39,9 @@ class OutfitViewControllerMVP: UIViewController, Storyboarded, OutfitViewable {
     
     func show(outfits: [Outfit]) {
         self.outfits = outfits
-        outfitsTable.reloadData()
+        if let table = outfitsTable {
+            table.reloadData()
+        }
     }
     
     //MARK:- Actions

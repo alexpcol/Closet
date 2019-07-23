@@ -46,7 +46,7 @@ class AddOutfitInteractor: FashionmakerEditable {
     }
     
     private func createOutfitDatabaseEntity(outfit: Outfit, inContext context: NSManagedObjectContext) {
-        let outfitDatabase = OutfitDatabase(entity: OutfitDatabase.entity(), insertInto: context)
+        let outfitDatabase = OutfitDatabase(context: context)
         outfitDatabase.name = outfit.name
         for clothe in outfit.clothes {
             dressMaker.fetchDatabaseClothe(withId: clothe.id) { (clotheDatabse) in

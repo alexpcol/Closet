@@ -7,10 +7,11 @@
 //
 
 import XCTest
-@testable import Closet
 import CoreData
-class ClotheInteractorTests: XCTestCase {
+@testable import Closet
 
+class ClotheInteractorTests: XCTestCase {
+    
     var addClotheInteractor: AddClotheInteractor!
     var readClotheInteractor: ReadClothesInteractor!
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -34,7 +35,7 @@ class ClotheInteractorTests: XCTestCase {
     override func setUp() {
         fullFill()
     }
-
+    
     override func tearDown() {
         clean()
     }
@@ -102,7 +103,51 @@ class ClotheInteractorTests: XCTestCase {
                 XCTAssertEqual(updatedClothes[0].color, UIColor.red)
             }
         }
-        
     }
-
+    
+    // MARK:- Read Clothes Interactor
+    func testReadClothe_FetchAllClothes() {
+        let clothe1 = Clothe(color: .blue, piece: .trouser, style: .casual, image: UIImage(named: "clothePlaceholder")!)
+        let clothe2 = Clothe(color: .green, piece: .footwear, style: .informal, image: UIImage(named: "clothePlaceholder")!)
+        addClotheInteractor.add([clothe1, clothe2])
+        
+        let clothesDatabase = readClotheInteractor.fetchAllClothes()
+        if let clothes = clothesDatabase {
+            XCTAssertEqual(clothes.count, 3)
+        }
+    }
+    
+    func testReadClothe_FetchByPiece() {
+        let clothe1 = Clothe(color: .blue, piece: .trouser, style: .casual, image: UIImage(named: "clothePlaceholder")!)
+        let clothe2 = Clothe(color: .green, piece: .trouser, style: .informal, image: UIImage(named: "clothePlaceholder")!)
+        addClotheInteractor.add([clothe1, clothe2])
+        
+        readClotheInteractor.fetchBy(piece: .trouser) {
+            if let clothesPiece = $0 {
+                XCTAssertEqual(clothesPiece.count, 2)
+            }
+        }
+    }
+    
+    func testReadClothe_FetchByID() {
+        let clothe1 = Clothe(color: .blue, piece: .trouser, style: .casual, image: UIImage(named: "clothePlaceholder")!)
+        let clothe2 = Clothe(color: .green, piece: .footwear, style: .informal, image: UIImage(named: "clothePlaceholder")!)
+        addClotheInteractor.add([clothe1, clothe2])
+        
+        let clothesDatabase = readClotheInteractor.fetchAllClothes()
+        if let clothes = clothesDatabase {
+            for clothe in clothes {
+                if clothe.piece == clothe1.piece {
+                    readClotheInteractor.fetchClothe(withId: clothe.id) {
+                        if let clotheId = $0 {
+                            XCTAssertEqual(clotheId.color, UIColor.blue)
+                            XCTAssertEqual(clotheId.piece, PieceType.trouser)
+                            XCTAssertEqual(clotheId.style, ClotheStyle.casual)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }
