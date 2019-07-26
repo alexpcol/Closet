@@ -11,8 +11,8 @@ import UIKit
 
 struct Outfit {
     let id: URL
-    let name: String
-    let clothes: [Clothe]
+    var name: String
+    var clothes: [Clothe]
     
     //Normal
     init(id: URL = URL(fileURLWithPath: ""), name: String, clothes: [Clothe]) {

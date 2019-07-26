@@ -28,7 +28,7 @@ class AddOutfitInteractor: FashionmakerEditable {
         for outfit in outfits {
             fashionMaker.fetchDatabaseOutfit(withId: outfit.id) {
                 $0?.name = outfit.name
-                $0?.clothes = NSSet(array: outfit.clothes)
+                self.updateClothesInOutfit(outfitDatabase: $0!, clothes: outfit.clothes)
             }
         }
         fashionMaker.save()
@@ -43,6 +43,18 @@ class AddOutfitInteractor: FashionmakerEditable {
             }
         }
         fashionMaker.save()
+    }
+    
+    
+    private func updateClothesInOutfit(outfitDatabase: OutfitDatabase, clothes: [Clothe]) {
+        for (index, outfitClothe) in outfitDatabase.clothes.enumerated() {
+            if let clotheDatabase = outfitClothe as? ClotheDatabase {
+                clotheDatabase.color = clothes[index].color
+                clotheDatabase.image = clothes[index].image.jpegData(compressionQuality: 0.75)! as NSData
+                clotheDatabase.piece = clothes[index].piece.rawValue
+                clotheDatabase.style = clothes[index].style.rawValue
+            }
+        }
     }
     
     private func createOutfitDatabaseEntity(outfit: Outfit, inContext context: NSManagedObjectContext) {

@@ -15,7 +15,7 @@ class ClotheInteractorTests: XCTestCase {
     var addClotheInteractor: AddClotheInteractor!
     var readClotheInteractor: ReadClothesInteractor!
     lazy var managedObjectModel: NSManagedObjectModel = {
-        return NSManagedObjectModel.mergedModel(from: [Bundle(identifier: "com.chila.Closet.copy")!])!
+        return NSManagedObjectModel.mergedModel(from: [Bundle(identifier: "com.chila.Closet.viper")!])!
     }()
     lazy var mockPersistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Closet", managedObjectModel: managedObjectModel)
