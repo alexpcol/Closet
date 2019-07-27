@@ -72,12 +72,14 @@
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rojo, Azul, Verde..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JDQ-1m-lHx">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="30"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="colorTextfield"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2g-SR-wbd">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="32"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="colorButton"/>
                                                         <connections>
                                                             <action selector="didSelectColor:" destination="5Dy-UZ-ubT" eventType="touchUpInside" id="Psv-Le-79P"/>
                                                         </connections>
@@ -110,12 +112,14 @@
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Torso, Piernas, Pies..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KOt-Ds-AkC">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="30"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="pieceTextfield"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdj-il-GJ9">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="32"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="pieceButton"/>
                                                         <connections>
                                                             <action selector="didSelectPiece:" destination="5Dy-UZ-ubT" eventType="touchUpInside" id="4JH-x1-QLt"/>
                                                         </connections>
@@ -148,12 +152,14 @@
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Formal, Casual, Informal..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ri3-iG-g82">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="30"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="styleTextfield"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knx-iI-oK7">
                                                         <rect key="frame" x="0.0" y="38" width="398" height="32"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="styleButton"/>
                                                         <connections>
                                                             <action selector="didSelectStyle:" destination="5Dy-UZ-ubT" eventType="touchUpInside" id="c1h-5c-qSw"/>
                                                         </connections>
@@ -177,6 +183,7 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asN-52-YWv">
                                                 <rect key="frame" x="8" y="304" width="398" height="30"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="addImageButton"/>
                                                 <state key="normal" title="Añadir Imagen"/>
                                                 <connections>
                                                     <action selector="didTapAddImage:" destination="5Dy-UZ-ubT" eventType="touchUpInside" id="6cw-rn-s2c"/>

@@ -34,6 +34,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="OutfitViewControllerMVP"/>
                         <constraints>
                             <constraint firstItem="iT0-yC-g2c" firstAttribute="trailing" secondItem="yRo-bl-NWr" secondAttribute="trailing" id="1vj-Ir-XLN"/>
                             <constraint firstItem="iT0-yC-g2c" firstAttribute="bottom" secondItem="yRo-bl-NWr" secondAttribute="bottom" id="AAN-58-HCo"/>
@@ -66,6 +67,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre Outfit" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JCR-U6-3RT">
                                                 <rect key="frame" x="8" y="16" width="398" height="30"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="nameTextfield"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -78,6 +80,7 @@
                                                 <subviews>
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UM6-1R-ZtI">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="pieceTopButton"/>
                                                         <state key="normal" title="Para torso"/>
                                                         <connections>
                                                             <action selector="didSelectTop:" destination="z3N-Za-JVZ" eventType="touchUpInside" id="c2n-h6-Iad"/>
@@ -96,6 +99,7 @@
                                                 <subviews>
                                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0X-C0-lEp">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="pieceTrouserButton"/>
                                                         <state key="normal" title="Para piernas"/>
                                                         <connections>
                                                             <action selector="didSelectTrouser:" destination="z3N-Za-JVZ" eventType="touchUpInside" id="Rjz-gY-HtC"/>
@@ -114,6 +118,7 @@
                                                 <subviews>
                                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpQ-cT-ZZW">
                                                         <rect key="frame" x="0.0" y="0.0" width="194" height="180"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="pieceFootwearButton"/>
                                                         <state key="normal" title="Para pies"/>
                                                         <connections>
                                                             <action selector="disSelectFootwear:" destination="z3N-Za-JVZ" eventType="touchUpInside" id="ON3-qp-YJh"/>

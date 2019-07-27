@@ -18,6 +18,7 @@
 		4714C4ED22B1547200A6D872 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4EC22B1547200A6D872 /* UIApplicationExtension.swift */; };
 		4714C4F522B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F122B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift */; };
 		4714C4F622B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F222B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift */; };
+		471C83C122ECC656007C048B /* ClosetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471C83C022ECC656007C048B /* ClosetUITests.swift */; };
 		4733D3B422DEBAE000F864CD /* ReadOutfitsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4733D3B322DEBAE000F864CD /* ReadOutfitsInteractor.swift */; };
 		4733D3B622DEBAF100F864CD /* AddOutfitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4733D3B522DEBAF100F864CD /* AddOutfitInteractor.swift */; };
 		474759E122BE9F5D0019AB2D /* OutfitDatabase+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4714C4F122B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift */; };
@@ -68,6 +69,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		471C83C322ECC656007C048B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 47A8A6992299A33A0005E34C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47A8A6A02299A33A0005E34C;
+			remoteInfo = Closet;
+		};
 		47A8A6B92299A33B0005E34C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 47A8A6992299A33A0005E34C /* Project object */;
@@ -89,6 +97,9 @@
 		4714C4EC22B1547200A6D872 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		4714C4F122B170CE00A6D872 /* OutfitDatabase+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutfitDatabase+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4714C4F222B170CE00A6D872 /* OutfitDatabase+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutfitDatabase+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		471C83BE22ECC656007C048B /* ClosetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClosetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		471C83C022ECC656007C048B /* ClosetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosetUITests.swift; sourceTree = "<group>"; };
+		471C83C222ECC656007C048B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4733D3B322DEBAE000F864CD /* ReadOutfitsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOutfitsInteractor.swift; sourceTree = "<group>"; };
 		4733D3B522DEBAF100F864CD /* AddOutfitInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutfitInteractor.swift; sourceTree = "<group>"; };
 		474759EA22BEAF980019AB2D /* AlertHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHeaderModel.swift; sourceTree = "<group>"; };
@@ -138,6 +149,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		471C83BB22ECC656007C048B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47A8A69E2299A33A0005E34C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +232,15 @@
 			path = ClotheDatabase;
 			sourceTree = "<group>";
 		};
+		471C83BF22ECC656007C048B /* ClosetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				471C83C022ECC656007C048B /* ClosetUITests.swift */,
+				471C83C222ECC656007C048B /* Info.plist */,
+			);
+			path = ClosetUITests;
+			sourceTree = "<group>";
+		};
 		4733D3B222DEB9D700F864CD /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +273,7 @@
 			children = (
 				47A8A6A32299A33A0005E34C /* Closet */,
 				47A8A6BB2299A33B0005E34C /* ClosetTests */,
+				471C83BF22ECC656007C048B /* ClosetUITests */,
 				47A8A6A22299A33A0005E34C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -255,6 +283,7 @@
 			children = (
 				47A8A6A12299A33A0005E34C /* Closet.app */,
 				47A8A6B82299A33B0005E34C /* ClosetTests.xctest */,
+				471C83BE22ECC656007C048B /* ClosetUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -477,6 +506,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		471C83BD22ECC656007C048B /* ClosetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 471C83C722ECC656007C048B /* Build configuration list for PBXNativeTarget "ClosetUITests" */;
+			buildPhases = (
+				471C83BA22ECC656007C048B /* Sources */,
+				471C83BB22ECC656007C048B /* Frameworks */,
+				471C83BC22ECC656007C048B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				471C83C422ECC656007C048B /* PBXTargetDependency */,
+			);
+			name = ClosetUITests;
+			productName = ClosetUITests;
+			productReference = 471C83BE22ECC656007C048B /* ClosetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		47A8A6A02299A33A0005E34C /* Closet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47A8A6C12299A33B0005E34C /* Build configuration list for PBXNativeTarget "Closet" */;
@@ -522,6 +569,10 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = chila;
 				TargetAttributes = {
+					471C83BD22ECC656007C048B = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 47A8A6A02299A33A0005E34C;
+					};
 					47A8A6A02299A33A0005E34C = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -546,11 +597,19 @@
 			targets = (
 				47A8A6A02299A33A0005E34C /* Closet */,
 				47A8A6B72299A33B0005E34C /* ClosetTests */,
+				471C83BD22ECC656007C048B /* ClosetUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		471C83BC22ECC656007C048B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47A8A69F2299A33A0005E34C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -573,6 +632,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		471C83BA22ECC656007C048B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471C83C122ECC656007C048B /* ClosetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		47A8A69D2299A33A0005E34C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -643,6 +710,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		471C83C422ECC656007C048B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47A8A6A02299A33A0005E34C /* Closet */;
+			targetProxy = 471C83C322ECC656007C048B /* PBXContainerItemProxy */;
+		};
 		47A8A6BA2299A33B0005E34C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 47A8A6A02299A33A0005E34C /* Closet */;
@@ -662,6 +734,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		471C83C522ECC656007C048B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 27P576DGD8;
+				INFOPLIST_FILE = ClosetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chila.ClosetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Closet;
+			};
+			name = Debug;
+		};
+		471C83C622ECC656007C048B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 27P576DGD8;
+				INFOPLIST_FILE = ClosetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.chila.ClosetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Closet;
+			};
+			name = Release;
+		};
 		47A8A6BF2299A33B0005E34C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -859,6 +969,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		471C83C722ECC656007C048B /* Build configuration list for PBXNativeTarget "ClosetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				471C83C522ECC656007C048B /* Debug */,
+				471C83C622ECC656007C048B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		47A8A69C2299A33A0005E34C /* Build configuration list for PBXProject "Closet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

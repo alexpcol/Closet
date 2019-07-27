@@ -39,6 +39,16 @@
                ReferencedContainer = "container:Closet.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "471C83BD22ECC656007C048B"
+               BuildableName = "ClosetUITests.xctest"
+               BlueprintName = "ClosetUITests"
+               ReferencedContainer = "container:Closet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
