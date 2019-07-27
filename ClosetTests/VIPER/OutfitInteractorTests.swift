@@ -157,18 +157,20 @@ class OutfitInteractor: XCTestCase {
             if let updatedOutfits = outfitsDatabase {
                 XCTAssertEqual(updatedOutfits.count, 1)
                 let outfit = updatedOutfits[0]
+                XCTAssertEqual(outfit.clothes.count, 3)
+                var success = true
                 for clothe in outfit.clothes {
-                    if clothe.color == UIColor.red {
-                        XCTAssertEqual(clothe.style, ClotheStyle.sport)
+                    if clothe.color == UIColor.red && clothe.style != .sport {
+                        success = false
                     }
-                    if clothe.color == UIColor.green {
-                        XCTAssertEqual(clothe.piece, PieceType.top)
+                    if clothe.color == UIColor.green && clothe.piece != .top {
+                        success = false
                     }
-                    
-                    if clothe.color == UIColor.brown {
-                        XCTAssertEqual(clothe.color, UIColor.brown)
+                    if clothe.color == UIColor.brown && clothe.piece != .footwear {
+                        success = false
                     }
                 }
+                XCTAssertTrue(success)
             }
         }
     }
@@ -215,8 +217,9 @@ class OutfitInteractor: XCTestCase {
         let outfitsDatabase = readOutfitsInteractor.fetchAllOutfits()
         if let outfits = outfitsDatabase {
             let outfitDatabase = outfits.first!
+            let outfitName = outfitDatabase.name
             readOutfitsInteractor.fetchOutfit(withId: outfitDatabase.id) { (outfit) in
-                XCTAssertEqual(outfit?.name, "Winter")
+                XCTAssertEqual(outfit?.name, outfitName)
             }
         }
     }
